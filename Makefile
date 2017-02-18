@@ -7,7 +7,7 @@ TARGET := bin/monkey
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -g -Wall
+CFLAGS := -std=c++11 -g -Wall
 #TODO: Remove -d for non-debug versions, add -s and define SFML_STATIC for static release
 LIB := -lsfml-system -lsfml-window -lsfml-graphics
 INC := -I include

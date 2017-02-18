@@ -6,35 +6,35 @@ Game::Game()
     window.create(sf::VideoMode(800, 600), "Runaway Monkey",
                   sf::Style::Titlebar | sf::Style::Close);
     //Initialize player
-	if (!player.loadTexture("resources/monkey.png"))
-	{
-		//Handle error
-		throw 5;
-	}
-	player.setTexture();
-	player.setSpritePosition(200, 200);
-	player.setSpriteScale(0.1, 0.1);
+    if (!player.loadTexture("resources/monkey.png"))
+    {
+        //Handle error
+        throw 5;
+    }
+    player.setTexture();
+    player.setSpritePosition(200, 200);
+    player.setSpriteScale(0.1, 0.1);
     player.setSpeed(250.f);
-	player.stop();
+    player.stop();
 }
 
 //Runs the game loop
 void Game::run()
 {
-	const sf::Time frameTime = sf::seconds(1.f / 60.f); //set update rate to 60 FPS
+    const sf::Time frameTime = sf::seconds(1.f / 60.f); //set update rate to 60 FPS
     sf::Clock clock;
-	sf::Time deltaTime = sf::Time::Zero; //time since last update
+    sf::Time deltaTime = sf::Time::Zero; //time since last update
     while (window.isOpen())
     {
         processEvents();
-		deltaTime += clock.restart();
-		//Use a constant time per frame to prevent lag errors (when FPS drop below 60)
-		while (deltaTime > frameTime)
-		{
-			deltaTime -= frameTime;
-			processEvents();
-			update(frameTime);
-		}
+        deltaTime += clock.restart();
+        //Use a constant time per frame to prevent lag errors (when FPS drop below 60)
+        while (deltaTime > frameTime)
+        {
+            deltaTime -= frameTime;
+            processEvents();
+            update(frameTime);
+        }
         render();
     }
 }
@@ -79,10 +79,10 @@ void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
     case sf::Keyboard::D:
         player.setIsMoving(isPressed, RIGHT);
         break;
-	case sf::Keyboard::Escape:
-		//TODO: make menu
-		window.close();
-		break;
+    case sf::Keyboard::Escape:
+        //TODO: make menu
+        window.close();
+        break;
     default:
         break;
     }

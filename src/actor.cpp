@@ -32,30 +32,30 @@ void Actor::stop()
 
 bool Actor::loadTexture(std::string filePath)
 {
-	return texture.loadFromFile(filePath);
+    return texture.loadFromFile(filePath);
 }
 
 void Actor::setTexture()
 {
-	sprite.setTexture(texture);
+    sprite.setTexture(texture);
 }
 
 void Actor::setSpritePosition(float x, float y)
 {
-	sprite.setPosition(x, y);
+    sprite.setPosition(x, y);
 }
 
 void Actor::setSpriteScale(float factorX, float factorY)
 {
-	sprite.setScale(factorX, factorY);
+    sprite.setScale(factorX, factorY);
 }
 
 sf::Sprite Actor::getSprite()
 {
-	return sprite;
+    return sprite;
 }
 
 void Actor::move(sf::Vector2f velocity)
 {
-	sprite.move(velocity);
+    sprite.move(velocity);
 }
