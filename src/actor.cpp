@@ -1,8 +1,7 @@
 #include "actor.h"
 
-void Actor::setIsMoving(bool _moving, Direction dir)
+void Actor::setIsMoving(bool moving, Direction dir)
 {
-    moving = _moving;
     directions[dir] = moving;
 }
 
