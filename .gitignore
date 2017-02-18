@@ -1,0 +1,4 @@
+# Ignore bin and build dirs
+bin
+build
+
