@@ -12,7 +12,7 @@ Game::Game()
         //TODO: Handle error
         throw std::runtime_error("Couldn't load texture");
     }
-    player.sprite.setPosition(200, 200);
+    player.setPosition(200, 200);
     player.sprite.setOrigin(20, 20);
     player.setSpeed(250.f);
     player.setOrientation(RIGHT);

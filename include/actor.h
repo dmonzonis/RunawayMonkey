@@ -17,6 +17,7 @@ public:
     void setIsMoving(bool, Direction);
     bool isMoving(Direction);
     sf::Vector2f getPosition();
+    void setPosition(float, float);
     void setPosition(sf::Vector2f);
     float getSpeed();
     void setSpeed(float);

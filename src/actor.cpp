@@ -15,6 +15,11 @@ sf::Vector2f Actor::getPosition()
     return position;
 }
 
+void Actor::setPosition(float x, float y)
+{
+    position = sf::Vector2f(x, y);
+}
+
 void Actor::setPosition(sf::Vector2f newPosition)
 {
     position = newPosition;
