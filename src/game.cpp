@@ -5,6 +5,7 @@ Game::Game()
 {
     window.create(sf::VideoMode(800, 600), "Runaway Monkey",
                   sf::Style::Titlebar | sf::Style::Close);
+
     //Initialize player
     if (!player.loadTexture("resources/monkey.png"))
     {
@@ -15,6 +16,13 @@ Game::Game()
     player.sprite.setOrigin(20, 20);
     player.setSpeed(250.f);
     player.stop();
+
+    //Initialize crosshair
+    const float r = 20.0;
+    crosshair.setRadius(r);
+    crosshair.setFillColor(sf::Color::Red);
+    crosshair.setOrigin(r, r); //set origin at center
+	crosshairCoord.x = crosshairCoord.y = 0.0;
 }
 
 //Runs the game loop
@@ -46,6 +54,10 @@ void Game::processEvents()
     {
         switch (event.type)
         {
+        case sf::Event::MouseMoved:
+			crosshairCoord.x = event.mouseMove.x;
+			crosshairCoord.y = event.mouseMove.y;
+            break;
         case sf::Event::KeyPressed:
             handleKeyInput(event.key.code, true);
             break;
@@ -95,6 +107,7 @@ void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
 //Update the game logic, using deltaTime to make it independant from FPS
 void Game::update(sf::Time frameTime)
 {
+	//Player movement
     sf::Vector2f movement(0.f, 0.f);
 
     if (player.isMoving(UP))
@@ -107,6 +120,9 @@ void Game::update(sf::Time frameTime)
         movement.x += player.getSpeed();
 
     player.move(movement * frameTime.asSeconds());
+
+	//Crosshair placement
+	crosshair.setPosition(crosshairCoord.x, crosshairCoord.y);
 }
 
 //Draw everything to buffer and display it on the window
@@ -114,6 +130,7 @@ void Game::render()
 {
     window.clear();
     window.draw(player.sprite);
+	window.draw(crosshair);
     window.display();
 }
 

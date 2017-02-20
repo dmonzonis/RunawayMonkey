@@ -10,6 +10,8 @@ public:
 private:
     sf::RenderWindow window;
     Player player;
+	sf::CircleShape crosshair;
+	sf::Vector2f crosshairCoord;
     void processEvents();
     void handleKeyInput(sf::Keyboard::Key, bool);
     void update(sf::Time);
