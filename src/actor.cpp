@@ -34,10 +34,10 @@ void Actor::stop()
  */
 bool Actor::loadTexture(std::string filePath)
 {
-	if (!texture.loadFromFile(filePath))
-		return false;
-	sprite.setTexture(texture);
-	return true;
+    if (!texture.loadFromFile(filePath))
+        return false;
+    sprite.setTexture(texture);
+    return true;
 }
 
 void Actor::move(sf::Vector2f velocity)

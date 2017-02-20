@@ -22,7 +22,7 @@ public:
     bool loadTexture(std::string);
     void move(sf::Vector2f);
     void flipSprite();
-	sf::Sprite sprite;
+    sf::Sprite sprite;
 
 protected:
     //sf::Sprite sprite;
