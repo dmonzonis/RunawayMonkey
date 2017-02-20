@@ -1,7 +1,7 @@
 #pragma once
-#include "actor.h"
+#include "entity.h"
 
-class Player : public Actor
+class Player : public Entity
 {
 public:
     enum Action

@@ -12,7 +12,7 @@ typedef enum
     RIGHT = 3,
 } Direction;
 
-class Actor
+class Entity
 {
 public:
     void setIsMoving(bool, Direction);

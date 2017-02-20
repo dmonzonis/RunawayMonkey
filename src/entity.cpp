@@ -1,47 +1,47 @@
-#include "actor.h"
+#include "entity.h"
 
-void Actor::setIsMoving(bool moving, Direction dir)
+void Entity::setIsMoving(bool moving, Direction dir)
 {
     directions[dir] = moving;
 }
 
-bool Actor::isMoving(Direction dir)
+bool Entity::isMoving(Direction dir)
 {
     return directions[dir];
 }
 
-sf::Vector2f Actor::getPosition()
+sf::Vector2f Entity::getPosition()
 {
     return position;
 }
 
-void Actor::setPosition(float x, float y)
+void Entity::setPosition(float x, float y)
 {
     position = sf::Vector2f(x, y);
 }
 
-void Actor::setPosition(sf::Vector2f newPosition)
+void Entity::setPosition(sf::Vector2f newPosition)
 {
     position = newPosition;
 }
 
-float Actor::getSpeed()
+float Entity::getSpeed()
 {
     return speed;
 }
 
-void Actor::setSpeed(float _speed)
+void Entity::setSpeed(float _speed)
 {
     speed = _speed;
 }
 
-void Actor::setOrientation(Direction newOrient)
+void Entity::setOrientation(Direction newOrient)
 {
     orientation = newOrient;
 }
 
 
-void Actor::stop()
+void Entity::stop()
 {
     //Set all movement directions to false
     for (bool &dir : directions)
@@ -53,7 +53,7 @@ void Actor::stop()
  * if loading failed, true otherwise.
  * TODO: change for use with Resource class
  */
-bool Actor::loadTexture(std::string filePath)
+bool Entity::loadTexture(std::string filePath)
 {
     if (!texture.loadFromFile(filePath))
         return false;
@@ -61,7 +61,7 @@ bool Actor::loadTexture(std::string filePath)
     return true;
 }
 
-void Actor::move(sf::Vector2f velocity)
+void Entity::move(sf::Vector2f velocity)
 {
     position += velocity;
     sprite.setPosition(position);
@@ -70,7 +70,7 @@ void Actor::move(sf::Vector2f velocity)
 /*
  * Flip actor horizontally
  */
-void Actor::flip()
+void Entity::flip()
 {
     auto scale = sprite.getScale();
     sprite.setScale(-scale.x, scale.y);
@@ -83,7 +83,7 @@ void Actor::flip()
 /*
  * If target is behind actor, flip sprite horizontally.
  */
-void Actor::flip(sf::Vector2f target)
+void Entity::flip(sf::Vector2f target)
 {
     float xval = target.x - position.x;
     if ((xval < 0 && orientation == RIGHT) ||
