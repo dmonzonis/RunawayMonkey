@@ -6,18 +6,6 @@ Game::Game()
     window.create(sf::VideoMode(800, 600), "Runaway Monkey",
                   sf::Style::Titlebar | sf::Style::Close);
 
-    //Initialize player
-    if (!player.loadTexture("resources/monkey.png"))
-    {
-        //TODO: Handle error
-        throw std::runtime_error("Couldn't load texture");
-    }
-    player.setPosition(200, 200);
-    player.sprite.setOrigin(20, 20);
-    player.setSpeed(250.f);
-    player.setOrientation(RIGHT);
-    player.stop();
-
     //Initialize crosshair
     const float r = 20.0;
     crosshair.setRadius(r);
@@ -77,30 +65,8 @@ void Game::processEvents()
 //Handle key pressed/released input
 void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
 {
-    switch (key)
-    {
-    case sf::Keyboard::W:
-        player.setIsMoving(isPressed, UP);
-        break;
-    case sf::Keyboard::A:
-        player.setIsMoving(isPressed, LEFT);
-        break;
-    case sf::Keyboard::S:
-        player.setIsMoving(isPressed, DOWN);
-        break;
-    case sf::Keyboard::D:
-        player.setIsMoving(isPressed, RIGHT);
-        break;
-    case sf::Keyboard::Escape:
-        //TODO: make menu
+    if(!player.handleAction(key, isPressed))
         window.close();
-        break;
-    case sf::Keyboard::Y:
-        //XXX: Debug key, remove for release
-        break;
-    default:
-        break;
-    }
 }
 
 //Update the game logic, using deltaTime to make it independant from FPS
