@@ -15,6 +15,7 @@ Game::Game()
     player.sprite.setPosition(200, 200);
     player.sprite.setOrigin(20, 20);
     player.setSpeed(250.f);
+    player.setOrientation(RIGHT);
     player.stop();
 
     //Initialize crosshair
@@ -22,7 +23,7 @@ Game::Game()
     crosshair.setRadius(r);
     crosshair.setFillColor(sf::Color::Red);
     crosshair.setOrigin(r, r); //set origin at center
-	crosshairCoord.x = crosshairCoord.y = 0.0;
+    crosshairCoord.x = crosshairCoord.y = 0.0;
 }
 
 //Runs the game loop
@@ -55,8 +56,8 @@ void Game::processEvents()
         switch (event.type)
         {
         case sf::Event::MouseMoved:
-			crosshairCoord.x = event.mouseMove.x;
-			crosshairCoord.y = event.mouseMove.y;
+            crosshairCoord.x = event.mouseMove.x;
+            crosshairCoord.y = event.mouseMove.y;
             break;
         case sf::Event::KeyPressed:
             handleKeyInput(event.key.code, true);
@@ -96,8 +97,6 @@ void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
         break;
     case sf::Keyboard::Y:
         //XXX: Debug key, remove for release
-        if (isPressed)
-            player.flipSprite();
         break;
     default:
         break;
@@ -107,7 +106,7 @@ void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
 //Update the game logic, using deltaTime to make it independant from FPS
 void Game::update(sf::Time frameTime)
 {
-	//Player movement
+    //Player movement
     sf::Vector2f movement(0.f, 0.f);
 
     if (player.isMoving(UP))
@@ -121,8 +120,9 @@ void Game::update(sf::Time frameTime)
 
     player.move(movement * frameTime.asSeconds());
 
-	//Crosshair placement
-	crosshair.setPosition(crosshairCoord.x, crosshairCoord.y);
+    //Crosshair placement
+    crosshair.setPosition(crosshairCoord.x, crosshairCoord.y);
+    player.flip(crosshairCoord);
 }
 
 //Draw everything to buffer and display it on the window
@@ -130,7 +130,7 @@ void Game::render()
 {
     window.clear();
     window.draw(player.sprite);
-	window.draw(crosshair);
+    window.draw(crosshair);
     window.display();
 }
 

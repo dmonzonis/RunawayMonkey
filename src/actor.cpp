@@ -10,6 +10,16 @@ bool Actor::isMoving(Direction dir)
     return directions[dir];
 }
 
+sf::Vector2f Actor::getPosition()
+{
+    return position;
+}
+
+void Actor::setPosition(sf::Vector2f newPosition)
+{
+    position = newPosition;
+}
+
 float Actor::getSpeed()
 {
     return speed;
@@ -19,6 +29,12 @@ void Actor::setSpeed(float _speed)
 {
     speed = _speed;
 }
+
+void Actor::setOrientation(Direction newOrient)
+{
+    orientation = newOrient;
+}
+
 
 void Actor::stop()
 {
@@ -42,13 +58,32 @@ bool Actor::loadTexture(std::string filePath)
 
 void Actor::move(sf::Vector2f velocity)
 {
-    sprite.move(velocity);
+    position += velocity;
+    sprite.setPosition(position);
 }
 
-//Flip sprite horizontally
-void Actor::flipSprite()
+/*
+ * Flip actor horizontally
+ */
+void Actor::flip()
 {
-    //XXX: Incomplete
     auto scale = sprite.getScale();
     sprite.setScale(-scale.x, scale.y);
+    if (orientation == RIGHT)
+        orientation = LEFT;
+    else
+        orientation = RIGHT;
+}
+
+/*
+ * If target is behind actor, flip sprite horizontally.
+ */
+void Actor::flip(sf::Vector2f target)
+{
+    float xval = target.x - position.x;
+    if ((xval < 0 && orientation == RIGHT) ||
+            (xval > 0 && orientation == LEFT))
+    {
+        flip();
+    }
 }
