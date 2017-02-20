@@ -8,12 +8,11 @@ Game::Game()
     //Initialize player
     if (!player.loadTexture("resources/monkey.png"))
     {
-        //Handle error
-        throw 5;
+        //TODO: Handle error
+        throw std::runtime_error("Couldn't load texture");
     }
-    player.setTexture();
-    player.setSpritePosition(200, 200);
-    player.setSpriteScale(0.1, 0.1);
+    player.sprite.setPosition(200, 200);
+	player.sprite.setOrigin(20, 20);
     player.setSpeed(250.f);
     player.stop();
 }
@@ -83,6 +82,11 @@ void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
         //TODO: make menu
         window.close();
         break;
+	case sf::Keyboard::Y:
+		//XXX: Debug key, remove for release
+		if (isPressed)
+			player.flipSprite();
+		break;
     default:
         break;
     }
@@ -109,7 +113,7 @@ void Game::update(sf::Time frameTime)
 void Game::render()
 {
     window.clear();
-    window.draw(player.getSprite());
+    window.draw(player.sprite);
     window.display();
 }
 

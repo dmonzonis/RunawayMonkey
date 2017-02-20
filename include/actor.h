@@ -20,14 +20,12 @@ public:
     void setSpeed(float);
     void stop();
     bool loadTexture(std::string);
-    void setTexture();
-    void setSpritePosition(float, float);
-    void setSpriteScale(float, float);
-    sf::Sprite getSprite();
     void move(sf::Vector2f);
+    void flipSprite();
+	sf::Sprite sprite;
 
 protected:
-    sf::Sprite sprite;
+    //sf::Sprite sprite;
     sf::Texture texture;
     float speed;
     bool directions[4];

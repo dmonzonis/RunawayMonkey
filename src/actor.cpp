@@ -23,38 +23,32 @@ void Actor::setSpeed(float _speed)
 void Actor::stop()
 {
     //Set all movement directions to false
-    directions[UP] = false;
-    directions[DOWN] = false;
-    directions[LEFT] = false;
-    directions[RIGHT] = false;
+    for (bool &dir : directions)
+        dir = false;
 }
 
+/*
+ * Load texture from file and set the sprite to use it. Return false
+ * if loading failed, true otherwise.
+ * TODO: change for use with Resource class
+ */
 bool Actor::loadTexture(std::string filePath)
 {
-    return texture.loadFromFile(filePath);
-}
-
-void Actor::setTexture()
-{
-    sprite.setTexture(texture);
-}
-
-void Actor::setSpritePosition(float x, float y)
-{
-    sprite.setPosition(x, y);
-}
-
-void Actor::setSpriteScale(float factorX, float factorY)
-{
-    sprite.setScale(factorX, factorY);
-}
-
-sf::Sprite Actor::getSprite()
-{
-    return sprite;
+	if (!texture.loadFromFile(filePath))
+		return false;
+	sprite.setTexture(texture);
+	return true;
 }
 
 void Actor::move(sf::Vector2f velocity)
 {
     sprite.move(velocity);
+}
+
+//Flip sprite horizontally
+void Actor::flipSprite()
+{
+    //XXX: Incomplete
+    auto scale = sprite.getScale();
+    sprite.setScale(-scale.x, scale.y);
 }
