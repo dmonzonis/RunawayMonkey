@@ -8,6 +8,7 @@ enum ID
 {
     Monkey,
     Poop,
+    Grass,
 };
 }
 

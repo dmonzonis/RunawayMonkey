@@ -1,6 +1,7 @@
 #include "player.h"
 
-Player::Player()
+Player::Player(const TextureHolder& textures)
+    : sprite(textures.get(Textures::Monkey))
 {
     //Initial hardcoded keybindings
     keyBinding[sf::Keyboard::W] = keyBinding[sf::Keyboard::Up] = MoveUp;
@@ -9,13 +10,8 @@ Player::Player()
     keyBinding[sf::Keyboard::D] = keyBinding[sf::Keyboard::Right] = MoveRight;
     keyBinding[sf::Keyboard::Escape] = Menu;
 
-    if (!loadTexture("resources/monkey.png"))
-    {
-        //TODO: Handle error
-        throw std::runtime_error("Couldn't load texture");
-    }
-    setPosition(200, 200);
-    sprite.setOrigin(20, 20);
+    sf::FloatRect hitbox = sprite.getLocalBounds();
+    sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
     setSpeed(250.0);
     setOrientation(RIGHT);
     stop();
@@ -54,27 +50,28 @@ bool Player::handleAction(Action action, bool isActive)
 bool Player::handleAction(sf::Keyboard::Key key, bool isActive)
 {
     //If there isn't a binding for key, do nothing
-    Action action = keyBinding[key];
-    switch (action)
-    {
-    case MoveUp:
-        directions[UP] = isActive;
-        break;
-    case MoveLeft:
-        directions[LEFT] = isActive;
-        break;
-    case MoveDown:
-        directions[DOWN] = isActive;
-        break;
-    case MoveRight:
-        directions[RIGHT] = isActive;
-        break;
-    case Shoot:
-        break;
-    case Menu:
-        return false;
-    default:
-        break;
-    }
-    return true;
+    return handleAction(keyBinding[key], isActive);
 }
+
+void Player::update()
+{
+    sf::Vector2f velocity;
+
+    if (directions[UP])
+        velocity.y -= getSpeed();
+    if (directions[LEFT])
+        velocity.x -= getSpeed();
+    if (directions[DOWN])
+        velocity.y += getSpeed();
+    if (directions[RIGHT])
+        velocity.x += getSpeed();
+
+    setVelocity(velocity);
+}
+
+void Player::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(sprite, states);
+}
+
+

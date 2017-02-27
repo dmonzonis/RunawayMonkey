@@ -1,5 +1,9 @@
 #pragma once
+
 #include "entity.h"
+
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 class Player : public Entity
 {
@@ -13,10 +17,17 @@ public:
         Shoot = 5,
         Menu = 6,
     };
-    Player();
+
+public:
+    Player(const TextureHolder&);
     bool handleAction(Action, bool);
     bool handleAction(sf::Keyboard::Key, bool);
+    void update();
 
 private:
+    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+
+private:
+    sf::Sprite sprite;
     std::map<sf::Keyboard::Key, Action> keyBinding;
 };

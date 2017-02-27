@@ -6,15 +6,6 @@
 #include <stdexcept>
 #include <cassert>
 
-namespace Textures
-{
-enum ID
-{
-    Monkey,
-    Poop,
-};
-}
-
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {
@@ -24,7 +15,7 @@ public:
         std::unique_ptr<Resource> res(new Resource());
         if (!res->loadFromFile(filename))
             throw std::runtime_error("ResourceHolder failed to load resource " + filename);
-        insertResource(id, std::move(resource));
+        insertResource(id, std::move(res));
     }
 
     Resource& get(Identifier id)
