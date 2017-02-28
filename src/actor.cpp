@@ -1,10 +1,11 @@
 #include "actor.h"
+#include "utility.h"
 
 Actor::Actor(const TextureHolder& textures, Textures::ID id)
     : sprite(textures.get(id))
 {
     sf::FloatRect hitbox = sprite.getLocalBounds();
-    sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
+    centerOrigin(sprite);
     setSpeed(250.0);
     setOrientation(RIGHT);
     stop();

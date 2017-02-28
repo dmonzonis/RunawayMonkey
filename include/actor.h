@@ -7,8 +7,7 @@
 class Actor : public Entity
 {
 public:
-    Actor() = default;
-    Actor(const TextureHolder&, Textures::ID);
+    explicit Actor(const TextureHolder&, Textures::ID);
     void update();
     virtual Category::Type getCategory() const;
 

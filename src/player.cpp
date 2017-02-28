@@ -1,4 +1,5 @@
 #include "player.h"
+#include "utility.h"
 
 #include <iostream>
 
@@ -47,6 +48,11 @@ Player::Player()
     {
         std::cout << node.getPosition().x << ", "
                   << node.getPosition().y << std::endl;
+    };
+    actionBinding[Debug2].action =
+        [] (WorldNode&, sf::Time)
+    {
+        std::cout << randomInt(100) << std::endl;
     };
 
     for (auto& actionBind : actionBinding)

@@ -1,4 +1,5 @@
 #include "text_node.h"
+#include "utility.h"
 
 #include <cmath>
 
@@ -17,8 +18,5 @@ void TextNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) co
 void TextNode::setString(const std::string& s)
 {
     text.setString(s);
-    //Center origin
-    sf::FloatRect bounds = text.getLocalBounds();
-    text.setOrigin(std::floor(bounds.left + bounds.width / 2.f),
-                   std::floor(bounds.top + bounds.height / 2.f));
+    centerOrigin(text);
 }

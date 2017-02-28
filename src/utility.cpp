@@ -28,3 +28,14 @@ int randomInt(int exclusiveMax)
 {
     return rand() % exclusiveMax;
 }
+
+float norm(sf::Vector2f vec)
+{
+    return std::sqrt(vec.x * vec.x + vec.y * vec.y);
+}
+
+sf::Vector2f unitVector(sf::Vector2f vec)
+{
+    assert(vec != sf::Vector2f(0.f, 0.f));
+    return vec / norm(vec);
+}
