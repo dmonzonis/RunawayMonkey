@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include <iostream>
+
 Game::Game()
     : window(sf::VideoMode(1000, 850), "Runaway Monkey",
              sf::Style::Titlebar | sf::Style::Close)
@@ -18,7 +20,7 @@ void Game::run()
     sf::Clock clock;
     while (window.isOpen())
     {
-		//deltaTime = time since the last tick
+        //deltaTime = time since the last tick
         sf::Time deltaTime = clock.restart();
         processEvents();
         update(deltaTime);
@@ -96,7 +98,14 @@ void Game::render()
 
 int main()
 {
-    Game game;
-    game.run();
+    try
+    {
+        Game game;
+        game.run();
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
     return 0;
 }
