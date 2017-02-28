@@ -23,7 +23,7 @@ struct PlayerMover
 
 Player::Player()
     : shooting(false)
-    , speed(150.f)
+    , speed(250.f)
 {
     //Initial hardcoded keybindings
     //TODO: Make Settings class to handle this
@@ -41,6 +41,13 @@ Player::Player()
     actionBinding[MoveLeft].action = PlayerMover(-speed, 0.f);
     actionBinding[MoveDown].action = PlayerMover(0.f, speed);
     actionBinding[MoveRight].action = PlayerMover(speed, 0.f);
+    //DEBUG
+    actionBinding[Debug1].action =
+        [] (WorldNode& node, sf::Time)
+    {
+        std::cout << node.getPosition().x << ", "
+                  << node.getPosition().y << std::endl;
+    };
 
     for (auto& actionBind : actionBinding)
         actionBind.second.category = Category::Player;
@@ -59,19 +66,10 @@ void Player::setShooting(bool shoot)
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
-    //DEBUG
     if (event.type == sf::Event::KeyPressed
-            && event.key.code == sf::Keyboard::N)
+            && keyBinding[event.key.code])
     {
-        Command output;
-        output.category = Category::Player;
-        //Lambda expression to output player position
-        output.action = [] (WorldNode& node, sf::Time dt)
-        {
-            std::cout << node.getPosition().x << ", "
-                      << node.getPosition().y << std::endl;
-        };
-        commands.push(output);
+        commands.push(actionBinding[keyBinding[event.key.code]]);
     }
 }
 

@@ -1,4 +1,5 @@
 #include "game.h"
+#include "utility.h"
 
 #include <iostream>
 
@@ -72,6 +73,9 @@ void Game::render()
 
 int main()
 {
+	//Set random seed
+	srand(time(NULL));
+
     try
     {
         Game game;
