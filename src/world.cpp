@@ -72,7 +72,8 @@ void World::buildWorld()
 
     //Add crosshair and player
     std::unique_ptr<Crosshair> cross(new Crosshair(textures, window));
-    std::unique_ptr<Actor> monkey(new Actor(textures, Textures::Monkey));
+    std::unique_ptr<Actor> monkey(new Actor(Actor::Type::Monkey,
+                                            textures, Textures::Monkey));
     playerActor = monkey.get();
     crosshair = cross.get();
     playerActor->setPosition(spawnPosition);

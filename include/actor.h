@@ -7,7 +7,15 @@
 class Actor : public Entity
 {
 public:
-    explicit Actor(const TextureHolder&, Textures::ID);
+    enum Type
+    {
+        None,
+        Monkey,
+        Hunter,
+    };
+
+public:
+    explicit Actor(Type, const TextureHolder&, Textures::ID);
     void update();
     virtual Category::Type getCategory() const;
 
@@ -16,4 +24,5 @@ private:
 
 private:
     sf::Sprite sprite;
+    Type type;
 };

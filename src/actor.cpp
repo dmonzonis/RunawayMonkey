@@ -1,10 +1,10 @@
 #include "actor.h"
 #include "utility.h"
 
-Actor::Actor(const TextureHolder& textures, Textures::ID id)
+Actor::Actor(Type actorType, const TextureHolder& textures, Textures::ID id)
     : sprite(textures.get(id))
+    , type(actorType)
 {
-    sf::FloatRect hitbox = sprite.getLocalBounds();
     centerOrigin(sprite);
     setSpeed(250.0);
     setOrientation(RIGHT);
@@ -18,5 +18,8 @@ void Actor::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 
 Category::Type Actor::getCategory() const
 {
-    return Category::Player; //FIXME
+    if (type == Type::Monkey)
+        return Category::Player;
+    else
+        return Category::Enemy;
 }
