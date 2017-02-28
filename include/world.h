@@ -9,6 +9,7 @@
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>
+#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -18,7 +19,8 @@ public:
     explicit World(sf::RenderWindow& w);
     void update(sf::Time deltaTime);
     void draw();
-    bool handleKeyInput(sf::Keyboard::Key key, bool isPressed);
+    int handleKeyInput(sf::Keyboard::Key key, bool isPressed);
+	void handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed);
 
 private:
     void loadTextures();

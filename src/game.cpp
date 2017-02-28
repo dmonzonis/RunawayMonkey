@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game()
-    : window(sf::VideoMode(800, 600), "Runaway Monkey",
+    : window(sf::VideoMode(1000, 850), "Runaway Monkey",
              sf::Style::Titlebar | sf::Style::Close)
     , world(window)
 {
@@ -42,6 +42,12 @@ void Game::processEvents()
         case sf::Event::KeyReleased:
             handleKeyInput(event.key.code, false);
             break;
+        case sf::Event::MouseButtonPressed:
+            handleMouseInput(event.mouseButton, true);
+            break;
+        case sf::Event::MouseButtonReleased:
+            handleMouseInput(event.mouseButton, false);
+            break;
         case sf::Event::Closed:
             window.close();
             break;
@@ -56,9 +62,18 @@ void Game::processEvents()
  */
 void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
 {
-	//Pass it to the World method
+    //Pass it to the World method
     if(!world.handleKeyInput(key, isPressed))
         window.close();
+}
+
+/*
+ * Handle mouse button pressed/released input
+ */
+void Game::handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed)
+{
+    //Pass it to the World method
+    world.handleMouseInput(mouse, isPressed);
 }
 
 /*

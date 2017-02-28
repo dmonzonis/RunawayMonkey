@@ -71,8 +71,33 @@ void World::buildWorld()
     graph.attachChild(std::move(cross));
 }
 
-bool World::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
+//0 = close the window, 1 = zoom out, 2 = zoom in
+int World::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
 {
     //Pass input to Player
-    return	player->handleAction(key, isPressed);
+    int res = player->handleAction(key, isPressed);
+    //FIXME: Debug purposes, remove on release
+    switch (res)
+    {
+    case 2:
+        worldView.zoom(1.2);
+        break;
+    case 3:
+        worldView.zoom(0.8);
+        break;
+    }
+    return res;
+}
+
+void World::handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed)
+{
+    auto button = mouse.button;
+    switch (button)
+    {
+    case sf::Mouse::Button::Left:
+        player->setShooting(isPressed);
+        break;
+    default:
+        break;
+    }
 }

@@ -11,19 +11,23 @@ class Player : public Entity
 public:
     enum Action
     {
-        MoveUp = 1,
-        MoveLeft = 2,
-        MoveDown = 3,
-        MoveRight = 4,
-        Shoot = 5,
-        Menu = 6,
+        MoveUp,
+        MoveLeft,
+        MoveDown,
+        MoveRight,
+        Shoot,
+        Menu,
+        Debug1,
+        Debug2,
     };
 
 public:
     Player(const TextureHolder&);
     void setCrosshair(Crosshair*);
-    bool handleAction(Action, bool);
-    bool handleAction(sf::Keyboard::Key, bool);
+    bool isShooting();
+    void setShooting(bool);
+    int handleAction(Action, bool);
+    int handleAction(sf::Keyboard::Key, bool);
     void update();
 
 private:
@@ -32,5 +36,6 @@ private:
 private:
     sf::Sprite sprite;
     Crosshair *crosshair;
+    bool shooting;
     std::map<sf::Keyboard::Key, Action> keyBinding;
 };

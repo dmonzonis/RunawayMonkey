@@ -13,6 +13,7 @@ public:
 private:
     void processEvents();
     void handleKeyInput(sf::Keyboard::Key key, bool isPressed);
+    void handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed);
     void update(sf::Time deltaTime);
     void render();
 

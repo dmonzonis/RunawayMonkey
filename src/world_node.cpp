@@ -80,6 +80,11 @@ sf::Vector2f WorldNode::getWorldPosition() const
     return getWorldTransform() * sf::Vector2f();
 }
 
+/*
+ * Applies all transforms traveling through parents until we reac
+ * the root node, to compute the absolute world transform instead
+ * of the transform relative to the parent
+ */
 sf::Transform WorldNode::getWorldTransform() const
 {
     sf::Transform trans = sf::Transform::Identity;

@@ -3,6 +3,7 @@
 Player::Player(const TextureHolder& textures)
     : sprite(textures.get(Textures::Monkey))
     , crosshair(nullptr)
+    , shooting(false)
 {
     //Initial hardcoded keybindings
     //TODO: Make Settings class to handle this
@@ -11,6 +12,9 @@ Player::Player(const TextureHolder& textures)
     keyBinding[sf::Keyboard::S] = keyBinding[sf::Keyboard::Down] = MoveDown;
     keyBinding[sf::Keyboard::D] = keyBinding[sf::Keyboard::Right] = MoveRight;
     keyBinding[sf::Keyboard::Escape] = Menu;
+    //FIXME: remove Debug keys for release
+    keyBinding[sf::Keyboard::N] = Debug1;
+    keyBinding[sf::Keyboard::M] = Debug2;
 
     //Make hitbox from sprite bounds and set the origin to the center
     sf::FloatRect hitbox = sprite.getLocalBounds();
@@ -25,11 +29,21 @@ void Player::setCrosshair(Crosshair *cross)
     crosshair = cross;
 }
 
+bool Player::isShooting()
+{
+    return shooting;
+}
+
+void Player::setShooting(bool shoot)
+{
+    shooting = shoot;
+}
+
 
 /*
  * Handle given action. Returns false if game should quit, true otherwise
  */
-bool Player::handleAction(Action action, bool isActive)
+int Player::handleAction(Action action, bool isActive)
 {
     switch (action)
     {
@@ -48,12 +62,16 @@ bool Player::handleAction(Action action, bool isActive)
     case Shoot:
         break;
     case Menu:
-        return false;
+        return 0;
+    case Debug1:
+        return 2;
+    case Debug2:
+        return 3;
     }
-    return true;
+    return 1;
 }
 
-bool Player::handleAction(sf::Keyboard::Key key, bool isActive)
+int Player::handleAction(sf::Keyboard::Key key, bool isActive)
 {
     //If there isn't a binding for key, does nothing
     return handleAction(keyBinding[key], isActive);
