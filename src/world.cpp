@@ -40,6 +40,7 @@ void World::loadTextures()
 {
     textures.load(Textures::Monkey, "resources/monkey.png");
     textures.load(Textures::Poop, "resources/poop.png");
+    textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
 }
 
@@ -57,12 +58,15 @@ void World::buildWorld()
     bgSprite->setPosition(worldBounds.left, worldBounds.top);
     graph.attachChild(std::move(bgSprite));
 
-    //Add player
+    //Add crosshair and player
+    std::unique_ptr<Crosshair> cross(new Crosshair(textures, window));
     std::unique_ptr<Player> monkey(new Player(textures));
     player = monkey.get();
+    player->setCrosshair(cross.get());
     player->setPosition(spawnPosition);
     player->setVelocity(0.f, 0.f);
     graph.attachChild(std::move(monkey));
+    graph.attachChild(std::move(cross));
 }
 
 bool World::handleKeyInput(sf::Keyboard::Key key, bool isPressed)

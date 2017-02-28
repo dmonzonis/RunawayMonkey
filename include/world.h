@@ -5,6 +5,7 @@
 #include "world_node.h"
 #include "sprite_node.h"
 #include "player.h"
+#include "crosshair.h"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>

@@ -2,6 +2,7 @@
 
 Player::Player(const TextureHolder& textures)
     : sprite(textures.get(Textures::Monkey))
+    , crosshair(nullptr)
 {
     //Initial hardcoded keybindings
     keyBinding[sf::Keyboard::W] = keyBinding[sf::Keyboard::Up] = MoveUp;
@@ -16,6 +17,12 @@ Player::Player(const TextureHolder& textures)
     setOrientation(RIGHT);
     stop();
 }
+
+void Player::setCrosshair(Crosshair *cross)
+{
+    crosshair = cross;
+}
+
 
 /*
  * Handle given action. Returns false if game should quit, true otherwise
@@ -67,6 +74,9 @@ void Player::update()
         velocity.x += getSpeed();
 
     setVelocity(velocity);
+
+    //Update crosshair
+    crosshair->update(getPosition());
 }
 
 void Player::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

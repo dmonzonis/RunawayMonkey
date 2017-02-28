@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entity.h"
+#include "crosshair.h"
 
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -20,6 +21,7 @@ public:
 
 public:
     Player(const TextureHolder&);
+    void setCrosshair(Crosshair*);
     bool handleAction(Action, bool);
     bool handleAction(sf::Keyboard::Key, bool);
     void update();
@@ -29,5 +31,6 @@ private:
 
 private:
     sf::Sprite sprite;
+    Crosshair *crosshair;
     std::map<sf::Keyboard::Key, Action> keyBinding;
 };
