@@ -33,6 +33,7 @@ void World::update(sf::Time dt)
 
     //Place crosshair
     crosshair->update(playerActor->getPosition());
+	playerActor->flip(crosshair->getPosition());
 
     //Update the entire graph
     graph.update(dt);
