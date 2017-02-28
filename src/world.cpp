@@ -1,14 +1,12 @@
 #include "world.h"
 
-#include <iostream>
-
 World::World(sf::RenderWindow& w)
     : window(w)
     , worldView(window.getDefaultView())
     , textures()
     , graph()
     , worldBounds(0.f, 0.f, 2000.f, 2000.f) //FIXME
-    , spawnPosition(worldView.getSize().x / 2.f, worldView.getSize().y / 2.f)
+    , spawnPosition(worldBounds.width / 2.f, worldBounds.height / 2.f)
     , player(nullptr)
 {
     loadTextures();
