@@ -77,6 +77,9 @@ void Player::update()
 
     //Update crosshair
     crosshair->update(getPosition());
+
+    //Flip character if necessary
+    flip(crosshair->getPosition());
 }
 
 void Player::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

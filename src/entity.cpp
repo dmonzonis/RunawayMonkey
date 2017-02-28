@@ -42,8 +42,8 @@ void Entity::stop()
  */
 void Entity::flip()
 {
-    auto scale = sprite.getScale();
-    sprite.setScale(-scale.x, scale.y);
+    auto scale = getScale();
+    setScale(-scale.x, scale.y);
     if (orientation == RIGHT)
         orientation = LEFT;
     else
@@ -55,7 +55,7 @@ void Entity::flip()
  */
 void Entity::flip(sf::Vector2f target)
 {
-    float xval = target.x - position.x;
+    float xval = target.x - getPosition().x;
     if ((xval < 0 && orientation == RIGHT) ||
             (xval > 0 && orientation == LEFT))
     {
