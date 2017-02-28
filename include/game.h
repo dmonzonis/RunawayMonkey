@@ -1,6 +1,7 @@
 #pragma once
 
 #include "world.h"
+#include "player.h"
 
 #include <SFML/Window/Event.hpp>
 
@@ -11,15 +12,13 @@ public:
     void run();
 
 private:
-    void processEvents();
-    void handleKeyInput(sf::Keyboard::Key key, bool isPressed);
-    void handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed);
+    void processInput();
     void update(sf::Time deltaTime);
     void render();
 
 private:
     sf::RenderWindow window;
     World world;
-    //sf::CircleShape crosshair;
-    //sf::Vector2f crosshairCoord;
+    Player player;
+    bool paused;
 };

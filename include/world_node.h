@@ -1,5 +1,8 @@
 #pragma once
 
+#include "category.h"
+#include "command.h"
+
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/Transformable.hpp>
@@ -17,9 +20,11 @@ public:
     WorldNode();
     void attachChild(Ptr child);
     Ptr detachChild(const WorldNode& node);
-    void update(sf::Time deltaTime);
+    void update(sf::Time);
     sf::Vector2f getWorldPosition() const;
     sf::Transform getWorldTransform() const;
+    virtual Category::Type getCategory() const;
+    void onCommand(const Command&, sf::Time);
 
 private:
     virtual void updateCurrent(sf::Time deltaTime);

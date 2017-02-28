@@ -93,3 +93,20 @@ sf::Transform WorldNode::getWorldTransform() const
 
     return trans;
 }
+
+Category::Type WorldNode::getCategory() const
+{
+    //WorldNode has Scene category by default
+    return Category::Scene;
+}
+
+void WorldNode::onCommand(const Command& command, sf::Time dt)
+{
+    //If node has the same category as the command, then execute it
+    if (command.category == getCategory())
+        command.action(*this, dt);
+
+    //Pass the command to its children
+    for (Ptr& child : children)
+        child->onCommand(command, dt);
+}

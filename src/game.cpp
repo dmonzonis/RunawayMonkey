@@ -6,10 +6,13 @@ Game::Game()
     : window(sf::VideoMode(1000, 850), "Runaway Monkey",
              sf::Style::Titlebar | sf::Style::Close)
     , world(window)
+    , player()
+    , paused(false)
 {
     //Implicitly use sf::Time::sleep to maintain 60 FPS
     //TODO: Use more reliable method
     window.setFramerateLimit(60);
+    window.setKeyRepeatEnabled(false);
 }
 
 /*
@@ -20,70 +23,41 @@ void Game::run()
     sf::Clock clock;
     while (window.isOpen())
     {
-        //deltaTime = time since the last tick
-        sf::Time deltaTime = clock.restart();
-        processEvents();
-        update(deltaTime);
+        //dt = time since the last tick
+        sf::Time dt = clock.restart();
+        processInput();
+        //Update the game if it's not on pause
+        if (!paused)
+            update(dt);
         render();
     }
 }
 
-/*
- * Handle user input
- */
-void Game::processEvents()
+void Game::processInput()
 {
+    CommandQueue& commands = world.getCommandQueue();
+
     sf::Event event;
     while (window.pollEvent(event))
     {
-        switch (event.type)
-        {
-        case sf::Event::KeyPressed:
-            handleKeyInput(event.key.code, true);
-            break;
-        case sf::Event::KeyReleased:
-            handleKeyInput(event.key.code, false);
-            break;
-        case sf::Event::MouseButtonPressed:
-            handleMouseInput(event.mouseButton, true);
-            break;
-        case sf::Event::MouseButtonReleased:
-            handleMouseInput(event.mouseButton, false);
-            break;
-        case sf::Event::Closed:
+        player.handleEvent(event, commands);
+        if (event.type == sf::Event::Closed)
             window.close();
-            break;
-        default:
-            break;
-        }
+        else if (event.type == sf::Event::LostFocus)
+            paused = true;
+        else if (event.type == sf::Event::GainedFocus)
+            paused = false;
     }
+
+    player.handleRealTimeInput(commands);
 }
 
 /*
- * Handle key pressed/released input
+ * Update the game logic, using dt to make it FPS independent
  */
-void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
+void Game::update(sf::Time dt)
 {
-    //Pass it to the World method
-    if(!world.handleKeyInput(key, isPressed))
-        window.close();
-}
-
-/*
- * Handle mouse button pressed/released input
- */
-void Game::handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed)
-{
-    //Pass it to the World method
-    world.handleMouseInput(mouse, isPressed);
-}
-
-/*
- * Update the game logic, using deltaTime to make it FPS independent
- */
-void Game::update(sf::Time deltaTime)
-{
-    world.update(deltaTime);
+    world.update(dt);
 }
 
 /*

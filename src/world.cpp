@@ -6,29 +6,36 @@ World::World(sf::RenderWindow& w)
     , textures()
     , graph()
     , worldBounds(0.f, 0.f, 2000.f, 2000.f) //FIXME
+    , playerActor(nullptr)
+    , crosshair(nullptr)
     , spawnPosition(worldBounds.width / 2.f, worldBounds.height / 2.f)
-    , player(nullptr)
 {
     //When world is created, load all the textures and build the world
-    loadTextures();
+    loadResources();
     buildWorld();
 
     //Center viewport on player
     worldView.setCenter(spawnPosition);
 }
 
-void World::update(sf::Time deltaTime)
+void World::update(sf::Time dt)
 {
-    //Update player
-    player->update();
-    sf::Vector2f velocity = player->getVelocity();
+    //Reset player velocity
+    playerActor->setVelocity(0.f, 0.f);
+
+    while (!commandQueue.isEmpty())
+        graph.onCommand(commandQueue.pop(), dt);
 
     //Move view with player (player is always in the center)
-    worldView.move(velocity.x * deltaTime.asSeconds(),
-                   velocity.y * deltaTime.asSeconds());
+    sf::Vector2f velocity = playerActor->getVelocity();
+    worldView.move(velocity.x * dt.asSeconds(),
+                   velocity.y * dt.asSeconds());
 
-    //Apply movement to the world nodes
-    graph.update(deltaTime);
+    //Place crosshair
+    crosshair->update(playerActor->getPosition());
+
+    //Update the entire graph
+    graph.update(dt);
 }
 
 void World::draw()
@@ -38,7 +45,7 @@ void World::draw()
     window.draw(graph);
 }
 
-void World::loadTextures()
+void World::loadResources()
 {
     textures.load(Textures::Monkey, "resources/monkey.png");
     textures.load(Textures::Poop, "resources/poop.png");
@@ -62,42 +69,16 @@ void World::buildWorld()
 
     //Add crosshair and player
     std::unique_ptr<Crosshair> cross(new Crosshair(textures, window));
-    std::unique_ptr<Player> monkey(new Player(textures));
-    player = monkey.get();
-    player->setCrosshair(cross.get());
-    player->setPosition(spawnPosition);
-    player->setVelocity(0.f, 0.f);
+    std::unique_ptr<Actor> monkey(new Actor(textures, Textures::Monkey));
+    playerActor = monkey.get();
+    crosshair = cross.get();
+    playerActor->setPosition(spawnPosition);
+    playerActor->setVelocity(0.f, 0.f);
     graph.attachChild(std::move(monkey));
     graph.attachChild(std::move(cross));
 }
 
-//0 = close the window, 1 = zoom out, 2 = zoom in
-int World::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
+CommandQueue& World::getCommandQueue()
 {
-    //Pass input to Player
-    int res = player->handleAction(key, isPressed);
-    //FIXME: Debug purposes, remove on release
-    switch (res)
-    {
-    case 2:
-        worldView.zoom(1.2);
-        break;
-    case 3:
-        worldView.zoom(0.8);
-        break;
-    }
-    return res;
-}
-
-void World::handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed)
-{
-    auto button = mouse.button;
-    switch (button)
-    {
-    case sf::Mouse::Button::Left:
-        player->setShooting(isPressed);
-        break;
-    default:
-        break;
-    }
+    return commandQueue;
 }

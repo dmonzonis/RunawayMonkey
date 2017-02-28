@@ -4,8 +4,9 @@
 #include "resource_identifiers.h"
 #include "world_node.h"
 #include "sprite_node.h"
-#include "player.h"
+#include "actor.h"
 #include "crosshair.h"
+#include "command_queue.h"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>
@@ -16,14 +17,13 @@
 class World : private sf::NonCopyable
 {
 public:
-    explicit World(sf::RenderWindow& w);
-    void update(sf::Time deltaTime);
+    explicit World(sf::RenderWindow&);
+    void update(sf::Time);
     void draw();
-    int handleKeyInput(sf::Keyboard::Key key, bool isPressed);
-	void handleMouseInput(sf::Event::MouseButtonEvent mouse, bool isPressed);
+    CommandQueue& getCommandQueue();
 
 private:
-    void loadTextures();
+    void loadResources();
     void buildWorld();
 
 private:
@@ -32,6 +32,8 @@ private:
     TextureHolder textures;
     WorldNode graph;
     sf::FloatRect worldBounds;
+    Actor *playerActor;
+    Crosshair *crosshair;
     sf::Vector2f spawnPosition;
-    Player *player;
+    CommandQueue commandQueue;
 };

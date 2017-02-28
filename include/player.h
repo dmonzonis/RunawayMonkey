@@ -1,12 +1,16 @@
 #pragma once
 
-#include "entity.h"
-#include "crosshair.h"
+#include "category.h"
+#include "command_queue.h"
+#include "actor.h"
 
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-class Player : public Entity
+#include <map>
+
+class Player
 {
 public:
     enum Action
@@ -22,20 +26,22 @@ public:
     };
 
 public:
-    Player(const TextureHolder&);
-    void setCrosshair(Crosshair*);
-    bool isShooting();
+    Player();
+    bool isShooting() const;
     void setShooting(bool);
-    int handleAction(Action, bool);
-    int handleAction(sf::Keyboard::Key, bool);
+    void handleEvent(const sf::Event& event, CommandQueue& commands);
+    void handleRealTimeInput(CommandQueue& commands);
+    void assignKey(Action, sf::Keyboard::Key);
+    sf::Keyboard::Key getAssignedKey(Action) const;
     void update();
+    virtual Category::Type getCategory() const;
 
 private:
-    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+    static bool isRealTimeAction(Action action);
 
 private:
-    sf::Sprite sprite;
-    Crosshair *crosshair;
     bool shooting;
+    float speed;
     std::map<sf::Keyboard::Key, Action> keyBinding;
+    std::map<Action, Command> actionBinding;
 };

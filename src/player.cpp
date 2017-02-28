@@ -1,35 +1,53 @@
 #include "player.h"
 
-Player::Player(const TextureHolder& textures)
-    : sprite(textures.get(Textures::Monkey))
-    , crosshair(nullptr)
-    , shooting(false)
+#include <iostream>
+
+//Player movement functor
+struct PlayerMover
+{
+    PlayerMover(float vx, float vy)
+        : velocity(vx, vy)
+    {
+    }
+
+    void operator() (WorldNode& node, sf::Time) const
+    {
+        Actor& actor = static_cast<Actor&>(node);
+        //accelerate the actor
+        actor.setVelocity(actor.getVelocity() + velocity);
+    }
+
+    sf::Vector2f velocity;
+};
+
+
+Player::Player()
+    : shooting(false)
+    , speed(150.f)
 {
     //Initial hardcoded keybindings
     //TODO: Make Settings class to handle this
-    keyBinding[sf::Keyboard::W] = keyBinding[sf::Keyboard::Up] = MoveUp;
-    keyBinding[sf::Keyboard::A] = keyBinding[sf::Keyboard::Left] = MoveLeft;
-    keyBinding[sf::Keyboard::S] = keyBinding[sf::Keyboard::Down] = MoveDown;
-    keyBinding[sf::Keyboard::D] = keyBinding[sf::Keyboard::Right] = MoveRight;
+    keyBinding[sf::Keyboard::W] = MoveUp;
+    keyBinding[sf::Keyboard::A] = MoveLeft;
+    keyBinding[sf::Keyboard::S] = MoveDown;
+    keyBinding[sf::Keyboard::D] = MoveRight;
     keyBinding[sf::Keyboard::Escape] = Menu;
-    //FIXME: remove Debug keys for release
+    //TODO: remove Debug keys for release
     keyBinding[sf::Keyboard::N] = Debug1;
     keyBinding[sf::Keyboard::M] = Debug2;
 
-    //Make hitbox from sprite bounds and set the origin to the center
-    sf::FloatRect hitbox = sprite.getLocalBounds();
-    sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
-    setSpeed(250.0);
-    setOrientation(RIGHT);
-    stop();
+    //Action bindings
+    actionBinding[MoveUp].action = PlayerMover(0.f, -speed);
+    actionBinding[MoveLeft].action = PlayerMover(-speed, 0.f);
+    actionBinding[MoveDown].action = PlayerMover(0.f, speed);
+    actionBinding[MoveRight].action = PlayerMover(speed, 0.f);
+
+    for (auto& actionBind : actionBinding)
+        actionBind.second.category = Category::Player;
 }
 
-void Player::setCrosshair(Crosshair *cross)
-{
-    crosshair = cross;
-}
 
-bool Player::isShooting()
+bool Player::isShooting() const
 {
     return shooting;
 }
@@ -39,70 +57,76 @@ void Player::setShooting(bool shoot)
     shooting = shoot;
 }
 
+void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
+{
+    //DEBUG
+    if (event.type == sf::Event::KeyPressed
+            && event.key.code == sf::Keyboard::N)
+    {
+        Command output;
+        output.category = Category::Player;
+        //Lambda expression to output player position
+        output.action = [] (WorldNode& node, sf::Time dt)
+        {
+            std::cout << node.getPosition().x << ", "
+                      << node.getPosition().y << std::endl;
+        };
+        commands.push(output);
+    }
+}
 
-/*
- * Handle given action. Returns false if game should quit, true otherwise
- */
-int Player::handleAction(Action action, bool isActive)
+void Player::handleRealTimeInput(CommandQueue& commands)
+{
+    //Check if any bound keys are being pressed and act accordingly
+    for (auto keyBind : keyBinding)
+    {
+        if (sf::Keyboard::isKeyPressed(keyBind.first)
+                && isRealTimeAction(keyBind.second))
+        {
+            commands.push(actionBinding[keyBind.second]);
+        }
+    }
+}
+
+void Player::assignKey(Action action, sf::Keyboard::Key key)
+{
+    //Check if action is already mapped and remove older mapping if it is
+    for (auto it = keyBinding.begin(); it != keyBinding.end(); ++it)
+    {
+        if (it->second == action)
+        {
+            it = keyBinding.erase(it);
+        }
+    }
+    keyBinding[key] = action;
+}
+
+sf::Keyboard::Key Player::getAssignedKey(Action action) const
+{
+    for (auto it = keyBinding.begin(); it != keyBinding.end(); ++it)
+    {
+        if (it->second == action)
+            return it->first;
+    }
+    return sf::Keyboard::Unknown;
+}
+
+
+Category::Type Player::getCategory() const
+{
+    return Category::Player;
+}
+
+bool Player::isRealTimeAction(Action action)
 {
     switch (action)
     {
     case MoveUp:
-        directions[UP] = isActive;
-        break;
     case MoveLeft:
-        directions[LEFT] = isActive;
-        break;
     case MoveDown:
-        directions[DOWN] = isActive;
-        break;
     case MoveRight:
-        directions[RIGHT] = isActive;
-        break;
-    case Shoot:
-        break;
-    case Menu:
-        return 0;
-    case Debug1:
-        return 2;
-    case Debug2:
-        return 3;
+        return true;
+    default:
+        return false;
     }
-    return 1;
 }
-
-int Player::handleAction(sf::Keyboard::Key key, bool isActive)
-{
-    //If there isn't a binding for key, does nothing
-    return handleAction(keyBinding[key], isActive);
-}
-
-void Player::update()
-{
-    //Compute velocity from moving directions and speed
-    sf::Vector2f velocity;
-
-    if (directions[UP])
-        velocity.y -= getSpeed();
-    if (directions[LEFT])
-        velocity.x -= getSpeed();
-    if (directions[DOWN])
-        velocity.y += getSpeed();
-    if (directions[RIGHT])
-        velocity.x += getSpeed();
-
-    setVelocity(velocity);
-
-    //Update crosshair
-    crosshair->update(getPosition());
-
-    //Flip character if necessary
-    flip(crosshair->getPosition());
-}
-
-void Player::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    target.draw(sprite, states);
-}
-
-
