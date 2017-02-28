@@ -13,9 +13,9 @@ Crosshair::Crosshair(const TextureHolder& textures, sf::RenderWindow& w)
 void Crosshair::update(sf::Vector2f playerPos)
 {
     sf::Vector2f pos;
-    //get mouse position in the window
+    //Get mouse position in the window
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    //convert position to world coordinates
+    //Convert position to world coordinates
     pos = window.mapPixelToCoords(mousePos);
     setPosition(pos);
 }

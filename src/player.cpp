@@ -5,12 +5,14 @@ Player::Player(const TextureHolder& textures)
     , crosshair(nullptr)
 {
     //Initial hardcoded keybindings
+    //TODO: Make Settings class to handle this
     keyBinding[sf::Keyboard::W] = keyBinding[sf::Keyboard::Up] = MoveUp;
     keyBinding[sf::Keyboard::A] = keyBinding[sf::Keyboard::Left] = MoveLeft;
     keyBinding[sf::Keyboard::S] = keyBinding[sf::Keyboard::Down] = MoveDown;
     keyBinding[sf::Keyboard::D] = keyBinding[sf::Keyboard::Right] = MoveRight;
     keyBinding[sf::Keyboard::Escape] = Menu;
 
+    //Make hitbox from sprite bounds and set the origin to the center
     sf::FloatRect hitbox = sprite.getLocalBounds();
     sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
     setSpeed(250.0);
@@ -51,17 +53,15 @@ bool Player::handleAction(Action action, bool isActive)
     return true;
 }
 
-/*
- * Same as above but using the key binding map
- */
 bool Player::handleAction(sf::Keyboard::Key key, bool isActive)
 {
-    //If there isn't a binding for key, do nothing
+    //If there isn't a binding for key, does nothing
     return handleAction(keyBinding[key], isActive);
 }
 
 void Player::update()
 {
+    //Compute velocity from moving directions and speed
     sf::Vector2f velocity;
 
     if (directions[UP])

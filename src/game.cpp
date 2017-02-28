@@ -1,27 +1,24 @@
 #include "game.h"
 
-//Initial game settings are loaded in the constructor
 Game::Game()
     : window(sf::VideoMode(800, 600), "Runaway Monkey",
              sf::Style::Titlebar | sf::Style::Close)
     , world(window)
 {
+    //Implicitly use sf::Time::sleep to maintain 60 FPS
+    //TODO: Use more reliable method
     window.setFramerateLimit(60);
-    //Initialize crosshair
-    //FIXME
-    //const float r = 20.0;
-    //crosshair.setRadius(r);
-    //crosshair.setFillColor(sf::Color::Red);
-    //crosshair.setOrigin(r, r); //set origin at center
-    //crosshairCoord.x = crosshairCoord.y = 0.0;
 }
 
-//Runs the game loop
+/*
+ * Runs the game loop
+ */
 void Game::run()
 {
     sf::Clock clock;
     while (window.isOpen())
     {
+		//deltaTime = time since the last tick
         sf::Time deltaTime = clock.restart();
         processEvents();
         update(deltaTime);
@@ -29,7 +26,9 @@ void Game::run()
     }
 }
 
-//Handle user input
+/*
+ * Handle user input
+ */
 void Game::processEvents()
 {
     sf::Event event;
@@ -37,11 +36,6 @@ void Game::processEvents()
     {
         switch (event.type)
         {
-        case sf::Event::MouseMoved:
-            //FIXME
-            //crosshairCoord.x = event.mouseMove.x;
-            //crosshairCoord.y = event.mouseMove.y;
-            break;
         case sf::Event::KeyPressed:
             handleKeyInput(event.key.code, true);
             break;
@@ -57,40 +51,27 @@ void Game::processEvents()
     }
 }
 
-//Handle key pressed/released input
+/*
+ * Handle key pressed/released input
+ */
 void Game::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
 {
+	//Pass it to the World method
     if(!world.handleKeyInput(key, isPressed))
         window.close();
 }
 
-//Update the game logic, using deltaTime to make it independant from FPS
+/*
+ * Update the game logic, using deltaTime to make it FPS independent
+ */
 void Game::update(sf::Time deltaTime)
 {
     world.update(deltaTime);
-
-    //Player movement
-    /*
-    sf::Vector2f movement(0.f, 0.f);
-
-    if (player.isMoving(UP))
-        movement.y -= player.getSpeed();
-    if (player.isMoving(DOWN))
-        movement.y += player.getSpeed();
-    if (player.isMoving(LEFT))
-        movement.x -= player.getSpeed();
-    if (player.isMoving(RIGHT))
-        movement.x += player.getSpeed();
-
-    player.move(movement * frameTime.asSeconds());
-
-    //Crosshair placement
-    crosshair.setPosition(crosshairCoord.x, crosshairCoord.y);
-    player.flip(crosshairCoord);
-    */
 }
 
-//Draw everything to buffer and display it on the window
+/*
+ * Draw everything to buffer and display it on the window
+ */
 void Game::render()
 {
     window.clear();

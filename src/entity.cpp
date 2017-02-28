@@ -43,6 +43,7 @@ void Entity::stop()
 void Entity::flip()
 {
     auto scale = getScale();
+    //Setting the scale to negative flips the entity about its origin
     setScale(-scale.x, scale.y);
     if (orientation == RIGHT)
         orientation = LEFT;
@@ -55,6 +56,7 @@ void Entity::flip()
  */
 void Entity::flip(sf::Vector2f target)
 {
+    //xval is the x component of the vector going from the entity to the target
     float xval = target.x - getPosition().x;
     if ((xval < 0 && orientation == RIGHT) ||
             (xval > 0 && orientation == LEFT))

@@ -9,27 +9,31 @@ World::World(sf::RenderWindow& w)
     , spawnPosition(worldBounds.width / 2.f, worldBounds.height / 2.f)
     , player(nullptr)
 {
+    //When world is created, load all the textures and build the world
     loadTextures();
     buildWorld();
 
+    //Center viewport on player
     worldView.setCenter(spawnPosition);
 }
 
 void World::update(sf::Time deltaTime)
 {
+    //Update player
     player->update();
-    //sf::Vector2f position = player->getPosition();
     sf::Vector2f velocity = player->getVelocity();
-    //Move view with player
+
+    //Move view with player (player is always in the center)
     worldView.move(velocity.x * deltaTime.asSeconds(),
                    velocity.y * deltaTime.asSeconds());
 
-    //Apply movement
+    //Apply movement to the world nodes
     graph.update(deltaTime);
 }
 
 void World::draw()
 {
+    //Draw every node in the graph to the screen
     window.setView(worldView);
     window.draw(graph);
 }
@@ -69,5 +73,6 @@ void World::buildWorld()
 
 bool World::handleKeyInput(sf::Keyboard::Key key, bool isPressed)
 {
+    //Pass input to Player
     return	player->handleAction(key, isPressed);
 }
