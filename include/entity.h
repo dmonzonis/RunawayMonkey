@@ -33,7 +33,7 @@ private:
 
 private:
     TextureHolder texture;
-    sf::Vector2f position, velocity;
+    sf::Vector2f velocity;
     float speed;
     Direction orientation;
 
