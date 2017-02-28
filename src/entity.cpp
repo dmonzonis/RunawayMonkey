@@ -65,8 +65,8 @@ void Entity::flip(sf::Vector2f target)
     }
 }
 
-void Entity::updateCurrent(sf::Time deltaTime)
+void Entity::updateCurrent(sf::Time dt, sf::Vector2f)
 {
-    move(velocity * deltaTime.asSeconds());
+    move(velocity * dt.asSeconds());
 }
 

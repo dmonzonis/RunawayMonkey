@@ -11,6 +11,7 @@ enum ID
     Poop,
     Crosshair,
     Grass,
+    Businessman,
 };
 }
 

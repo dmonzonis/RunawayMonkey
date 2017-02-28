@@ -36,21 +36,21 @@ WorldNode::Ptr WorldNode::detachChild(const WorldNode& node)
     return found;
 }
 
-void WorldNode::update(sf::Time deltaTime)
+void WorldNode::update(sf::Time dt, sf::Vector2f playerPos)
 {
-    updateCurrent(deltaTime);
-    updateChildren(deltaTime);
+    updateCurrent(dt, playerPos);
+    updateChildren(dt, playerPos);
 }
 
-void WorldNode::updateCurrent(sf::Time deltaTime)
+void WorldNode::updateCurrent(sf::Time dt, sf::Vector2f playerPos)
 {
     //Do nothing by default
 }
 
-void WorldNode::updateChildren(sf::Time deltaTime)
+void WorldNode::updateChildren(sf::Time dt, sf::Vector2f playerPos)
 {
     for (const Ptr& child : children)
-        child->update(deltaTime);
+        child->update(dt, playerPos);
 }
 
 /*

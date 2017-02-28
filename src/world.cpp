@@ -37,7 +37,7 @@ void World::update(sf::Time dt)
     playerActor->flip(crosshair->getPosition());
 
     //Update the entire graph
-    graph.update(dt);
+    graph.update(dt, playerActor->getPosition());
 }
 
 void World::draw()
@@ -53,8 +53,16 @@ void World::loadResources()
     textures.load(Textures::Poop, "resources/poop.png");
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
+    textures.load(Textures::Businessman, "resources/businessman.png");
     fonts.load(Fonts::Stats, "resources/Jellee-Roman.ttf");
 }
+
+
+CommandQueue& World::getCommandQueue()
+{
+    return commandQueue;
+}
+
 
 void World::buildWorld()
 {
@@ -72,17 +80,46 @@ void World::buildWorld()
 
     //Add crosshair and player
     std::unique_ptr<Crosshair> cross(new Crosshair(textures, window));
-    std::unique_ptr<Actor> monkey(new Actor(Actor::Type::Monkey,
-                                            textures, Textures::Monkey));
+    std::unique_ptr<Actor> monkey(new Actor(Actor::Type::Monkey, textures));
     playerActor = monkey.get();
     crosshair = cross.get();
     playerActor->setPosition(spawnPosition);
     playerActor->setVelocity(0.f, 0.f);
     graph.attachChild(std::move(monkey));
     graph.attachChild(std::move(cross));
+
+    //Add enemies
+    addEnemies();
+    spawnEnemy();
 }
 
-CommandQueue& World::getCommandQueue()
+void World::addEnemies()
 {
-    return commandQueue;
+    addEnemy(Actor::Type::Businessman, 200.f, -200.f);
+    addEnemy(Actor::Type::Businessman, -800.f, 540.f);
+    addEnemy(Actor::Type::Businessman, 400.f, 350.f);
 }
+
+void World::addEnemy(Actor::Type t, float x, float y)
+{
+    SpawnPoint sp(t, spawnPosition.x + x, spawnPosition.y + y);
+    spawnPoints.push_back(sp);
+}
+
+void World::spawnEnemy()
+{
+    if (!spawnPoints.empty())
+    {
+        //Get a random enemy from the spawn list
+        auto size = spawnPoints.size();
+        auto it = spawnPoints.begin();
+        it += randomInt(size);
+        SpawnPoint spawn = *it;
+
+        //Spawn the enemy
+        std::unique_ptr<Actor> enemy(new Actor(spawn.type, textures));
+        enemy->setPosition(spawn.x, spawn.y);
+        graph.attachChild(std::move(enemy));
+    }
+}
+

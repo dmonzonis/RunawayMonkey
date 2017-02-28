@@ -20,15 +20,15 @@ public:
     WorldNode();
     void attachChild(Ptr child);
     Ptr detachChild(const WorldNode& node);
-    void update(sf::Time);
+    void update(sf::Time, sf::Vector2f);
     sf::Vector2f getWorldPosition() const;
     sf::Transform getWorldTransform() const;
     virtual Category::Type getCategory() const;
     void onCommand(const Command&, sf::Time);
 
 private:
-    virtual void updateCurrent(sf::Time deltaTime);
-    void updateChildren(sf::Time deltaTime);
+    virtual void updateCurrent(sf::Time dt, sf::Vector2f);
+    void updateChildren(sf::Time dt, sf::Vector2f);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     void drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;

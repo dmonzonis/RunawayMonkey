@@ -29,15 +29,15 @@ public:
     void flip(sf::Vector2f);
 
 private:
-    virtual void updateCurrent(sf::Time deltaTime);
+    virtual void updateCurrent(sf::Time deltaTime, sf::Vector2f);
 
 private:
     TextureHolder texture;
-    sf::Vector2f velocity;
     float speed;
     Direction orientation;
 
 protected:
+    sf::Vector2f velocity;
     sf::Sprite sprite;
     bool directions[4];
 };
