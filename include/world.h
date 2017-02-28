@@ -30,6 +30,7 @@ private:
     sf::RenderWindow& window;
     sf::View worldView;
     TextureHolder textures;
+    FontHolder fonts;
     WorldNode graph;
     sf::FloatRect worldBounds;
     Actor *playerActor;

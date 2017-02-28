@@ -4,6 +4,7 @@ World::World(sf::RenderWindow& w)
     : window(w)
     , worldView(window.getDefaultView())
     , textures()
+    , fonts()
     , graph()
     , worldBounds(0.f, 0.f, 2000.f, 2000.f) //FIXME
     , playerActor(nullptr)
@@ -33,7 +34,7 @@ void World::update(sf::Time dt)
 
     //Place crosshair
     crosshair->update(playerActor->getPosition());
-	playerActor->flip(crosshair->getPosition());
+    playerActor->flip(crosshair->getPosition());
 
     //Update the entire graph
     graph.update(dt);
@@ -52,6 +53,7 @@ void World::loadResources()
     textures.load(Textures::Poop, "resources/poop.png");
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
+    fonts.load(Fonts::Stats, "resources/Jellee-Roman.ttf");
 }
 
 void World::buildWorld()
