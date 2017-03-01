@@ -16,6 +16,8 @@ struct PlayerMover
         Actor& actor = static_cast<Actor&>(node);
         //accelerate the actor
         actor.setVelocity(actor.getVelocity() + velocity);
+        //Adjust velocity to match speed
+        actor.setVelocity(actor.getSpeed() * unitVector(actor.getVelocity()));
     }
 
     sf::Vector2f velocity;
