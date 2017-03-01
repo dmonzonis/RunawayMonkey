@@ -119,6 +119,7 @@ void World::spawnEnemy()
         //Spawn the enemy
         std::unique_ptr<Actor> enemy(new Actor(spawn.type, textures));
         enemy->setPosition(spawn.x, spawn.y);
+        enemy->setSpeed(150.f);
         graph.attachChild(std::move(enemy));
     }
 }

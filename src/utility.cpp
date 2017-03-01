@@ -36,6 +36,7 @@ float norm(sf::Vector2f vec)
 
 sf::Vector2f unitVector(sf::Vector2f vec)
 {
-    assert(vec != sf::Vector2f(0.f, 0.f));
+    if (vec == sf::Vector2f(0.f, 0.f))
+        return vec;
     return vec / norm(vec);
 }

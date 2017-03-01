@@ -5,9 +5,9 @@ float Entity::getSpeed() const
     return speed;
 }
 
-void Entity::setSpeed(float _speed)
+void Entity::setSpeed(float speed)
 {
-    speed = _speed;
+    this->speed = speed;
 }
 
 sf::Vector2f Entity::getVelocity() const

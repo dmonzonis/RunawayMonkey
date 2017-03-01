@@ -43,6 +43,7 @@ void Actor::updateCurrent(sf::Time dt, sf::Vector2f playerPos)
         //Move towards player
         //TODO: path finding AI
         velocity = getSpeed() * unitVector(playerPos - getPosition());
+		flip(playerPos);
     }
     move(velocity * dt.asSeconds());
 }
