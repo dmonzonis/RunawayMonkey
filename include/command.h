@@ -11,7 +11,9 @@ class WorldNode;
 
 struct Command
 {
+    typedef std::function<void(WorldNode&, sf::Time)> Action;
     Command();
-    std::function<void(WorldNode&, sf::Time)> action;
+    Command(Action, Category::Type);
+    Action action;
     Category::Type category;
 };

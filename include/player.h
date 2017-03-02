@@ -15,6 +15,7 @@ class Player
 public:
     enum Action
     {
+	NoAction,
         MoveUp,
         MoveLeft,
         MoveDown,

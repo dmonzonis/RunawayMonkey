@@ -7,9 +7,11 @@ namespace Textures
 {
 enum ID
 {
+    /* Actor textures go in here in the same order as Actor category */
     None,
     Monkey,
     Businessman,
+    /* End actor textures */
     Poop,
     Crosshair,
     Grass,

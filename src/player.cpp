@@ -4,9 +4,9 @@
 #include <iostream>
 
 //Player movement functor
-struct PlayerMover
+struct MovePlayer
 {
-    PlayerMover(float vx, float vy)
+    MovePlayer(float vx, float vy)
         : velocity(vx, vy)
     {
     }
@@ -38,10 +38,10 @@ Player::Player()
     keyBinding[sf::Keyboard::M] = Debug2;
 
     //Action bindings
-    actionBinding[MoveUp].action = PlayerMover(0.f, -speed);
-    actionBinding[MoveLeft].action = PlayerMover(-speed, 0.f);
-    actionBinding[MoveDown].action = PlayerMover(0.f, speed);
-    actionBinding[MoveRight].action = PlayerMover(speed, 0.f);
+    actionBinding[MoveUp] = Command(MovePlayer(0.f, -speed), Category::Player);
+    actionBinding[MoveLeft] = Command(MovePlayer(-speed, 0.f), Category::Player);
+    actionBinding[MoveDown] = Command(MovePlayer(0.f, speed), Category::Player);
+    actionBinding[MoveRight] = Command(MovePlayer(speed, 0.f), Category::Player);
     //DEBUG
     actionBinding[Debug1].action =
         [] (WorldNode& node, sf::Time)
@@ -54,9 +54,6 @@ Player::Player()
     {
         std::cout << randomInt(100) << std::endl;
     };
-
-    for (auto& actionBind : actionBinding)
-        actionBind.second.category = Category::Player;
 }
 
 

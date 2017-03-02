@@ -1,9 +1,9 @@
 #include "world.h"
 
-struct EnemyAI
+struct FollowActor
 {
-    EnemyAI(sf::Vector2f playerPos)
-        : playerPos(playerPos)
+    FollowActor(sf::Vector2f actorPos)
+        : actorPos(actorPos)
     {
     }
 
@@ -11,10 +11,10 @@ struct EnemyAI
     {
         Actor& actor = static_cast<Actor&>(node);
         //Set direction towards player
-        actor.setVelocity(adjustVectorLength(playerPos - actor.getPosition(), actor.getSpeed()));
-	actor.flip(playerPos);
+        actor.setVelocity(adjustVectorLength(actorPos - actor.getPosition(), actor.getSpeed()));
+	actor.flip(actorPos);
     }
-    sf::Vector2f playerPos;
+    sf::Vector2f actorPos;
 };
 
 World::World(sf::RenderWindow& w)
@@ -54,10 +54,7 @@ void World::update(sf::Time dt)
     playerActor->flip(crosshair->getPosition());
 
     //Update AI
-    Command enemyAI;
-    enemyAI.action = EnemyAI(playerActor->getPosition());
-    enemyAI.category = Category::Enemy;
-    commandQueue.push(enemyAI);
+    commandQueue.push(Command(FollowActor(playerActor->getPosition()), Category::Enemy));
 
     //Update the entire graph
     graph.update(dt);
