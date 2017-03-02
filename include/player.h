@@ -1,6 +1,7 @@
 #pragma once
 
 #include "category.h"
+#include "command.h"
 #include "command_queue.h"
 #include "actor.h"
 

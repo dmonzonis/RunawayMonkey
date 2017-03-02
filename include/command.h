@@ -3,6 +3,7 @@
 #include "category.h"
 
 #include <SFML/System/Time.hpp>
+#include <SFML/System/Vector2.hpp>
 
 #include <functional>
 
@@ -16,4 +17,26 @@ struct Command
     Command(Action, Category::Type);
     Action action;
     Category::Type category;
+};
+
+//Move towards actorPos
+struct FollowActor
+{
+    FollowActor(sf::Vector2f actorPos)
+        : actorPos(actorPos)
+    {
+    }
+    void operator() (WorldNode&, sf::Time) const;
+    sf::Vector2f actorPos;
+};
+
+//Move with velocity (vx, vy)
+struct MoveActor
+{
+    MoveActor(float vx, float vy)
+        : velocity(vx, vy)
+    {
+    }
+    void operator() (WorldNode& node, sf::Time) const;
+    sf::Vector2f velocity;
 };

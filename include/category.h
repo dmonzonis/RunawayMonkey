@@ -1,6 +1,5 @@
 #pragma once
 
-//Node category, using bitwise shift
 namespace Category
 {
 enum Type

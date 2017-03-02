@@ -1,22 +1,5 @@
 #include "world.h"
 
-struct FollowActor
-{
-    FollowActor(sf::Vector2f actorPos)
-        : actorPos(actorPos)
-    {
-    }
-
-    void operator() (WorldNode& node, sf::Time) const
-    {
-        Actor& actor = static_cast<Actor&>(node);
-        //Set direction towards player
-        actor.setVelocity(adjustVectorLength(actorPos - actor.getPosition(), actor.getSpeed()));
-	actor.flip(actorPos);
-    }
-    sf::Vector2f actorPos;
-};
-
 World::World(sf::RenderWindow& w)
     : window(w)
     , worldView(window.getDefaultView())

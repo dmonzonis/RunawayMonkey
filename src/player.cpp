@@ -3,25 +3,6 @@
 
 #include <iostream>
 
-//Player movement functor
-struct MovePlayer
-{
-    MovePlayer(float vx, float vy)
-        : velocity(vx, vy)
-    {
-    }
-
-    void operator() (WorldNode& node, sf::Time) const
-    {
-        Actor& actor = static_cast<Actor&>(node);
-        //accelerate the actor
-        actor.setVelocity(adjustVectorLength(actor.getVelocity() + velocity, actor.getSpeed()));
-    }
-
-    sf::Vector2f velocity;
-};
-
-
 Player::Player()
     : shooting(false)
     , speed(250.f)
@@ -38,10 +19,10 @@ Player::Player()
     keyBinding[sf::Keyboard::M] = Debug2;
 
     //Action bindings
-    actionBinding[MoveUp] = Command(MovePlayer(0.f, -speed), Category::Player);
-    actionBinding[MoveLeft] = Command(MovePlayer(-speed, 0.f), Category::Player);
-    actionBinding[MoveDown] = Command(MovePlayer(0.f, speed), Category::Player);
-    actionBinding[MoveRight] = Command(MovePlayer(speed, 0.f), Category::Player);
+    actionBinding[MoveUp] = Command(MoveActor(0.f, -speed), Category::Player);
+    actionBinding[MoveLeft] = Command(MoveActor(-speed, 0.f), Category::Player);
+    actionBinding[MoveDown] = Command(MoveActor(0.f, speed), Category::Player);
+    actionBinding[MoveRight] = Command(MoveActor(speed, 0.f), Category::Player);
     //DEBUG
     actionBinding[Debug1].action =
         [] (WorldNode& node, sf::Time)
