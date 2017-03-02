@@ -29,7 +29,7 @@ public:
     void flip(sf::Vector2f);
 
 private:
-    virtual void updateCurrent(sf::Time deltaTime, sf::Vector2f);
+    virtual void updateCurrent(sf::Time deltaTime);
 
 private:
     TextureHolder texture;

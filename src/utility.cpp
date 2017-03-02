@@ -40,3 +40,8 @@ sf::Vector2f unitVector(sf::Vector2f vec)
         return vec;
     return vec / norm(vec);
 }
+
+sf::Vector2f adjustVectorLength(sf::Vector2f vec, float length)
+{
+    return length * unitVector(vec);
+}

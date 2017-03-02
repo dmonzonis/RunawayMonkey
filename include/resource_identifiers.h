@@ -7,11 +7,13 @@ namespace Textures
 {
 enum ID
 {
+    None,
     Monkey,
+    Businessman,
     Poop,
     Crosshair,
     Grass,
-    Businessman,
+    TextureCount,
 };
 }
 

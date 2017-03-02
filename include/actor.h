@@ -20,7 +20,7 @@ public:
 
 private:
     virtual void drawCurrent(sf::RenderTarget&, sf::RenderStates states) const;
-    virtual void updateCurrent(sf::Time, sf::Vector2f);
+    virtual void updateCurrent(sf::Time);
 
 private:
     sf::Sprite sprite;

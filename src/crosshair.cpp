@@ -10,7 +10,7 @@ Crosshair::Crosshair(const TextureHolder& textures, sf::RenderWindow& w)
     sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
 }
 
-void Crosshair::update(sf::Vector2f playerPos)
+void Crosshair::update()
 {
     sf::Vector2f pos;
     //Get mouse position in the window

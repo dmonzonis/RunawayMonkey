@@ -1,22 +1,16 @@
 #include "actor.h"
 #include "utility.h"
 
+#include <cassert>
+
 Actor::Actor(Type actorType, const TextureHolder& textures)
     : sprite()
     , type(actorType)
 {
-    switch(actorType)
-    {
-    case Type::Monkey:
-        sprite.setTexture(textures.get(Textures::Monkey));
-        break;
-    case Type::Businessman:
-        sprite.setTexture(textures.get(Textures::Businessman));
-        break;
-    default:
-        //No texture
-        break;
-    }
+    //Cast actor type to texture. For this to work they have to be ordered the same
+    Textures::ID actorTexture = static_cast<Textures::ID>(actorType);
+    assert(actorTexture < Textures::TextureCount);
+    sprite.setTexture(textures.get(actorTexture));
     centerOrigin(sprite);
     setSpeed(250.0);
     setOrientation(RIGHT);
@@ -36,14 +30,7 @@ Category::Type Actor::getCategory() const
         return Category::Enemy;
 }
 
-void Actor::updateCurrent(sf::Time dt, sf::Vector2f playerPos)
+void Actor::updateCurrent(sf::Time dt)
 {
-    if (type != Type::Monkey)
-    {
-        //Move towards player
-        //TODO: path finding AI
-        velocity = getSpeed() * unitVector(playerPos - getPosition());
-		flip(playerPos);
-    }
     move(velocity * dt.asSeconds());
 }

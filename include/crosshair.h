@@ -10,7 +10,7 @@ class Crosshair : public Entity
 {
 public:
     Crosshair(const TextureHolder&, sf::RenderWindow&);
-    void update(sf::Vector2f playerPos);
+    void update();
 
 private:
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;

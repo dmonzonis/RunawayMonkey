@@ -1,5 +1,22 @@
 #include "world.h"
 
+struct EnemyAI
+{
+    EnemyAI(sf::Vector2f playerPos)
+        : playerPos(playerPos)
+    {
+    }
+
+    void operator() (WorldNode& node, sf::Time) const
+    {
+        Actor& actor = static_cast<Actor&>(node);
+        //Set direction towards player
+        actor.setVelocity(adjustVectorLength(playerPos - actor.getPosition(), actor.getSpeed()));
+	actor.flip(playerPos);
+    }
+    sf::Vector2f playerPos;
+};
+
 World::World(sf::RenderWindow& w)
     : window(w)
     , worldView(window.getDefaultView())
@@ -33,11 +50,17 @@ void World::update(sf::Time dt)
                    velocity.y * dt.asSeconds());
 
     //Place crosshair
-    crosshair->update(playerActor->getPosition());
+    crosshair->update();
     playerActor->flip(crosshair->getPosition());
 
+    //Update AI
+    Command enemyAI;
+    enemyAI.action = EnemyAI(playerActor->getPosition());
+    enemyAI.category = Category::Enemy;
+    commandQueue.push(enemyAI);
+
     //Update the entire graph
-    graph.update(dt, playerActor->getPosition());
+    graph.update(dt);
 }
 
 void World::draw()
@@ -49,6 +72,7 @@ void World::draw()
 
 void World::loadResources()
 {
+    textures.load(Textures::None, "resources/no_texture.png");
     textures.load(Textures::Monkey, "resources/monkey.png");
     textures.load(Textures::Poop, "resources/poop.png");
     textures.load(Textures::Crosshair, "resources/crosshair.png");
@@ -90,6 +114,7 @@ void World::buildWorld()
 
     //Add enemies
     addEnemies();
+    spawnEnemy();
     spawnEnemy();
 }
 
