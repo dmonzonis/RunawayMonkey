@@ -37,6 +37,10 @@ struct MoveActor
         : velocity(vx, vy)
     {
     }
+    MoveActor(sf::Vector2f dir)
+        : velocity(dir)
+    {
+    }
     void operator() (WorldNode& node, sf::Time) const;
     sf::Vector2f velocity;
 };

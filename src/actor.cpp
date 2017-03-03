@@ -14,12 +14,6 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
     centerOrigin(sprite);
     setSpeed(250.0);
     setOrientation(RIGHT);
-    stop();
-}
-
-void Actor::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    target.draw(sprite, states);
 }
 
 Category::Type Actor::getCategory() const
@@ -28,6 +22,28 @@ Category::Type Actor::getCategory() const
         return Category::Player;
     else
         return Category::Enemy;
+}
+
+int Actor::getHealth()
+{
+    return health;
+}
+
+void Actor::damage(int amount)
+{
+    health -= amount;
+    if (health < 0)
+        health = 0;
+    die();
+}
+
+void Actor::die()
+{
+}
+
+void Actor::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(sprite, states);
 }
 
 void Actor::updateCurrent(sf::Time dt)

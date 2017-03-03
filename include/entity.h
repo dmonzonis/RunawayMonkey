@@ -23,21 +23,20 @@ public:
     sf::Vector2f getVelocity() const;
     void setVelocity(sf::Vector2f);
     void setVelocity(float vx, float vy);
-    void stop();
     void setOrientation(Direction);
     void flip();
     void flip(sf::Vector2f);
+    virtual sf::FloatRect getHitbox() const;
 
 private:
     virtual void updateCurrent(sf::Time deltaTime);
 
 private:
     TextureHolder texture;
-    float speed;
     Direction orientation;
 
 protected:
     sf::Vector2f velocity;
     sf::Sprite sprite;
-    bool directions[4];
+    float speed;
 };

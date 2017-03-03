@@ -30,13 +30,6 @@ void Entity::setOrientation(Direction newOrient)
     orientation = newOrient;
 }
 
-void Entity::stop()
-{
-    //Set all movement directions to false
-    for (bool &dir : directions)
-        dir = false;
-}
-
 /*
  * Flip actor horizontally
  */
@@ -63,6 +56,11 @@ void Entity::flip(sf::Vector2f target)
     {
         flip();
     }
+}
+
+sf::FloatRect Entity::getHitbox() const
+{
+    return this->sprite.getLocalBounds();
 }
 
 void Entity::updateCurrent(sf::Time dt)
