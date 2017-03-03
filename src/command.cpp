@@ -14,17 +14,18 @@ Command::Command(Action action, Category::Type type)
 {
 }
 
-void FollowActor::operator() (WorldNode& node, sf::Time) const
+void MoveActorTowards::operator() (WorldNode& node, sf::Time) const
 {
     Actor& actor = static_cast<Actor&>(node);
-    //Set direction towards player
-    actor.setVelocity(adjustVectorLength(actorPos - actor.getPosition(), actor.getSpeed()));
-    actor.flip(actorPos);
+    actor.setVelocity(adjustVectorLength(position - actor.getPosition(),
+                                         actor.getSpeed()));
+    actor.flip(position);
 }
 
 void MoveActor::operator() (WorldNode& node, sf::Time) const
 {
     Actor& actor = static_cast<Actor&>(node);
     //accelerate the actor
-    actor.setVelocity(adjustVectorLength(actor.getVelocity() + velocity, actor.getSpeed()));
+    actor.setVelocity(adjustVectorLength(actor.getVelocity() + velocity,
+                                         actor.getSpeed()));
 }

@@ -36,8 +36,9 @@ void World::update(sf::Time dt)
     crosshair->update();
     playerActor->flip(crosshair->getPosition());
 
-    //Update AI
-    commandQueue.push(Command(FollowActor(playerActor->getPosition()), Category::Enemy));
+    //Update enemy behaviour
+    commandQueue.push(Command(MoveActorTowards(playerActor->getPosition()),
+                              Category::Enemy));
 
     //Update the entire graph
     graph.update(dt);

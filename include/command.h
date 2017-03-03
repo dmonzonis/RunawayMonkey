@@ -19,18 +19,18 @@ struct Command
     Category::Type category;
 };
 
-//Move towards actorPos
-struct FollowActor
+//Move actor towards given position
+struct MoveActorTowards
 {
-    FollowActor(sf::Vector2f actorPos)
-        : actorPos(actorPos)
+    MoveActorTowards(sf::Vector2f position)
+        : position(position)
     {
     }
     void operator() (WorldNode&, sf::Time) const;
-    sf::Vector2f actorPos;
+    sf::Vector2f position;
 };
 
-//Move with velocity (vx, vy)
+//Move actor with velocity (vx, vy)
 struct MoveActor
 {
     MoveActor(float vx, float vy)
