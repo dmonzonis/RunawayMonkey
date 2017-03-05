@@ -21,8 +21,10 @@ World::World(sf::RenderWindow& w)
 
 void World::update(sf::Time dt)
 {
-    //Reset player velocity
+    //Update player and crosshair
     playerActor->setVelocity(0.f, 0.f);
+    crosshair->update();
+    playerActor->lookAt(crosshair->getPosition());
 
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
@@ -32,14 +34,10 @@ void World::update(sf::Time dt)
     worldView.move(velocity.x * dt.asSeconds(),
                    velocity.y * dt.asSeconds());
 
-    //Place crosshair
-    crosshair->update();
-    playerActor->flip(crosshair->getPosition());
-
     //Update enemy behaviour
     commandQueue.push(Command(MoveActorTowards(playerActor->getPosition()),
                               Category::Enemy));
-
+    
     //Update the entire graph
     graph.update(dt);
 }
@@ -49,6 +47,8 @@ void World::draw()
     //Draw every node in the graph to the screen
     window.setView(worldView);
     window.draw(graph);
+    crosshair->update(); //FIXME: have to update it twice so it doesn't get displaced
+    window.draw(*crosshair);
 }
 
 void World::loadResources()
@@ -58,7 +58,7 @@ void World::loadResources()
     textures.load(Textures::Poop, "resources/poop.png");
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
-    textures.load(Textures::Businessman, "resources/businessman.png");
+    textures.load(Textures::Snatcher, "resources/snatcher.png");
     fonts.load(Fonts::Stats, "resources/Jellee-Roman.ttf");
 }
 
@@ -84,14 +84,12 @@ void World::buildWorld()
     graph.attachChild(std::move(bgSprite));
 
     //Add crosshair and player
-    std::unique_ptr<Crosshair> cross(new Crosshair(textures, window));
+    crosshair = new Crosshair(textures, window);
     std::unique_ptr<Actor> monkey(new Actor(Actor::Type::Monkey, textures));
     playerActor = monkey.get();
-    crosshair = cross.get();
     playerActor->setPosition(spawnPosition);
     playerActor->setVelocity(0.f, 0.f);
     graph.attachChild(std::move(monkey));
-    graph.attachChild(std::move(cross));
 
     //Add enemies
     addEnemies();
@@ -101,9 +99,9 @@ void World::buildWorld()
 
 void World::addEnemies()
 {
-    addEnemy(Actor::Type::Businessman, 200.f, -200.f);
-    addEnemy(Actor::Type::Businessman, -800.f, 540.f);
-    addEnemy(Actor::Type::Businessman, 400.f, 350.f);
+    addEnemy(Actor::Type::Snatcher, 200.f, -200.f);
+    addEnemy(Actor::Type::Snatcher, -800.f, 540.f);
+    addEnemy(Actor::Type::Snatcher, 400.f, 350.f);
 }
 
 void World::addEnemy(Actor::Type t, float x, float y)
@@ -128,5 +126,10 @@ void World::spawnEnemy()
         enemy->setSpeed(150.f);
         graph.attachChild(std::move(enemy));
     }
+}
+
+Actor* World::getPlayer()
+{
+    return playerActor;
 }
 

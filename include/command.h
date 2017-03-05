@@ -1,14 +1,19 @@
 #pragma once
 
 #include "category.h"
+#include "resource.h"
+#include "resource_identifiers.h"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/System/Vector2.hpp>
 
 #include <functional>
+#include <memory>
 
-//Forward-declare WorldNode
+//Forward-declarations
 class WorldNode;
+class Actor;
+class Projectile;
 
 struct Command
 {
@@ -43,4 +48,22 @@ struct MoveActor
     }
     void operator() (WorldNode& node, sf::Time) const;
     sf::Vector2f velocity;
+};
+
+
+struct InstanceProjectile
+{
+    InstanceProjectile(const sf::Vector2f origin, sf::Vector2f direction, int type,
+                       const TextureHolder& textures)
+        : origin(origin)
+        , direction(direction)
+        , type(type)
+        , textures(textures)
+    {
+    }
+    void operator() (WorldNode& node, sf::Time) const;
+    const sf::Vector2f origin;
+    sf::Vector2f direction;
+    int type;
+    const TextureHolder &textures;
 };

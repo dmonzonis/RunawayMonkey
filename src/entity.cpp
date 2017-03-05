@@ -25,9 +25,15 @@ void Entity::setVelocity(float vx, float vy)
     velocity = sf::Vector2f(vx, vy);
 }
 
-void Entity::setOrientation(Direction newOrient)
+void Entity::lookAt(sf::Vector2f point)
 {
-    orientation = newOrient;
+    lookDirection = point - getWorldPosition();
+    flip();
+}
+
+sf::Vector2f Entity::getLookingAt()
+{
+    return lookDirection;
 }
 
 /*
@@ -35,26 +41,17 @@ void Entity::setOrientation(Direction newOrient)
  */
 void Entity::flip()
 {
-    auto scale = getScale();
-    //Setting the scale to negative flips the entity about its origin
-    setScale(-scale.x, scale.y);
-    if (orientation == RIGHT)
-        orientation = LEFT;
-    else
-        orientation = RIGHT;
-}
-
-/*
- * If target is behind actor, flip sprite horizontally.
- */
-void Entity::flip(sf::Vector2f target)
-{
-    //xval is the x component of the vector going from the entity to the target
-    float xval = target.x - getPosition().x;
-    if ((xval < 0 && orientation == RIGHT) ||
-            (xval > 0 && orientation == LEFT))
+    //If the actor is looking at something behind it, flip its transform
+    if ((lookDirection.x < 0 && orientation == Orientation::Right) ||
+            (lookDirection.x > 0 && orientation == Orientation::Left))
     {
-        flip();
+        auto scale = getScale();
+        //Setting the scale to negative flips the entity about its origin
+        setScale(-scale.x, scale.y);
+        if (orientation == Orientation::Right)
+            orientation = Orientation::Left;
+        else
+            orientation = Orientation::Right;
     }
 }
 

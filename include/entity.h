@@ -1,19 +1,11 @@
 #pragma once
 
-#include "world_node.h"
 #include "resource.h"
 #include "resource_identifiers.h"
+#include "world_node.h"
 
+#include <SFML/System/Time.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-
-
-typedef enum
-{
-    UP = 0,
-    DOWN = 1,
-    LEFT = 2,
-    RIGHT = 3,
-} Direction;
 
 class Entity : public WorldNode
 {
@@ -23,20 +15,28 @@ public:
     sf::Vector2f getVelocity() const;
     void setVelocity(sf::Vector2f);
     void setVelocity(float vx, float vy);
-    void setOrientation(Direction);
+    void lookAt(sf::Vector2f);
+    sf::Vector2f getLookingAt();
     void flip();
-    void flip(sf::Vector2f);
     virtual sf::FloatRect getHitbox() const;
 
 private:
-    virtual void updateCurrent(sf::Time deltaTime);
+    enum Orientation
+    {
+	Left,
+	Right
+    };
+
+private:
+    virtual void updateCurrent(sf::Time dt);
 
 private:
     TextureHolder texture;
-    Direction orientation;
+    sf::Vector2f lookDirection;
+    Orientation orientation = Orientation::Right;
+    float speed;
 
 protected:
-    sf::Vector2f velocity;
+    sf::Vector2f velocity = sf::Vector2f(0.f, 0.f);
     sf::Sprite sprite;
-    float speed;
 };

@@ -1,4 +1,5 @@
 #include "crosshair.h"
+#include "utility.h"
 
 #include <iostream>
 
@@ -8,6 +9,11 @@ Crosshair::Crosshair(const TextureHolder& textures, sf::RenderWindow& w)
 {
     sf::FloatRect hitbox = sprite.getLocalBounds();
     sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
+}
+
+void Crosshair::updateCurrent(sf::Time)
+{
+    //Do nothing as crosshair is updated manually
 }
 
 void Crosshair::update()
@@ -20,7 +26,13 @@ void Crosshair::update()
     setPosition(pos);
 }
 
+Category::Type Crosshair::getCategory() const
+{
+    return Category::Crosshair;
+}
+
 void Crosshair::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(sprite, states);
 }
+

@@ -24,6 +24,7 @@ public:
     void update(sf::Time);
     void draw();
     CommandQueue& getCommandQueue();
+    Actor* getPlayer();
 
 private:
     void loadResources();

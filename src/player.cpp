@@ -1,11 +1,12 @@
+#include "command.h"
 #include "player.h"
+#include "projectile.h"
 #include "utility.h"
 
 #include <iostream>
 
 Player::Player()
-    : shooting(false)
-    , speed(250.f)
+    : speed(250.f)
 {
     //Initial hardcoded keybindings
     //TODO: Make Settings class to handle this
@@ -23,7 +24,7 @@ Player::Player()
     actionBinding[MoveLeft] = Command(MoveActor(-speed, 0.f), Category::Player);
     actionBinding[MoveDown] = Command(MoveActor(0.f, speed), Category::Player);
     actionBinding[MoveRight] = Command(MoveActor(speed, 0.f), Category::Player);
-    //DEBUG
+    //XXX: DEBUG
     actionBinding[Debug1].action =
         [] (WorldNode& node, sf::Time)
     {
@@ -37,23 +38,19 @@ Player::Player()
     };
 }
 
-
-bool Player::isShooting() const
-{
-    return shooting;
-}
-
-void Player::setShooting(bool shoot)
-{
-    shooting = shoot;
-}
-
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
     if (event.type == sf::Event::KeyPressed
             && keyBinding[event.key.code])
     {
         commands.push(actionBinding[keyBinding[event.key.code]]);
+    }
+    //XXX: DEBUG PURPOSES, REMOVE FOR RELEASE
+    else if (event.type == sf::Event::KeyPressed
+             && event.key.code == sf::Keyboard::P)
+    {
+        std::cout << playerActor->getPosition().x << ", "
+                  << playerActor->getPosition().y << std::endl;
     }
 }
 
@@ -67,6 +64,12 @@ void Player::handleRealTimeInput(CommandQueue& commands)
         {
             commands.push(actionBinding[keyBind.second]);
         }
+    }
+    //Check if left mouse button is being pressed
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        //Shoot some poop!
+	playerActor->shoot(Projectile::Type::Poop, &commands);
     }
 }
 
@@ -93,10 +96,14 @@ sf::Keyboard::Key Player::getAssignedKey(Action action) const
     return sf::Keyboard::Unknown;
 }
 
-
 Category::Type Player::getCategory() const
 {
     return Category::Player;
+}
+
+void Player::setActor(Actor *actor)
+{
+    playerActor = actor;
 }
 
 bool Player::isRealTimeAction(Action action)

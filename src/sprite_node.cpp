@@ -14,3 +14,8 @@ void SpriteNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) 
 {
     target.draw(sprite, states);
 }
+
+Category::Type SpriteNode::getCategory() const
+{
+    return Category::None;
+}

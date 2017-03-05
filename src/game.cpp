@@ -14,6 +14,8 @@ Game::Game()
     //TODO: Use more reliable method
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(false);
+    //Get player actor reference on the player controller object
+    player.setActor(world.getPlayer());
 }
 
 /*

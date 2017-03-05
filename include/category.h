@@ -7,6 +7,7 @@ enum Type
     None,
     Scene,
     Player,
+    Crosshair,
     Enemy,
     Pickup,
     Projectile,
