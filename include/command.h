@@ -4,8 +4,7 @@
 #include "resource.h"
 #include "resource_identifiers.h"
 
-#include <SFML/System/Time.hpp>
-#include <SFML/System/Vector2.hpp>
+#include <SFML/System.hpp>
 
 #include <functional>
 #include <memory>

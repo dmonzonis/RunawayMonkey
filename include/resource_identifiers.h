@@ -1,7 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace Textures
 {

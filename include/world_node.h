@@ -3,12 +3,6 @@
 #include "category.h"
 #include "command.h"
 
-#include <SFML/System/NonCopyable.hpp>
-#include <SFML/System/Time.hpp>
-#include <SFML/Graphics/Transformable.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics.hpp>
-
 #include <vector>
 #include <memory>
 #include <set>

@@ -2,9 +2,7 @@
 
 #include "entity.h"
 
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window.hpp>
 
 class Crosshair : public Entity
 {

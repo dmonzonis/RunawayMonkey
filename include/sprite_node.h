@@ -2,9 +2,6 @@
 
 #include "world_node.h"
 
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
-
 class SpriteNode : public WorldNode
 {
 public:

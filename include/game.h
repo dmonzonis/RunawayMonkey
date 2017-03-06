@@ -3,8 +3,6 @@
 #include "world.h"
 #include "player.h"
 
-#include <SFML/Window/Event.hpp>
-
 class Game : private sf::NonCopyable
 {
 public:

@@ -3,9 +3,6 @@
 #include "command_queue.h"
 #include "projectile.h"
 
-#include <SFML/System/Time.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
-
 #include <memory>
 
 class Actor : public Entity

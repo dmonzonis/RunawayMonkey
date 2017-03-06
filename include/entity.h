@@ -4,9 +4,6 @@
 #include "resource_identifiers.h"
 #include "world_node.h"
 
-#include <SFML/System/Time.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-
 class Entity : public WorldNode
 {
 public:

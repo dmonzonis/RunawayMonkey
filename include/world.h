@@ -9,11 +9,7 @@
 #include "crosshair.h"
 #include "command_queue.h"
 
-#include <SFML/System/NonCopyable.hpp>
-#include <SFML/System/Time.hpp>
-#include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window.hpp>
 
 #include <vector>
 

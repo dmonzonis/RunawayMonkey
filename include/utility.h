@@ -1,8 +1,7 @@
 #pragma once
 
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <random>
 #include <cmath>

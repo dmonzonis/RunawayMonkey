@@ -5,10 +5,7 @@
 #include "command_queue.h"
 #include "actor.h"
 
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Window.hpp>
 
 #include <map>
 

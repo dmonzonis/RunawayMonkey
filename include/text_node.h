@@ -5,10 +5,6 @@
 #include "resource.h"
 #include "resource_identifiers.h"
 
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/Text.hpp>
-
 #include <string>
 
 class TextNode : public WorldNode
