@@ -56,6 +56,7 @@ private:
     sf::Vector2f spawnPosition;
     CommandQueue commandQueue;
     std::vector<SpawnPoint> spawnPoints;
+    sf::Time counter, spawnTime;
 };
 
 bool categoryMatch(WorldNode::Pair& colliders, Category::Type type1, Category::Type type2);

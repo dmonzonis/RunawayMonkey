@@ -11,6 +11,10 @@ World::World(sf::RenderWindow& w)
     , playerActor(nullptr)
     , crosshair(nullptr)
     , spawnPosition(worldBounds.width / 2.f, worldBounds.height / 2.f)
+    , commandQueue()
+    , spawnPoints()
+    , counter(sf::Time::Zero)
+    , spawnTime(sf::seconds(1.0f))
 {
     //When world is created, load all the textures and build the world
     loadResources();
@@ -44,6 +48,14 @@ void World::update(sf::Time dt)
 
     //Destroy all nodes marked for removal
     graph.cleanUp();
+
+    //Update counter and spawn new enemies if we reach spawnTime
+    counter += dt;
+    if (counter >= spawnTime)
+    {
+	spawnEnemy();
+	counter = sf::Time::Zero;
+    }
 
     //Update the entire graph
     graph.update(dt);
@@ -100,7 +112,6 @@ void World::buildWorld()
     //Add enemies
     addEnemies();
     spawnEnemy();
-    spawnEnemy();
 }
 
 void World::addEnemies()
@@ -151,8 +162,8 @@ void World::handleCollisions()
         {
             //Damage player
             playerActor->damage(1); //FIXME: damage using enemy's attack
-	    auto& enemy = static_cast<Actor&>(*colliders.second);
-	    enemy.destroy(); //TODO: instead of destroying the enemy, make player invulnerable for a while
+            auto& enemy = static_cast<Actor&>(*colliders.second);
+            enemy.destroy(); //TODO: instead of destroying the enemy, make player invulnerable for a while
         }
 
         else if (categoryMatch(colliders, Category::Enemy, Category::Projectile))

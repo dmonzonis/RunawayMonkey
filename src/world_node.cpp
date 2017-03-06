@@ -90,6 +90,11 @@ sf::FloatRect WorldNode::getHitbox() const
     return sf::FloatRect();
 }
 
+/*
+ * Check if this node is colliding with the argument node, if so add it to
+ * collisionPairs, and then check all the children for collisions with the
+ * argument node recursively
+ */
 void WorldNode::checkNodeCollision(WorldNode& node, std::set<Pair>& collisionPairs)
 {
     //Don't collide node with itself
@@ -101,6 +106,9 @@ void WorldNode::checkNodeCollision(WorldNode& node, std::set<Pair>& collisionPai
         child->checkNodeCollision(node, collisionPairs);
 }
 
+/*
+ * Check collisions for all children of root node
+ */
 void WorldNode::checkWorldCollision(WorldNode& root, std::set<Pair>& collisionPairs)
 {
     checkNodeCollision(root, collisionPairs);
@@ -118,6 +126,10 @@ void WorldNode::destroy()
     removalFlag = true;
 }
 
+/*
+ * Remove all children marked for removal, and then recursively do
+ * the same for the children's children
+ */
 void WorldNode::cleanUp()
 {
     //remove_if reorders this node's children so the ones marked
@@ -172,7 +184,9 @@ void WorldNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) 
         child->draw(target, states);
 }
 
-//Draw the hitbox to the window, for debugging purposes
+/*
+ * Draw the hitbox to the window, for debugging purposes
+ */
 void WorldNode::drawHitbox(sf::RenderTarget& target, sf::RenderStates) const
 {
     sf::FloatRect rect = getHitbox();
@@ -186,6 +200,9 @@ void WorldNode::drawHitbox(sf::RenderTarget& target, sf::RenderStates) const
     target.draw(shape);
 }
 
+/*
+ * Check if hitboxes intersect
+ */
 bool collision(WorldNode& a, WorldNode& b)
 {
     return a.getHitbox().intersects(b.getHitbox());
