@@ -5,6 +5,7 @@
 WorldNode::WorldNode()
     : children()
     , parent(nullptr)
+    , removalFlag(false)
 {
 }
 
@@ -40,58 +41,6 @@ void WorldNode::update(sf::Time dt)
 {
     updateCurrent(dt);
     updateChildren(dt);
-}
-
-void WorldNode::updateCurrent(sf::Time dt)
-{
-    //Do nothing by default
-}
-
-void WorldNode::updateChildren(sf::Time dt)
-{
-    for (const Ptr& child : children)
-        child->update(dt);
-}
-
-/*
- * Applies transform of the current node and draws the node and its
- * children with the new transform
- */
-void WorldNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    //Apply all the transforms of the current node
-    states.transform *= getTransform();
-
-    drawCurrent(target, states);
-    drawChildren(target, states);
-    
-    //Draw hitbox for debug purposes
-    drawHitbox(target, states);
-}
-
-void WorldNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    //Do nothing by default
-}
-
-void WorldNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    for (const Ptr& child : children)
-        child->draw(target, states);
-}
-
-//Draw the hitbox to the window, for debugging purposes
-void WorldNode::drawHitbox(sf::RenderTarget& target, sf::RenderStates) const
-{
-    sf::FloatRect rect = getHitbox();
-    sf::RectangleShape shape;
-    shape.setPosition(sf::Vector2f(rect.left, rect.top));
-    shape.setSize(sf::Vector2f(rect.width, rect.height));
-    shape.setFillColor(sf::Color(0, 255, 0, 50));
-    shape.setOutlineColor(sf::Color::Red);
-    shape.setOutlineThickness(1.f);
-
-    target.draw(shape);
 }
 
 sf::Vector2f WorldNode::getWorldPosition() const
@@ -135,7 +84,105 @@ sf::FloatRect WorldNode::getHitbox() const
     return sf::FloatRect();
 }
 
+void WorldNode::checkNodeCollision(WorldNode& node, std::set<Pair>& collisionPairs)
+{
+    //Don't collide node with itself
+    if (this != &node && collision(*this, node))
+        collisionPairs.insert(std::minmax(this, &node));
+
+    //Recursively check collisions for children nodes
+    for (Ptr& child : children)
+        child->checkNodeCollision(node, collisionPairs);
+}
+
+void WorldNode::checkWorldCollision(WorldNode& root, std::set<Pair>& collisionPairs)
+{
+    checkNodeCollision(root, collisionPairs);
+    for (Ptr& child : root.children)
+        checkWorldCollision(*child, collisionPairs);
+}
+
+bool WorldNode::isMarkedForRemoval() const
+{
+    return removalFlag;
+}
+
+void WorldNode::destroy()
+{
+    removalFlag = true;
+}
+
+void WorldNode::cleanUp()
+{
+    //remove_if reorders this node's children so the ones marked
+    //for removal are at the end, toRemove is an iterator that points
+    //to the beginning of the children marked for removal
+    auto toRemove = std::remove_if(children.begin(), children.end(),
+                                   std::mem_fn(&WorldNode::isMarkedForRemoval));
+
+    //now actually remove them from the graph
+    children.erase(toRemove, children.end());
+
+    //recursively call the function for all children
+    std::for_each(children.begin(), children.end(),
+                  std::mem_fn(&WorldNode::cleanUp));
+}
+
+void WorldNode::updateCurrent(sf::Time dt)
+{
+    //Do nothing by default
+}
+
+void WorldNode::updateChildren(sf::Time dt)
+{
+    for (const Ptr& child : children)
+        child->update(dt);
+}
+
+/*
+ * Applies transform of the current node and draws the node and its
+ * children with the new transform
+ */
+void WorldNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    //Apply all the transforms of the current node
+    states.transform *= getTransform();
+
+    drawCurrent(target, states);
+    drawChildren(target, states);
+
+    //Draw hitbox for debug purposes
+    drawHitbox(target, states);
+}
+
+void WorldNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    //Do nothing by default
+}
+
+void WorldNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    for (const Ptr& child : children)
+        child->draw(target, states);
+}
+
+//Draw the hitbox to the window, for debugging purposes
+void WorldNode::drawHitbox(sf::RenderTarget& target, sf::RenderStates) const
+{
+    sf::FloatRect rect = getHitbox();
+    sf::RectangleShape shape;
+    shape.setPosition(sf::Vector2f(rect.left, rect.top));
+    shape.setSize(sf::Vector2f(rect.width, rect.height));
+    shape.setFillColor(sf::Color(0, 255, 0, 50));
+    shape.setOutlineColor(sf::Color::Red);
+    shape.setOutlineThickness(1.f);
+
+    target.draw(shape);
+}
+
 bool collision(WorldNode& a, WorldNode& b)
 {
     return a.getHitbox().intersects(b.getHitbox());
 }
+
+

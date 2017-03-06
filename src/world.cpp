@@ -38,6 +38,12 @@ void World::update(sf::Time dt)
     //Update enemy behaviour
     commandQueue.push(Command(MoveActorTowards(playerActor->getPosition()),
                               Category::Enemy));
+
+    //Handle all collisions in the scene
+    handleCollisions();
+
+    //Destroy all nodes marked for removal
+    graph.cleanUp();
     
     //Update the entire graph
     graph.update(dt);
@@ -134,3 +140,50 @@ Actor* World::getPlayer()
     return playerActor;
 }
 
+void World::handleCollisions()
+{
+    std::set<WorldNode::Pair> collisionPairs;
+    graph.checkWorldCollision(graph, collisionPairs);
+
+    for (WorldNode::Pair colliders : collisionPairs)
+    {
+	//Player-Enemy interaction
+	if (categoryMatch(colliders, Category::Player, Category::Enemy))
+	{
+	    //Damage player
+	    playerActor->damage(1); //FIXME: damage using enemy's attack
+	}
+
+	else if (categoryMatch(colliders, Category::Enemy, Category::Projectile))
+	{
+	    //Damage enemy by the projectile's damage
+	    auto& enemy = static_cast<Actor&>(*colliders.first);
+	    auto& projectile = static_cast<Projectile&>(*colliders.second);
+
+	    enemy.damage(projectile.getDamage());
+	    projectile.destroy();
+	}
+    }
+}
+
+bool categoryMatch(WorldNode::Pair& colliders, Category::Type type1, Category::Type type2)
+{
+    Category::Type colliderType1 = colliders.first->getCategory();
+    Category::Type colliderType2 = colliders.second->getCategory();
+
+    //Make sure first pair entry has category type1 and second has type2
+    if (type1 == colliderType1 && type2 == colliderType2)
+    {
+	return true;
+    }
+    //If they are in an inverse order, swap them
+    else if (type1 == colliderType2 && type2 == colliderType1)
+    {
+	std::swap(colliders.first, colliders.second);
+	return true;
+    }
+    else
+    {
+	return false;
+    }
+}

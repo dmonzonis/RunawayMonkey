@@ -25,6 +25,7 @@ public:
     void draw();
     CommandQueue& getCommandQueue();
     Actor* getPlayer();
+    void handleCollisions();
 
 private:
     void loadResources();
@@ -60,3 +61,5 @@ private:
     CommandQueue commandQueue;
     std::vector<SpawnPoint> spawnPoints;
 };
+
+bool categoryMatch(WorldNode::Pair& colliders, Category::Type type1, Category::Type type2);

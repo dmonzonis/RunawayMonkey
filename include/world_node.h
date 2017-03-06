@@ -11,11 +11,13 @@
 
 #include <vector>
 #include <memory>
+#include <set>
 
 class WorldNode : public sf::Transformable, public sf::Drawable, public sf::NonCopyable
 {
 public:
     typedef std::unique_ptr<WorldNode> Ptr;
+    typedef std::pair<WorldNode*, WorldNode*> Pair;
 
 public:
     WorldNode();
@@ -27,6 +29,11 @@ public:
     virtual Category::Type getCategory() const;
     void onCommand(const Command&, sf::Time);
     virtual sf::FloatRect getHitbox() const;
+    void checkNodeCollision(WorldNode& node, std::set<Pair>& collisionPairs);
+    void checkWorldCollision(WorldNode& root, std::set<Pair>& collisionPairs);
+    bool isMarkedForRemoval() const;
+    void destroy();
+    void cleanUp();
 
 private:
     virtual void updateCurrent(sf::Time dt);
@@ -39,6 +46,7 @@ private:
 private:
     std::vector<Ptr> children;
     WorldNode *parent;
+    bool removalFlag;
 };
 
 //Checks if the hitboxes for two nodes are intersecting

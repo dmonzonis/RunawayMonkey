@@ -36,13 +36,16 @@ int Actor::getHealth()
 void Actor::damage(int amount)
 {
     health -= amount;
-    if (health < 0)
+    if (health <= 0)
+    {
         health = 0;
-    die();
+        die();
+    }
 }
 
 void Actor::die()
 {
+    destroy();
 }
 
 bool Actor::isShooting() const
