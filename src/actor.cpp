@@ -70,7 +70,7 @@ void Actor::shoot(Projectile::Type type, CommandQueue *commands)
         //Convert type to int because commands don't know about projectiles
         int iType = static_cast<int>(type);
         commands->push(Command(InstanceProjectile(getWorldPosition(), getLookingAt(),
-                               iType, textures), Category::Scene));;
+                               iType, textures), Category::SceneRoot));;
         cooldown = sf::Time::Zero;
     }
 }

@@ -6,6 +6,7 @@ WorldNode::WorldNode()
     : children()
     , parent(nullptr)
     , removalFlag(false)
+    , isRoot(false)
 {
 }
 
@@ -65,7 +66,12 @@ sf::Transform WorldNode::getWorldTransform() const
 Category::Type WorldNode::getCategory() const
 {
     //WorldNode has Scene category by default
-    return Category::Scene;
+    return isRoot ? Category::SceneRoot : Category::Scene;
+}
+
+void WorldNode::setRoot()
+{
+    isRoot = true;
 }
 
 void WorldNode::onCommand(const Command& command, sf::Time dt)

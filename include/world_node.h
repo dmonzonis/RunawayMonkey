@@ -27,6 +27,7 @@ public:
     sf::Vector2f getWorldPosition() const;
     sf::Transform getWorldTransform() const;
     virtual Category::Type getCategory() const;
+    void setRoot();
     void onCommand(const Command&, sf::Time);
     virtual sf::FloatRect getHitbox() const;
     void checkNodeCollision(WorldNode& node, std::set<Pair>& collisionPairs);
@@ -47,6 +48,7 @@ private:
     std::vector<Ptr> children;
     WorldNode *parent;
     bool removalFlag;
+    bool isRoot;
 };
 
 //Checks if the hitboxes for two nodes are intersecting

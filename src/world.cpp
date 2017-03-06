@@ -44,7 +44,7 @@ void World::update(sf::Time dt)
 
     //Destroy all nodes marked for removal
     graph.cleanUp();
-    
+
     //Update the entire graph
     graph.update(dt);
 }
@@ -79,8 +79,7 @@ CommandQueue& World::getCommandQueue()
 void World::buildWorld()
 {
     //Initialize root node
-    WorldNode::Ptr root(new WorldNode());
-    graph.attachChild(std::move(root));
+    graph.setRoot();
 
     //Make tiled background
     sf::Texture& texture = textures.get(Textures::Grass);
@@ -147,22 +146,24 @@ void World::handleCollisions()
 
     for (WorldNode::Pair colliders : collisionPairs)
     {
-	//Player-Enemy interaction
-	if (categoryMatch(colliders, Category::Player, Category::Enemy))
-	{
-	    //Damage player
-	    playerActor->damage(1); //FIXME: damage using enemy's attack
-	}
+        //Player-Enemy interaction
+        if (categoryMatch(colliders, Category::Player, Category::Enemy))
+        {
+            //Damage player
+            playerActor->damage(1); //FIXME: damage using enemy's attack
+	    auto& enemy = static_cast<Actor&>(*colliders.second);
+	    enemy.destroy(); //TODO: instead of destroying the enemy, make player invulnerable for a while
+        }
 
-	else if (categoryMatch(colliders, Category::Enemy, Category::Projectile))
-	{
-	    //Damage enemy by the projectile's damage
-	    auto& enemy = static_cast<Actor&>(*colliders.first);
-	    auto& projectile = static_cast<Projectile&>(*colliders.second);
+        else if (categoryMatch(colliders, Category::Enemy, Category::Projectile))
+        {
+            //Damage enemy by the projectile's damage
+            auto& enemy = static_cast<Actor&>(*colliders.first);
+            auto& projectile = static_cast<Projectile&>(*colliders.second);
 
-	    enemy.damage(projectile.getDamage());
-	    projectile.destroy();
-	}
+            enemy.damage(projectile.getDamage());
+            projectile.destroy();
+        }
     }
 }
 
@@ -174,16 +175,16 @@ bool categoryMatch(WorldNode::Pair& colliders, Category::Type type1, Category::T
     //Make sure first pair entry has category type1 and second has type2
     if (type1 == colliderType1 && type2 == colliderType2)
     {
-	return true;
+        return true;
     }
     //If they are in an inverse order, swap them
     else if (type1 == colliderType2 && type2 == colliderType1)
     {
-	std::swap(colliders.first, colliders.second);
-	return true;
+        std::swap(colliders.first, colliders.second);
+        return true;
     }
     else
     {
-	return false;
+        return false;
     }
 }

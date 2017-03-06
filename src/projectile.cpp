@@ -40,7 +40,10 @@ Projectile::Type Projectile::getType() const
 
 int Projectile::getDamage() const
 {
-    return damage;
+    if (isMarkedForRemoval())
+        return 0;
+    else
+        return damage;
 }
 
 Category::Type Projectile::getCategory() const
@@ -52,8 +55,7 @@ void Projectile::updateCurrent(sf::Time dt)
 {
     counter += dt;
     if (counter >= lifetime)
-	//TODO: destroy
-	;
+        destroy();
     else
         move(velocity * dt.asSeconds());
 }

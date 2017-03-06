@@ -6,6 +6,7 @@ enum Type
 {
     None,
     Scene,
+    SceneRoot,
     Player,
     Crosshair,
     Enemy,
