@@ -158,7 +158,7 @@ void WorldNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
     drawChildren(target, states);
 
     //Draw hitbox for debug purposes
-    drawHitbox(target, states);
+    //drawHitbox(target, states);
 }
 
 void WorldNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
