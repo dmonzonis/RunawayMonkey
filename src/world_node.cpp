@@ -59,9 +59,14 @@ void WorldNode::updateChildren(sf::Time dt)
  */
 void WorldNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+    //Apply all the transforms of the current node
     states.transform *= getTransform();
+
     drawCurrent(target, states);
     drawChildren(target, states);
+    
+    //Draw hitbox for debug purposes
+    drawHitbox(target, states);
 }
 
 void WorldNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
@@ -73,6 +78,20 @@ void WorldNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) 
 {
     for (const Ptr& child : children)
         child->draw(target, states);
+}
+
+//Draw the hitbox to the window, for debugging purposes
+void WorldNode::drawHitbox(sf::RenderTarget& target, sf::RenderStates) const
+{
+    sf::FloatRect rect = getHitbox();
+    sf::RectangleShape shape;
+    shape.setPosition(sf::Vector2f(rect.left, rect.top));
+    shape.setSize(sf::Vector2f(rect.width, rect.height));
+    shape.setFillColor(sf::Color(0, 255, 0, 50));
+    shape.setOutlineColor(sf::Color::Red);
+    shape.setOutlineThickness(1.f);
+
+    target.draw(shape);
 }
 
 sf::Vector2f WorldNode::getWorldPosition() const
@@ -109,4 +128,14 @@ void WorldNode::onCommand(const Command& command, sf::Time dt)
     //Pass the command to its children
     for (Ptr& child : children)
         child->onCommand(command, dt);
+}
+
+sf::FloatRect WorldNode::getHitbox() const
+{
+    return sf::FloatRect();
+}
+
+bool collision(WorldNode& a, WorldNode& b)
+{
+    return a.getHitbox().intersects(b.getHitbox());
 }

@@ -55,9 +55,10 @@ void Entity::flip()
     }
 }
 
+//Return the entity's hitbox as a rectangle transform
 sf::FloatRect Entity::getHitbox() const
 {
-    return this->sprite.getLocalBounds();
+    return getWorldTransform().transformRect(sprite.getGlobalBounds());
 }
 
 void Entity::updateCurrent(sf::Time dt)

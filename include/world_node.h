@@ -7,6 +7,7 @@
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <vector>
 #include <memory>
@@ -25,6 +26,7 @@ public:
     sf::Transform getWorldTransform() const;
     virtual Category::Type getCategory() const;
     void onCommand(const Command&, sf::Time);
+    virtual sf::FloatRect getHitbox() const;
 
 private:
     virtual void updateCurrent(sf::Time dt);
@@ -32,8 +34,12 @@ private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     void drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
+    void drawHitbox(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
     std::vector<Ptr> children;
     WorldNode *parent;
 };
+
+//Checks if the hitboxes for two nodes are intersecting
+bool collision(WorldNode&, WorldNode&);

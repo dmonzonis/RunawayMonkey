@@ -4,8 +4,7 @@
 #include <cassert>
 
 Actor::Actor(Type actorType, const TextureHolder& textures)
-    : sprite()
-    , textures(textures)
+    : textures(textures)
     , type(actorType)
     , health(3)
     , maxHealth(3)
@@ -69,7 +68,7 @@ void Actor::shoot(Projectile::Type type, CommandQueue *commands)
         int iType = static_cast<int>(type);
         commands->push(Command(InstanceProjectile(getWorldPosition(), getLookingAt(),
                                iType, textures), Category::Scene));;
-	cooldown = sf::Time::Zero;
+        cooldown = sf::Time::Zero;
     }
 }
 

@@ -4,10 +4,10 @@
 #include "resource_identifiers.h"
 #include "world_node.h"
 #include "sprite_node.h"
+#include "text_node.h"
 #include "actor.h"
 #include "crosshair.h"
 #include "command_queue.h"
-#include "utility.h"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>

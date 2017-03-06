@@ -37,6 +37,6 @@ private:
     float speed;
 
 protected:
-    sf::Vector2f velocity = sf::Vector2f(0.f, 0.f);
     sf::Sprite sprite;
+    sf::Vector2f velocity = sf::Vector2f(0.f, 0.f);
 };

@@ -28,7 +28,7 @@ private:
     virtual void drawCurrent(sf::RenderTarget&, sf::RenderStates states) const;
 
 protected:
-    sf::Sprite sprite;
     Type type;
     int damage;
+    sf::Time counter, lifetime;
 };

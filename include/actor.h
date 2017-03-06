@@ -35,7 +35,6 @@ private:
     virtual void updateCurrent(sf::Time);
 
 private:
-    sf::Sprite sprite;
     const TextureHolder &textures;
     Type type;
     int health, maxHealth;

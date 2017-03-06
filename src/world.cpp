@@ -1,4 +1,5 @@
 #include "world.h"
+#include "utility.h"
 
 World::World(sf::RenderWindow& w)
     : window(w)

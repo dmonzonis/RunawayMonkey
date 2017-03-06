@@ -11,5 +11,6 @@ enum Type
     Enemy,
     Pickup,
     Projectile,
+    Text,
 };
 }

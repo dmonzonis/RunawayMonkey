@@ -5,10 +5,13 @@ const float poopSpeed = 500.0f,
             bananaSpeed = 50.0f;
 
 Projectile::Projectile(const TextureHolder& textures, Type type)
-    : sprite(textures.get(Textures::Poop))
-    , type(type)
+    : type(type)
     , damage(1)
+    , counter(sf::Time::Zero)
+    , lifetime(sf::seconds(3.0f))
 {
+    sprite.setTexture(textures.get(Textures::Poop));
+
     switch (type)
     {
     case Poop:
@@ -47,7 +50,12 @@ Category::Type Projectile::getCategory() const
 
 void Projectile::updateCurrent(sf::Time dt)
 {
-    move(velocity * dt.asSeconds());
+    counter += dt;
+    if (counter >= lifetime)
+	//TODO: destroy
+	;
+    else
+        move(velocity * dt.asSeconds());
 }
 
 void Projectile::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
