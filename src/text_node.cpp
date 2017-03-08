@@ -3,17 +3,17 @@
 
 #include <cmath>
 
-TextNode::TextNode(const FontHolder& fonts, const std::string& s)
+TextNode::TextNode(const FontHolder& fonts, const std::string& text)
 {
-    text.setFont(fonts.get(Fonts::Stats));
-    text.setCharacterSize(20);
-    setString(s);
+    this->text.setFont(fonts.get(Fonts::Stats));
+    this->text.setCharacterSize(20);
+    setString(text);
 }
 
-void TextNode::setString(const std::string& s)
+void TextNode::setString(const std::string& text)
 {
-    text.setString(s);
-    centerOrigin(text);
+    this->text.setString(text);
+    centerOrigin(this->text);
 }
 
 Category::Type TextNode::getCategory() const

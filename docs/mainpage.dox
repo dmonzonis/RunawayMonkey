@@ -1,0 +1,57 @@
+/**
+  \mainpage Runaway Monkey Documentation
+
+  \section Introduction 
+  Runaway Monkey is a 2D top-down shooter of a monkey who is being chased by
+  captors after having escaped the zoo, with no weapon other than its own
+  faeces to defend himself.
+
+  The game is made with C++, using the SFML library. Any type that starts with the
+  scope @c sf:: is defined in the SFML library, and for more information about them you
+  should refer to the <a href="http://www.sfml-dev.org/documentation">SFML documentation</a>.
+
+  \section comp Installation
+  The release version of the game will be distributed with a binary containing all dependencies.
+
+  To compile the game from source, you will first need to download the SFML development library.
+  To get it, simply download it from the SFML page or, if using Linux, get it from your distro's
+  repositories.
+
+  In Ubuntu/Debian:
+  @code
+  apt-get install libsfm-dev
+  @endcode
+  In Arch:
+  @code
+  pacman -S sfml
+  @endcode
+  You can compile the game either using the provided Makefile, or by using CMake.
+
+  \subsection Make
+  At the project's root directory, simply run
+  @code
+  make
+  @endcode
+  To run a clean build, simply run
+  @code
+  make clean && make
+  @endcode
+  This will remove all the previously compiled object files as well as the executable and rebuild
+  them.
+
+  \subsection CMake
+  At the project's root directory, run
+  @code
+  mkdir build && cd build && cmake ..
+  @endcode
+  You can then use your build system to build the game. In the case of make, simply run @c make.
+
+  \subsection run Running the game
+  To run the game, while at the project's root directory, run 
+  @code
+  bin/monkey.
+  @endcode
+  It's important to execute the game from the root directory, since the game currently uses
+  relative paths to search for resources, and will fail to load them if in another directory.
+  
+*/

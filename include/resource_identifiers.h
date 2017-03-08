@@ -1,3 +1,8 @@
+/**
+ * @file resource_identifiers.h
+ * @author Daniel Monzonís
+ */
+
 #pragma once
 
 #include <SFML/Graphics.hpp>

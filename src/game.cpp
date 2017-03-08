@@ -18,9 +18,6 @@ Game::Game()
     player.setActor(world.getPlayer());
 }
 
-/*
- * Runs the game loop
- */
 void Game::run()
 {
     sf::Clock clock;

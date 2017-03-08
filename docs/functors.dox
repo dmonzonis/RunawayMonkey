@@ -1,0 +1,48 @@
+/*!
+  \page Functors
+  \brief Brief introduction to functors and command functor usage.
+  \tableofcontents
+
+  \section description Description
+    Functors are classes that override the operator (). They are useful for generating functions using the factory 
+    design pattern, for a variety of purposes.
+
+  \section actionFunctors Action functors
+    The functors we use in this project are Action functors, since they return a function compatible with the
+    Action type defined in Command. Therefore, the functions they generate take a reference to a WorldNode and 
+    a time as arguments, and have no return type. Functors may take different types and values in their constructors
+    depending on the functionality.
+
+  \subsection examples Usage examples
+    Say we want to generate a command that moves the player actor to the right. We could do it using an existing function or a
+    lambda expression like this:
+    @code
+      Command command; //default initialize the command
+      command.action = 
+          [] (WorldNode& node, sf::Time time)
+	  {
+	      //Code to move the node to the right
+	  };
+      command.category = Category::Player;
+    @endcode
+    Since an Action can only take a reference to a node and a time as arguments, we'd have to write a different function for
+    each movement direction, and if the player can move at different speeds, a function for each possible speed too.
+    This is a problem. We can do it in a much cleaner and more abstract way by using the MoveActor functor, like so:
+    @code
+      Command command(MoveActor(playerSpeed, 0.f), Category::Player);
+    @endcode
+    We have used the alternative constructor of Command that lets us directly initialize the action and category. MoveActor is
+    a functor that takes a velocity in the x axis and the y axis, or a sf::Vector2f representing the velocity, and returns a
+    function that moves the actor with the given velocity.
+
+    \subsection list List of Action functors
+      These are all the functors in the project so far:
+      <ul>
+        <li>MoveActor</li>
+	<li>MoveActorTowards</li>
+	<li>InstanceProjectile</li>
+      </ul>
+
+    @see Command The best way to use functors in this project is to initialize command actions.
+    
+*/

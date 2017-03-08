@@ -1,12 +1,10 @@
 #include "crosshair.h"
 #include "utility.h"
 
-#include <iostream>
-
 Crosshair::Crosshair(const TextureHolder& textures, sf::RenderWindow& w)
-    : sprite(textures.get(Textures::Crosshair))
-    , window(w)
+    : window(w)
 {
+    sprite.setTexture(textures.get(Textures::Crosshair));
     sf::FloatRect hitbox = sprite.getLocalBounds();
     sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
 }

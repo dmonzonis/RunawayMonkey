@@ -16,9 +16,6 @@ void WorldNode::attachChild(Ptr child)
     children.push_back(std::move(child));
 }
 
-/*
- * Finds. removes and returns child node
- */
 WorldNode::Ptr WorldNode::detachChild(const WorldNode& node)
 {
     //First find the node in the container
@@ -49,11 +46,6 @@ sf::Vector2f WorldNode::getWorldPosition() const
     return getWorldTransform() * sf::Vector2f();
 }
 
-/*
- * Applies all transforms traveling through parents until we reac
- * the root node, to compute the absolute world transform instead
- * of the transform relative to the parent
- */
 sf::Transform WorldNode::getWorldTransform() const
 {
     sf::Transform trans = sf::Transform::Identity;
@@ -90,11 +82,6 @@ sf::FloatRect WorldNode::getHitbox() const
     return sf::FloatRect();
 }
 
-/*
- * Check if this node is colliding with the argument node, if so add it to
- * collisionPairs, and then check all the children for collisions with the
- * argument node recursively
- */
 void WorldNode::checkNodeCollision(WorldNode& node, std::set<Pair>& collisionPairs)
 {
     //Don't collide node with itself
@@ -106,9 +93,6 @@ void WorldNode::checkNodeCollision(WorldNode& node, std::set<Pair>& collisionPai
         child->checkNodeCollision(node, collisionPairs);
 }
 
-/*
- * Check collisions for all children of root node
- */
 void WorldNode::checkWorldCollision(WorldNode& root, std::set<Pair>& collisionPairs)
 {
     checkNodeCollision(root, collisionPairs);
@@ -126,10 +110,6 @@ void WorldNode::destroy()
     removalFlag = true;
 }
 
-/*
- * Remove all children marked for removal, and then recursively do
- * the same for the children's children
- */
 void WorldNode::cleanUp()
 {
     //remove_if reorders this node's children so the ones marked
@@ -157,10 +137,6 @@ void WorldNode::updateChildren(sf::Time dt)
         child->update(dt);
 }
 
-/*
- * Applies transform of the current node and draws the node and its
- * children with the new transform
- */
 void WorldNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     //Apply all the transforms of the current node
@@ -200,9 +176,6 @@ void WorldNode::drawHitbox(sf::RenderTarget& target, sf::RenderStates) const
     target.draw(shape);
 }
 
-/*
- * Check if hitboxes intersect
- */
 bool collision(WorldNode& a, WorldNode& b)
 {
     return a.getHitbox().intersects(b.getHitbox());

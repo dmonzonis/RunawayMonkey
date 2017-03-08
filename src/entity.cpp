@@ -36,9 +36,6 @@ sf::Vector2f Entity::getLookingAt()
     return lookDirection;
 }
 
-/*
- * Flip actor horizontally
- */
 void Entity::flip()
 {
     //If the actor is looking at something behind it, flip its transform
@@ -55,7 +52,6 @@ void Entity::flip()
     }
 }
 
-//Return the entity's hitbox as a rectangle transform
 sf::FloatRect Entity::getHitbox() const
 {
     return getWorldTransform().transformRect(sprite.getGlobalBounds());

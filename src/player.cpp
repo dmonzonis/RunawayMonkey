@@ -40,13 +40,8 @@ Player::Player()
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
-    if (event.type == sf::Event::KeyPressed
-            && keyBinding[event.key.code])
-    {
-        commands.push(actionBinding[keyBinding[event.key.code]]);
-    }
     //XXX: DEBUG PURPOSES, REMOVE FOR RELEASE
-    else if (event.type == sf::Event::KeyPressed
+    if (event.type == sf::Event::KeyPressed
              && event.key.code == sf::Keyboard::P)
     {
         std::cout << playerActor->getPosition().x << ", "
