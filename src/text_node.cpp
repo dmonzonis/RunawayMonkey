@@ -7,10 +7,10 @@ TextNode::TextNode(const FontHolder& fonts, const std::string& text)
 {
     this->text.setFont(fonts.get(Fonts::Stats));
     this->text.setCharacterSize(20);
-    setString(text);
+    setText(text);
 }
 
-void TextNode::setString(const std::string& text)
+void TextNode::setText(const std::string& text)
 {
     this->text.setString(text);
     centerOrigin(this->text);

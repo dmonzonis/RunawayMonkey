@@ -37,7 +37,7 @@ public:
      *
      * @param text Text to be displayed by the TextNode.
      */
-    void setString(const std::string&);
+    void setText(const std::string&);
 
     /**
      * @return Category::Text
