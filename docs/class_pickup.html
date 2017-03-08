@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Runaway Monkey: Actor Class Reference</title>
+<title>Runaway Monkey: Pickup Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,22 +63,19 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="class_actor-members.html">List of all members</a>  </div>
+<a href="class_pickup-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Actor Class Reference</div>  </div>
+<div class="title">Pickup Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>An <a class="el" href="class_entity.html" title="WorldNode that has a presence and can move around. ">Entity</a> that is "alive" and interact with the world.  
- <a href="class_actor.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="actor_8h_source.html">actor.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="pickup_8h_source.html">pickup.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for Actor:</div>
+Inheritance diagram for Pickup:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_actor.png" usemap="#Actor_map" alt=""/>
-  <map id="Actor_map" name="Actor_map">
+  <img src="class_pickup.png" usemap="#Pickup_map" alt=""/>
+  <map id="Pickup_map" name="Pickup_map">
 <area href="class_entity.html" title="WorldNode that has a presence and can move around. " alt="Entity" shape="rect" coords="103,112,196,136"/>
 <area href="class_world_node.html" title="A world node is anything that exists and should be updated in the world. " alt="WorldNode" shape="rect" coords="103,56,196,80"/>
 </map>
@@ -86,11 +83,9 @@ Inheritance diagram for Actor:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8f016a8e19c6fe5e7cceb7d5690cb9cc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Type</a> { <a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cca1d3f9fb659219b180fa8607898bcee8f">None</a>, 
-<a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9ccaf94675fb0a4335833f0ac51af24502b0">Monkey</a>, 
-<a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cca25c22f6165436c329f7734755f225d4a">Snatcher</a>
+<tr class="memitem:ad4681315b06f1fc58c8f2a17937dd88a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Type</a> { <a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88aacd481b4a647883f40fc16a979cc3fefb">Healkit</a>
  }</td></tr>
-<tr class="separator:a8f016a8e19c6fe5e7cceb7d5690cb9cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ad4681315b06f1fc58c8f2a17937dd88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_class_world_node"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_world_node')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="class_world_node.html">WorldNode</a></td></tr>
 <tr class="memitem:a9fc48d1df0038b1d3a20443ad611f475 inherit pub_types_class_world_node"><td class="memItemLeft" align="right" valign="top">typedef std::unique_ptr&lt; <a class="el" href="class_world_node.html">WorldNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_node.html#a9fc48d1df0038b1d3a20443ad611f475">Ptr</a></td></tr>
 <tr class="separator:a9fc48d1df0038b1d3a20443ad611f475 inherit pub_types_class_world_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -99,24 +94,12 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab49ea71c3c0b92a206aab953f12489ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ab49ea71c3c0b92a206aab953f12489ea">Actor</a> (<a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Type</a> type, const <a class="el" href="resource__identifiers_8h.html#a96220f9135333a0209f9367a28b7da13">TextureHolder</a> &amp;textures)</td></tr>
-<tr class="separator:ab49ea71c3c0b92a206aab953f12489ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac827007dedbdfca068ed4fcede1b7e97"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0">Category::Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#ac827007dedbdfca068ed4fcede1b7e97">getCategory</a> () const</td></tr>
-<tr class="separator:ac827007dedbdfca068ed4fcede1b7e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02d153452eb8ea3dc2e2de666935471f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a02d153452eb8ea3dc2e2de666935471f">getHealth</a> () const</td></tr>
-<tr class="separator:a02d153452eb8ea3dc2e2de666935471f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aeb8e1b9511bea8191b874ca37cf507"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a6aeb8e1b9511bea8191b874ca37cf507">setHealth</a> (int health)</td></tr>
-<tr class="separator:a6aeb8e1b9511bea8191b874ca37cf507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d9f082f9fc772769481998c823c2a40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a4d9f082f9fc772769481998c823c2a40">damage</a> (int amount)</td></tr>
-<tr class="separator:a4d9f082f9fc772769481998c823c2a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b30af346b2b127604ffe764646e67cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a4b30af346b2b127604ffe764646e67cc">die</a> ()</td></tr>
-<tr class="separator:a4b30af346b2b127604ffe764646e67cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0efdff2a6bf40be43f151d1c5f487e30"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a0efdff2a6bf40be43f151d1c5f487e30">isShooting</a> () const</td></tr>
-<tr class="separator:a0efdff2a6bf40be43f151d1c5f487e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19287d8547d5ac5c5fd3494d52887cd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a19287d8547d5ac5c5fd3494d52887cd6">setShooting</a> (bool flag)</td></tr>
-<tr class="separator:a19287d8547d5ac5c5fd3494d52887cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a474fde421a2c827a5f4b48c9c91c4918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a474fde421a2c827a5f4b48c9c91c4918">shoot</a> (<a class="el" href="class_projectile.html#ae0d6ce4b663618b4105d2f3a483ff2eb">Projectile::Type</a> type, <a class="el" href="class_command_queue.html">CommandQueue</a> *commands)</td></tr>
-<tr class="separator:a474fde421a2c827a5f4b48c9c91c4918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8c1d17163c2c737c861db3850a2ad68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pickup.html#ae8c1d17163c2c737c861db3850a2ad68">Pickup</a> (<a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Type</a> type, const <a class="el" href="resource__identifiers_8h.html#a96220f9135333a0209f9367a28b7da13">TextureHolder</a> &amp;textures)</td></tr>
+<tr class="separator:ae8c1d17163c2c737c861db3850a2ad68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a807bb1201c6ad77f7a1e5706f31b494c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pickup.html#a807bb1201c6ad77f7a1e5706f31b494c">apply</a> (<a class="el" href="class_actor.html">Actor</a> &amp;player) const</td></tr>
+<tr class="separator:a807bb1201c6ad77f7a1e5706f31b494c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65dd45b0f3d8160f12c5645752a4ac64"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0">Category::Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pickup.html#a65dd45b0f3d8160f12c5645752a4ac64">getCategory</a> () const</td></tr>
+<tr class="separator:a65dd45b0f3d8160f12c5645752a4ac64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_entity.html">Entity</a></td></tr>
 <tr class="memitem:ad577b2c5aeea6d34d6c4e3c28b3cfc47 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#ad577b2c5aeea6d34d6c4e3c28b3cfc47">getSpeed</a> () const</td></tr>
 <tr class="separator:ad577b2c5aeea6d34d6c4e3c28b3cfc47 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,33 +161,28 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ad2fafaf6e73fbfb6a88ada38319dd924 inherit pro_attribs_class_entity"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#ad2fafaf6e73fbfb6a88ada38319dd924">velocity</a> = sf::Vector2f(0.f, 0.f)</td></tr>
 <tr class="separator:ad2fafaf6e73fbfb6a88ada38319dd924 inherit pro_attribs_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An <a class="el" href="class_entity.html" title="WorldNode that has a presence and can move around. ">Entity</a> that is "alive" and interact with the world. </p>
-<p><a class="el" href="class_actor.html" title="An Entity that is &quot;alive&quot; and interact with the world. ">Actor</a> is a subclass of <a class="el" href="class_entity.html" title="WorldNode that has a presence and can move around. ">Entity</a> for entities that are "alive". Actors have health, and they get destroyed when their health reaches 0. Actors have <a class="el" href="namespace_category.html">Category</a> types depending on the internal <a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Actor::Type</a>, which will determine which types of commands can be executed by them. Some actors may also be able to shoot projectiles, so the class also has methods for projectile shooting.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_command.html" title="Commands handle actions in an abstract way. ">Command</a> Depending on its type, actors can execute commands targeted for them. </dd></dl>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a8f016a8e19c6fe5e7cceb7d5690cb9cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f016a8e19c6fe5e7cceb7d5690cb9cc">&#9670;&nbsp;</a></span>Type</h2>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="ad4681315b06f1fc58c8f2a17937dd88a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4681315b06f1fc58c8f2a17937dd88a">&#9670;&nbsp;</a></span>Type</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Actor::Type</a></td>
+          <td class="memname">enum <a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Pickup::Type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p><a class="el" href="class_pickup.html">Pickup</a> type will determine the effect of the <a class="el" href="class_pickup.html#a807bb1201c6ad77f7a1e5706f31b494c">apply</a> method. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8f016a8e19c6fe5e7cceb7d5690cb9cca1d3f9fb659219b180fa8607898bcee8f"></a>None&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8f016a8e19c6fe5e7cceb7d5690cb9ccaf94675fb0a4335833f0ac51af24502b0"></a>Monkey&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8f016a8e19c6fe5e7cceb7d5690cb9cca25c22f6165436c329f7734755f225d4a"></a>Snatcher&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad4681315b06f1fc58c8f2a17937dd88aacd481b4a647883f40fc16a979cc3fefb"></a>Healkit&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab49ea71c3c0b92a206aab953f12489ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab49ea71c3c0b92a206aab953f12489ea">&#9670;&nbsp;</a></span>Actor()</h2>
+<a id="ae8c1d17163c2c737c861db3850a2ad68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8c1d17163c2c737c861db3850a2ad68">&#9670;&nbsp;</a></span>Pickup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -213,9 +191,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Actor::Actor </td>
+          <td class="memname">Pickup::Pickup </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Type</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Type</a>&#160;</td>
           <td class="paramname"><em>type</em>, </td>
         </tr>
         <tr>
@@ -236,10 +214,11 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Constructor that initializes the pickup's <a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Type</a> and sets its sprite's texture from the TextureHolder depending on its <a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Type</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>Define actor type from <a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Actor::Type</a>.</td></tr>
-    <tr><td class="paramname">textures</td><td>Reference to TextureHolder to grab textures from. </td></tr>
+    <tr><td class="paramname">type</td><td><a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Type</a> of the pickup. </td></tr>
+    <tr><td class="paramname">textures</td><td>Reference to the TextureHolder to grab the textures from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -247,51 +226,27 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4d9f082f9fc772769481998c823c2a40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d9f082f9fc772769481998c823c2a40">&#9670;&nbsp;</a></span>damage()</h2>
+<a id="a807bb1201c6ad77f7a1e5706f31b494c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a807bb1201c6ad77f7a1e5706f31b494c">&#9670;&nbsp;</a></span>apply()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Actor::damage </td>
+          <td class="memname">void Pickup::apply </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>amount</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype"><a class="el" href="class_actor.html">Actor</a> &amp;&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Decrease actor's health by a given amount. If the amount is a negative value, the actor's health is increased instead. If the actor's health reaches 0 or less after the damage, the <a class="el" href="class_actor.html#a4b30af346b2b127604ffe764646e67cc">die()</a> method is called. If the actor's health surpasses the maximum health permitted after the damage, the actor's health is set to the maximum health permitted.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">amount</td><td>Damage to be dealt to the actor. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Applies the effect on the player determined by the pickup's <a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Type</a>. </p>
 
 </div>
 </div>
-<a id="a4b30af346b2b127604ffe764646e67cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b30af346b2b127604ffe764646e67cc">&#9670;&nbsp;</a></span>die()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Actor::die </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Destroy actor. Calls <a class="el" href="class_world_node.html#adee4306bfcf9721df1afee7fd457bbf4">Entity::destroy()</a>. </p>
-
-</div>
-</div>
-<a id="ac827007dedbdfca068ed4fcede1b7e97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac827007dedbdfca068ed4fcede1b7e97">&#9670;&nbsp;</a></span>getCategory()</h2>
+<a id="a65dd45b0f3d8160f12c5645752a4ac64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65dd45b0f3d8160f12c5645752a4ac64">&#9670;&nbsp;</a></span>getCategory()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,7 +255,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0">Category::Type</a> Actor::getCategory </td>
+          <td class="memname"><a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0">Category::Type</a> Pickup::getCategory </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -312,131 +267,15 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0aaf0c95ba137eed7f89ca49d30d112621" title="Category for the world&#39;s root node. ">Category::Player</a> if <a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Actor::Type</a> is monkey, <a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0a52c51f4b5c427f0201b3a176a529af20">Category::Enemy</a> otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0a50696d5f814f48670fcc15992d4d2e63">Category::Pickup</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_world_node.html#a963c14fed070df6558d39a628bf5909a">WorldNode</a>.</p>
 
 </div>
 </div>
-<a id="a02d153452eb8ea3dc2e2de666935471f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02d153452eb8ea3dc2e2de666935471f">&#9670;&nbsp;</a></span>getHealth()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Actor::getHealth </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Current actor's health. </dd></dl>
-
-</div>
-</div>
-<a id="a0efdff2a6bf40be43f151d1c5f487e30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0efdff2a6bf40be43f151d1c5f487e30">&#9670;&nbsp;</a></span>isShooting()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Actor::isShooting </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>true if the actor is in a shooting state, false otherwise. </dd></dl>
-
-</div>
-</div>
-<a id="a6aeb8e1b9511bea8191b874ca37cf507"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6aeb8e1b9511bea8191b874ca37cf507">&#9670;&nbsp;</a></span>setHealth()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Actor::setHealth </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>health</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Sets the health of the actor to the given value.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">health</td><td>Value to set the actor's health to. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a19287d8547d5ac5c5fd3494d52887cd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19287d8547d5ac5c5fd3494d52887cd6">&#9670;&nbsp;</a></span>setShooting()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Actor::setShooting </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>flag</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Set the shooting state to flag. </p>
-
-</div>
-</div>
-<a id="a474fde421a2c827a5f4b48c9c91c4918"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a474fde421a2c827a5f4b48c9c91c4918">&#9670;&nbsp;</a></span>shoot()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Actor::shoot </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_projectile.html#ae0d6ce4b663618b4105d2f3a483ff2eb">Projectile::Type</a>&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_command_queue.html">CommandQueue</a> *&#160;</td>
-          <td class="paramname"><em>commands</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>If the actor can, shoot a projectile. If the actor hasn't shot a projectile in at least a time equal to its shooting cooldown, shoot a projectile of a given type.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>Type of the projectile to be instantiated. </td></tr>
-    <tr><td class="paramname">commands</td><td>Reference to the world's <a class="el" href="class_command_queue.html" title="Queue of Command objects with custom methods. ">CommandQueue</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/<a class="el" href="actor_8h_source.html">actor.h</a></li>
-<li>src/<a class="el" href="actor_8cpp.html">actor.cpp</a></li>
+<li>include/<a class="el" href="pickup_8h_source.html">pickup.h</a></li>
+<li>src/<a class="el" href="pickup_8cpp.html">pickup.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

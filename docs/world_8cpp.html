@@ -72,6 +72,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="world_8h_source.html">world.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utility_8h_source.html">utility.h</a>&quot;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -110,6 +111,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns true if the colliders each match one of the two categories, and false otherwise.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colliders</td><td>A pair of nodes that have collided. </td></tr>
+    <tr><td class="paramname">type1</td><td>First category to check. </td></tr>
+    <tr><td class="paramname">type2</td><td>Second category to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if one of the nodes in colliders is of category type1 and the other of category type2, false otherwise. </dd></dl>
 
 </div>
 </div>

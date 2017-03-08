@@ -17,6 +17,7 @@ enum ID
     Snatcher,
     /* End actor textures */
     Poop,
+    Healkit,
     Crosshair,
     Grass,
     TextureCount,

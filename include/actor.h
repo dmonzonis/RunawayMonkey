@@ -35,6 +35,7 @@ public:
 public:
     /**
      * @param type Define actor type from Actor::Type.
+     *
      * @param textures Reference to TextureHolder to grab textures from.
      */
     explicit Actor(Type type, const TextureHolder& textures);
@@ -47,10 +48,23 @@ public:
     /**
      * @return Current actor's health.
      */
-    int getHealth();
+    int getHealth() const;
 
     /**
-     * Decrease actor's health by a given amount.
+     * Sets the health of the actor to the given value.
+     *
+     * @param health Value to set the actor's health to.
+     */
+    void setHealth(int health);
+
+    /**
+     * Decrease actor's health by a given amount. If the amount is a
+     * negative value, the actor's health is increased instead.
+     * If the actor's health reaches 0 or less after the damage,
+     * the @ref die() method is called. If the actor's health surpasses
+     * the maximum health permitted after the damage, the actor's health
+     * is set to the maximum health permitted.
+     *
      * @param amount Damage to be dealt to the actor.
      */
     void damage(int amount);
@@ -74,6 +88,7 @@ public:
      * If the actor can, shoot a projectile.
      * If the actor hasn't shot a projectile in at least a time equal to its shooting cooldown,
      * shoot a projectile of a given type. 
+     *
      * @param type Type of the projectile to be instantiated.
      * @param commands Reference to the world's CommandQueue.
      */

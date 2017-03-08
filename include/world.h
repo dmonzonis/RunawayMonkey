@@ -11,6 +11,7 @@
 #include "sprite_node.h"
 #include "text_node.h"
 #include "actor.h"
+#include "pickup.h"
 #include "crosshair.h"
 #include "command_queue.h"
 
@@ -103,16 +104,22 @@ public:
 private:
     void loadResources();
     void buildWorld();
+
     void addEnemies();
     void addEnemy(Actor::Type, float, float);
     void spawnEnemy();
+
+    void addPickups();
+    void addPickup(Pickup::Type, float, float);
+    void spawnPickup();
+    
     void handleCollisions();
 
 private:
-    struct SpawnPoint
+    struct EnemySpawnPoint
     {
-        SpawnPoint(Actor::Type type, float x, float y)
-            : type (type)
+        EnemySpawnPoint(Actor::Type type, float x, float y)
+            : type(type)
             , x(x)
             , y(y)
         {
@@ -120,6 +127,19 @@ private:
 
         Actor::Type type;
         float x, y;
+    };
+
+    struct PickupSpawnPoint
+    {
+	PickupSpawnPoint(Pickup::Type type, float x, float y)
+	    : type(type)
+	    , x(x)
+	    , y(y)
+	{
+	}
+
+	Pickup::Type type;
+	float x, y;
     };
 
 private:
@@ -133,9 +153,21 @@ private:
     Crosshair *crosshair;
     sf::Vector2f spawnPosition;
     CommandQueue commandQueue;
-    std::vector<SpawnPoint> spawnPoints;
+    std::vector<EnemySpawnPoint> enemySpawnPoints;
+    std::vector<PickupSpawnPoint> pickupSpawnPoints;
     sf::Time counter, spawnTime;
     TextNode *playerHp; //TODO: remove when a GUI is implemented
 };
 
+/**
+ * Returns true if the colliders each match one of the two categories, and false
+ * otherwise.
+ *
+ * @param colliders A pair of nodes that have collided.
+ * @param type1 First category to check.
+ * @param type2 Second category to check.
+ *
+ * @return True if one of the nodes in colliders is of category type1 and the other
+ * of category type2, false otherwise.
+ */
 bool categoryMatch(WorldNode::Pair& colliders, Category::Type type1, Category::Type type2);

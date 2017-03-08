@@ -28,9 +28,14 @@ Category::Type Actor::getCategory() const
         return Category::Enemy;
 }
 
-int Actor::getHealth()
+int Actor::getHealth() const
 {
     return health;
+}
+
+void Actor::setHealth(int health)
+{
+    this->health = health;
 }
 
 void Actor::damage(int amount)
@@ -40,6 +45,10 @@ void Actor::damage(int amount)
     {
         health = 0;
         die();
+    }
+    else if (health > maxHealth)
+    {
+	health = maxHealth;
     }
 }
 

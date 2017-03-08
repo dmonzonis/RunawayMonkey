@@ -14,7 +14,8 @@ World::World(sf::RenderWindow& w)
     , crosshair(nullptr)
     , spawnPosition(worldBounds.width / 2.f, worldBounds.height / 2.f)
     , commandQueue()
-    , spawnPoints()
+    , enemySpawnPoints()
+    , pickupSpawnPoints()
     , counter(sf::Time::Zero)
     , spawnTime(sf::seconds(1.0f))
 {
@@ -84,6 +85,7 @@ void World::loadResources()
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
     textures.load(Textures::Snatcher, "resources/snatcher.png");
+    textures.load(Textures::Healkit, "resources/healkit.png");
     fonts.load(Fonts::Stats, "resources/Jellee-Roman.ttf");
 }
 
@@ -125,8 +127,15 @@ void World::buildWorld()
     //Add enemies
     addEnemies();
     spawnEnemy();
+
+    //Spawn a couple of pickups
+    addPickups();
+    spawnPickup();
+    spawnPickup();
 }
 
+//TODO: Make a template or a more generic way of spawning things so I don't have
+//to make functions to spawn enemies and functions to spawn pickups
 void World::addEnemies()
 {
     addEnemy(Actor::Type::Snatcher, 200.f, -200.f);
@@ -136,25 +145,58 @@ void World::addEnemies()
 
 void World::addEnemy(Actor::Type t, float x, float y)
 {
-    SpawnPoint sp(t, spawnPosition.x + x, spawnPosition.y + y);
-    spawnPoints.push_back(sp);
+    EnemySpawnPoint sp(t, spawnPosition.x + x, spawnPosition.y + y);
+    enemySpawnPoints.push_back(sp);
 }
 
 void World::spawnEnemy()
 {
-    if (!spawnPoints.empty())
+    if (!enemySpawnPoints.empty())
     {
         //Get a random enemy from the spawn list
-        auto size = spawnPoints.size();
-        auto it = spawnPoints.begin();
+        auto size = enemySpawnPoints.size();
+        auto it = enemySpawnPoints.begin();
         it += randomInt(size);
-        SpawnPoint spawn = *it;
+        EnemySpawnPoint spawn = *it;
 
         //Spawn the enemy
         std::unique_ptr<Actor> enemy(new Actor(spawn.type, textures));
         enemy->setPosition(spawn.x, spawn.y);
         enemy->setSpeed(150.f);
         graph.attachChild(std::move(enemy));
+    }
+}
+
+void World::addPickups()
+{
+    addPickup(Pickup::Type::Healkit, 100, -400);
+    addPickup(Pickup::Type::Healkit, -300, 100);
+    addPickup(Pickup::Type::Healkit, 950, 850);
+}
+
+void World::addPickup(Pickup::Type t, float x, float y)
+{
+    PickupSpawnPoint sp(t, spawnPosition.x + x, spawnPosition.y + y);
+    pickupSpawnPoints.push_back(sp);
+}
+
+void World::spawnPickup()
+{
+    if (!pickupSpawnPoints.empty())
+    {
+	//Get a random pickup from the spawn list
+        auto size = pickupSpawnPoints.size();
+        auto it = pickupSpawnPoints.begin();
+        it += randomInt(size);
+        PickupSpawnPoint spawn = *it;
+
+	//Spawn the pickup
+	std::unique_ptr<Pickup> pickup(new Pickup(spawn.type, textures));
+	pickup->setPosition(spawn.x, spawn.y);
+	graph.attachChild(std::move(pickup));
+
+	//Remove pickup from the spawn list
+	pickupSpawnPoints.erase(it);
     }
 }
 
@@ -180,6 +222,7 @@ void World::handleCollisions()
             enemy.destroy();
         }
 
+	//Projectile-Enemy interaction
         else if (categoryMatch(colliders, Category::Enemy, Category::Projectile))
         {
             //Damage enemy by the projectile's damage
@@ -189,6 +232,17 @@ void World::handleCollisions()
             enemy.damage(projectile.getDamage());
             projectile.destroy();
         }
+
+	//Player-Pickup interaction
+	if (categoryMatch(colliders, Category::Player, Category::Pickup))
+	{
+	    auto& player = static_cast<Actor&>(*colliders.first);
+	    auto& pickup = static_cast<Pickup&>(*colliders.second);
+	    //Apply pickup to the player
+	    pickup.apply(player);
+	    //Destroy pickup
+	    pickup.destroy();
+	}
     }
 }
 

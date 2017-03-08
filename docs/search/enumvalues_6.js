@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['noaction',['NoAction',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88ac7eeb2aedc053ad4ccfa22491882b560',1,'Player']]],
-  ['none',['None',['../class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cca1d3f9fb659219b180fa8607898bcee8f',1,'Actor::None()'],['../class_projectile.html#ae0d6ce4b663618b4105d2f3a483ff2ebad8f68af9c45f6c17998ee69c957341c9',1,'Projectile::None()'],['../namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0af5e99963224a9d7e0d16e4a782446ebf',1,'Category::None()'],['../namespace_textures.html#a2cfe2099537d4e80b08437b4978301a5af52abf880f84e63fe38c017b7e4c42cd',1,'Textures::None()']]]
+  ['menu',['Menu',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88a81397d139bd6249a3b33c790c9de1897',1,'Player']]],
+  ['monkey',['Monkey',['../class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9ccaf94675fb0a4335833f0ac51af24502b0',1,'Actor::Monkey()'],['../namespace_textures.html#a2cfe2099537d4e80b08437b4978301a5ae2f183a3c08cb1baf0f41adab1124e02',1,'Textures::Monkey()']]],
+  ['movedown',['MoveDown',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0',1,'Player']]],
+  ['moveleft',['MoveLeft',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807',1,'Player']]],
+  ['moveright',['MoveRight',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b',1,'Player']]],
+  ['moveup',['MoveUp',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540',1,'Player']]]
 ];
