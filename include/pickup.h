@@ -6,6 +6,13 @@
 
 #include "actor.h"
 
+/**
+ * @brief Manages objects that can be picked up by the player and its effects.
+ *
+ * A pickup is an entity that can be picked up by the player by colliding with it
+ * in the world, and different pickups will have different effects. For all the
+ * different pickups, see @ref Type.
+ */
 class Pickup : public Entity
 {
 public:
@@ -15,7 +22,7 @@ public:
      */
     enum Type
     {
-	Healkit, ///Heals the player by 1 health point
+	Healkit, ///< Heals the player by 1 health point.
     };
 
 public:
