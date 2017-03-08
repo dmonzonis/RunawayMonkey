@@ -42,9 +42,9 @@ void Entity::flip()
     if ((lookDirection.x < 0 && orientation == Orientation::Right) ||
             (lookDirection.x > 0 && orientation == Orientation::Left))
     {
-        auto scale = getScale();
+        auto scale = sprite.getScale();
         //Setting the scale to negative flips the entity about its origin
-        setScale(-scale.x, scale.y);
+        sprite.setScale(-scale.x, scale.y);
         if (orientation == Orientation::Right)
             orientation = Orientation::Left;
         else
