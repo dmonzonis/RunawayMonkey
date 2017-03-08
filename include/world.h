@@ -135,6 +135,7 @@ private:
     CommandQueue commandQueue;
     std::vector<SpawnPoint> spawnPoints;
     sf::Time counter, spawnTime;
+    TextNode *playerHp; //TODO: remove when a GUI is implemented
 };
 
 bool categoryMatch(WorldNode::Pair& colliders, Category::Type type1, Category::Type type2);

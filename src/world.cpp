@@ -1,6 +1,8 @@
 #include "world.h"
 #include "utility.h"
 
+#include <sstream>
+
 World::World(sf::RenderWindow& w)
     : window(w)
     , worldView(window.getDefaultView())
@@ -30,6 +32,10 @@ void World::update(sf::Time dt)
     playerActor->setVelocity(0.f, 0.f);
     crosshair->update();
     playerActor->lookAt(crosshair->getPosition());
+    //TODO: Remove the following when a GUI is implemented
+    std::ostringstream hp;
+    hp << "HP " << playerActor->getHealth() << "/" << 3; //3 is the max health
+    playerHp->setText(hp.str());
 
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
@@ -53,8 +59,8 @@ void World::update(sf::Time dt)
     counter += dt;
     if (counter >= spawnTime)
     {
-	spawnEnemy();
-	counter = sf::Time::Zero;
+        spawnEnemy();
+        counter = sf::Time::Zero;
     }
 
     //Update the entire graph
@@ -108,6 +114,13 @@ void World::buildWorld()
     playerActor->setPosition(spawnPosition);
     playerActor->setVelocity(0.f, 0.f);
     graph.attachChild(std::move(monkey));
+
+    //TODO: remove the following when a GUI is implemented
+    //Add text to show player hp
+    std::unique_ptr<TextNode> hpText(new TextNode(fonts, "HP"));
+    hpText->setPosition(0.f, 30.0f);
+    playerHp = hpText.get();
+    playerActor->attachChild(std::move(hpText));
 
     //Add enemies
     addEnemies();
@@ -163,7 +176,8 @@ void World::handleCollisions()
             //Damage player
             playerActor->damage(1); //FIXME: damage using enemy's attack
             auto& enemy = static_cast<Actor&>(*colliders.second);
-            enemy.destroy(); //TODO: instead of destroying the enemy, make player invulnerable for a while
+	    //TODO: instead of destroying the enemy, make player invulnerable for a while
+            enemy.destroy();
         }
 
         else if (categoryMatch(colliders, Category::Enemy, Category::Projectile))
