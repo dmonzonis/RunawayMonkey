@@ -2,6 +2,8 @@
 
 Simple game made with C++11 using the SFML library. It's still a **WIP** so even the basic mechanics may not work properly yet or they may change drastically in the future.
 
+Documentation
+--------------------
 See the project's documentation [here] (https://monzo94.github.io/RunawayMonkey/).
 
 Installation
