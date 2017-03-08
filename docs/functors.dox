@@ -1,9 +1,9 @@
 /*!
-  \page Functors
+  \page functors Functors
   \brief Brief introduction to functors and command functor usage.
   \tableofcontents
 
-  \section description Description
+  \section Description
     Functors are classes that override the operator (). They are useful for generating functions using the factory 
     design pattern, for a variety of purposes.
 

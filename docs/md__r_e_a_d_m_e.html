@@ -64,8 +64,17 @@ $(function() {
 <div class="title">Runaway Monkey </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Small and simple game made with C++11 using SFML.</p>
-<p>It's still a <b>WIP</b>, so it's not playable yet and the mechanics will change as I try new things. </p>
+<div class="textblock"><p>Simple game made with C++11 using the SFML library. It's still a <b>WIP</b> so even the basic mechanics may not work properly yet or they may change drastically in the future.</p>
+<h2>Documentation </h2>
+<p>See the project's documentation <a href="https://monzo94.github.io/RunawayMonkey/">here</a>.</p>
+<h2>Installation </h2>
+<p>Until there's a release version with a binary including all the requirements, the only way to play the game is to compile it from source. You will first need to download the SFML development library. To get it, simply download it from the SFML page or, if using Linux, get it from your distro's repositories. In Ubuntu/Debian: </p><div class="fragment"><div class="line">apt-get install libsfml-dev</div></div><!-- fragment --><p> In Arch: </p><div class="fragment"><div class="line">pacman -S sfml</div></div><!-- fragment --><p> You can compile the game either using the provided Makefile, or by using CMake.</p>
+<h3>Make</h3>
+<p>At the project's root directory, simply run </p><div class="fragment"><div class="line">make</div></div><!-- fragment --><p> To run a clean build, simply run </p><div class="fragment"><div class="line">make clean &amp;&amp; make</div></div><!-- fragment --><p> This will remove all the previously compiled object files as well as the executable and rebuild them.</p>
+<h3>CMake</h3>
+<p>At the project's root directory, run </p><div class="fragment"><div class="line">mkdir build &amp;&amp; cd build &amp;&amp; cmake ..</div></div><!-- fragment --><p> You can then use your build system to build the game. In the case of make, simply run make.</p>
+<h3>Running the game</h3>
+<p>To run the game, while at the project's root directory, run </p><div class="fragment"><div class="line">bin/monkey.</div></div><!-- fragment --><p> It's important to execute the game from the root directory, since the game currently uses relative paths to search for resources, and will fail to load them if in another directory. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
