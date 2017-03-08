@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Runaway Monkey: Runaway Monkey Documentation</title>
+<title>Runaway Monkey: Runaway Monkey</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -44,7 +44,6 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,29 +58,14 @@ $(function() {
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Runaway Monkey Documentation </div>  </div>
+<div class="title">Runaway Monkey </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
-Introduction</h1>
-<p>Runaway Monkey is a 2D top-down shooter of a monkey who is being chased by captors after having escaped the zoo, with no weapon other than its own faeces to defend himself.</p>
-<p>The game is made with C++, using the SFML library. Any type that starts with the scope <code>sf:</code>: is defined in the SFML library, and for more information about them you should refer to the <a href="http://www.sfml-dev.org/documentation">SFML documentation</a>.</p>
-<h1><a class="anchor" id="comp"></a>
-Installation</h1>
-<p>The release version of the game will be distributed with a binary containing all dependencies.</p>
-<p>To compile the game from source, you will first need to download the SFML development library. To get it, simply download it from the SFML page or, if using Linux, get it from your distro's repositories.</p>
-<p>In Ubuntu/Debian: </p><div class="fragment"><div class="line">apt-<span class="keyword">get</span> install libsfm-dev</div></div><!-- fragment --><p> In Arch: </p><div class="fragment"><div class="line">pacman -S sfml</div></div><!-- fragment --><p> You can compile the game either using the provided Makefile, or by using CMake.</p>
-<h2><a class="anchor" id="Make"></a>
-Make</h2>
-<p>At the project's root directory, simply run </p><div class="fragment"><div class="line">make</div></div><!-- fragment --><p> To run a clean build, simply run </p><div class="fragment"><div class="line">make clean &amp;&amp; make</div></div><!-- fragment --><p> This will remove all the previously compiled object files as well as the executable and rebuild them.</p>
-<h2><a class="anchor" id="CMake"></a>
-CMake</h2>
-<p>At the project's root directory, run </p><div class="fragment"><div class="line">mkdir build &amp;&amp; cd build &amp;&amp; cmake ..</div></div><!-- fragment --><p> You can then use your build system to build the game. In the case of make, simply run <code>make</code>.</p>
-<h2><a class="anchor" id="run"></a>
-Running the game</h2>
-<p>To run the game, while at the project's root directory, run </p><div class="fragment"><div class="line">bin/monkey.</div></div><!-- fragment --><p> It's important to execute the game from the root directory, since the game currently uses relative paths to search for resources, and will fail to load them if in another directory. </p>
+<div class="textblock"><p>Small and simple game made with C++11 using SFML.</p>
+<p>It's still a <b>WIP</b>, so it's not playable yet and the mechanics will change as I try new things. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
