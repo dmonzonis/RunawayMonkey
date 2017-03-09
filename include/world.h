@@ -147,7 +147,6 @@ private:
     sf::View worldView;
     TextureHolder textures;
     FontHolder fonts;
-    SoundHolder sounds;
     WorldNode graph;
     sf::FloatRect worldBounds;
     Actor *playerActor;
