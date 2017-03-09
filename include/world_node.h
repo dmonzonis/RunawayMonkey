@@ -155,7 +155,7 @@ public:
     /**
      * Returns true if the node has been set to be removed the next time the
      * cleanup function is called, and false otherwise.
-     * 
+     *
      * @return True if the node is going to be removed before the next frame, false
      * otherwise.
      *

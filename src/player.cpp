@@ -42,7 +42,7 @@ void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
     //XXX: DEBUG PURPOSES, REMOVE FOR RELEASE
     if (event.type == sf::Event::KeyPressed
-             && event.key.code == sf::Keyboard::P)
+            && event.key.code == sf::Keyboard::P)
     {
         std::cout << playerActor->getPosition().x << ", "
                   << playerActor->getPosition().y << std::endl;
@@ -64,7 +64,7 @@ void Player::handleRealTimeInput(CommandQueue& commands)
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         //Shoot some poop!
-	playerActor->shoot(Projectile::Type::Poop, &commands);
+        playerActor->shoot(Projectile::Type::Poop, &commands);
     }
 }
 

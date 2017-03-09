@@ -87,7 +87,7 @@ public:
     /**
      * If the actor can, shoot a projectile.
      * If the actor hasn't shot a projectile in at least a time equal to its shooting cooldown,
-     * shoot a projectile of a given type. 
+     * shoot a projectile of a given type.
      *
      * @param type Type of the projectile to be instantiated.
      * @param commands Pointer to the world's CommandQueue.

@@ -219,7 +219,7 @@ void World::updateSound()
     soundPlayer.setListenerPosition(playerActor->getWorldPosition());
     soundPlayer.cleanUp();
 }
-    
+
 
 void World::handleCollisions()
 {
@@ -234,8 +234,8 @@ void World::handleCollisions()
             //Damage player
             playerActor->damage(1); //FIXME: damage using enemy's attack
             auto& enemy = static_cast<Actor&>(*colliders.second);
-	    //Play monkey damage sound
-	    playerActor->playSound(Sounds::Chimp, &commandQueue);
+            //Play monkey damage sound
+            playerActor->playSound(Sounds::Chimp, &commandQueue);
             //TODO: instead of destroying the enemy, make player invulnerable for a while
             enemy.destroy();
         }

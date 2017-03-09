@@ -72,8 +72,8 @@ void Game::render()
 
 int main()
 {
-	//Set random seed
-	srand(time(NULL));
+    //Set random seed
+    srand(time(NULL));
 
     try
     {

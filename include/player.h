@@ -31,7 +31,7 @@ class Player
 public:
     enum Action
     {
-	NoAction,
+        NoAction,
         MoveUp,
         MoveLeft,
         MoveDown,
@@ -86,7 +86,7 @@ public:
      *
      * If the key is already mapped to another action, it will replace
      * its old mapping by the new one.
-     * 
+     *
      * @param action Action::Player to be assigned.
      * @param key Keyboard key to be mapped, for example, sf::Keyboard::W.
      */

@@ -10,7 +10,7 @@ namespace Category
 enum Type
 {
     None,
-    
+
     Scene, ///Category for all nodes that don't interact with anything with exception of the root node.
     SceneRoot, ///Category for the world's root node.
     Player,

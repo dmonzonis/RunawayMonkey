@@ -67,7 +67,7 @@ int randomInt(int exclusiveMax);
 
 /**
  * Computes the euclidean norm of a vector.
- * 
+ *
  * @param vec 2-dimensional vector to compute the norm from.
  *
  * @return A float approximation of the euclidean norm of the input vector, that is,

@@ -49,7 +49,7 @@ public:
     /**
      * @brief Constructor for the world.
      *
-     * It initializes the View (see 
+     * It initializes the View (see
      * <a href="https://www.sfml-dev.org/documentation/2.0/classsf_1_1View.php">sf::View</a>),
      * the world bounds (the rectangle that limits the world's playable area),
      * sets the player's spawn position,
@@ -57,7 +57,7 @@ public:
      * It then loads all the resources using resource holders, and builds the world by
      * attaching all necessary sprite nodes and starting entities (like the player actor
      * and the crosshair).
-     * 
+     *
      * @param w Reference to the game's RenderWindow.
      *
      * @see ResourceHolder
@@ -91,7 +91,7 @@ public:
 
     /**
      * Returns a reference to the world's command queue.
-     * 
+     *
      * @return A reference to the world's command queue in its current state.
      *
      * @see CommandQueue
@@ -117,7 +117,7 @@ private:
     void addPickups();
     void addPickup(Pickup::Type, float, float);
     void spawnPickup();
-    
+
     void handleCollisions();
 
 private:
@@ -136,15 +136,15 @@ private:
 
     struct PickupSpawnPoint
     {
-	PickupSpawnPoint(Pickup::Type type, float x, float y)
-	    : type(type)
-	    , x(x)
-	    , y(y)
-	{
-	}
+        PickupSpawnPoint(Pickup::Type type, float x, float y)
+            : type(type)
+            , x(x)
+            , y(y)
+        {
+        }
 
-	Pickup::Type type;
-	float x, y;
+        Pickup::Type type;
+        float x, y;
     };
 
 private:

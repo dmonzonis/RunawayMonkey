@@ -137,7 +137,7 @@ struct InstanceProjectile
      * @param origin Position where the projectile will be
      * instantiated relative to the node.
      * @param direction Direction of the instantiated projectile.
-     * @param type Projectile type that will be casted to a 
+     * @param type Projectile type that will be casted to a
      * Projectile::Type, so the corresponding integer value should
      * be used.
      * @param textures Reference to the TextureHolder for the projectile

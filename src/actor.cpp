@@ -81,7 +81,7 @@ void Actor::shoot(Projectile::Type type, CommandQueue* commands)
         int iType = static_cast<int>(type);
         commands->push(Command(InstanceProjectile(getWorldPosition(), getLookingAt(),
                                iType, textures), Category::SceneRoot));;
-	playSound(Sounds::PoopThrow, commands);
+        playSound(Sounds::PoopThrow, commands);
         cooldown = sf::Time::Zero;
     }
 }
@@ -91,10 +91,10 @@ void Actor::playSound(Sounds::ID id, CommandQueue* commands)
     sf::Vector2f worldPos = getWorldPosition();
     Command command;
     command.category = Category::Sound;
-    command.action = [id, worldPos] (WorldNode& node, sf::Time) 
+    command.action = [id, worldPos] (WorldNode& node, sf::Time)
     {
-	SoundNode& soundNode = static_cast<SoundNode&>(node);
-	soundNode.playSound(id, worldPos);
+        SoundNode& soundNode = static_cast<SoundNode&>(node);
+        soundNode.playSound(id, worldPos);
     };
     commands->push(command);
 }

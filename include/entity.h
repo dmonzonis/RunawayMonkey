@@ -52,7 +52,7 @@ public:
      * form of a vector, and calls Entity::flip() to flip the
      * transform in case the orientation changed.
      *
-     * @param point Point in space where the entity will be looking at, 
+     * @param point Point in space where the entity will be looking at,
      * in world coordinates.
      */
     void lookAt(sf::Vector2f);
@@ -78,8 +78,8 @@ public:
 private:
     enum Orientation
     {
-	Left,
-	Right
+        Left,
+        Right
     };
 
 private:

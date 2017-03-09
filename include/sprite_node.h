@@ -27,7 +27,7 @@ public:
      * @code
      * sf::Texture& grassTexture = textures.get(Texture::Grass);
      * @endcode
-     * 
+     *
      * @see TextureHolder
      */
     explicit SpriteNode(const sf::Texture& texture);

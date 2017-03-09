@@ -10,7 +10,7 @@
 
 /**
  * @brief Node that can play sound effects using a SoundPlayer.
- * 
+ *
  * A sound node holds a reference to a SoundPlayer object, and can play sounds
  * at any position in the world (using its parent node as coordinate origin, like
  * all nodes) by using its @ref playSound method.
