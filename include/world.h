@@ -7,9 +7,12 @@
 
 #include "resource.h"
 #include "resource_identifiers.h"
+
 #include "world_node.h"
 #include "sprite_node.h"
 #include "text_node.h"
+#include "sound_node.h"
+
 #include "actor.h"
 #include "pickup.h"
 #include "crosshair.h"
@@ -105,6 +108,8 @@ private:
     void loadResources();
     void buildWorld();
 
+    void updateSound();
+
     void addEnemies();
     void addEnemy(Actor::Type, float, float);
     void spawnEnemy();
@@ -147,6 +152,7 @@ private:
     sf::View worldView;
     TextureHolder textures;
     FontHolder fonts;
+    SoundPlayer soundPlayer;
     WorldNode graph;
     sf::FloatRect worldBounds;
     Actor *playerActor;

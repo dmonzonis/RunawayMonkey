@@ -90,9 +90,19 @@ public:
      * shoot a projectile of a given type. 
      *
      * @param type Type of the projectile to be instantiated.
-     * @param commands Reference to the world's CommandQueue.
+     * @param commands Pointer to the world's CommandQueue.
      */
     void shoot(Projectile::Type type, CommandQueue* commands);
+
+    /**
+     * Creates a Command of category Category::Sound (so that it is only
+     * executed by a SoundNode object) with the action of playing the
+     * requested sound at the actor's current position in the world.
+     *
+     * @param id Sound to be played.
+     * @param commands Pointer to the world's CommandQueue
+     */
+    void playSound(Sounds::ID id, CommandQueue* commands);
 
 private:
     bool canShoot() const;
