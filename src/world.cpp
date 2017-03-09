@@ -62,7 +62,7 @@ void World::update(sf::Time dt)
     counter += dt;
     if (counter >= spawnTime)
     {
-        spawnEnemy();
+        spawn<Actor>(enemySpawnPoints, false);
         counter = sf::Time::Zero;
     }
 
@@ -71,6 +71,16 @@ void World::update(sf::Time dt)
 
     //Update the entire graph
     graph.update(dt);
+}
+
+CommandQueue& World::getCommandQueue()
+{
+    return commandQueue;
+}
+
+Actor* World::getPlayer()
+{
+    return playerActor;
 }
 
 void World::draw()
@@ -82,6 +92,7 @@ void World::draw()
     window.draw(*crosshair);
 }
 
+//Loads all textures and fonts
 void World::loadResources()
 {
     textures.load(Textures::None, "resources/no_texture.png");
@@ -94,13 +105,8 @@ void World::loadResources()
     fonts.load(Fonts::Stats, "resources/Jellee-Roman.ttf");
 }
 
-
-CommandQueue& World::getCommandQueue()
-{
-    return commandQueue;
-}
-
-
+//Appends all the needed stuff to the root node of the world (player actor, crosshair...)
+//and generates the spawn points
 void World::buildWorld()
 {
     //Initialize root node
@@ -133,94 +139,48 @@ void World::buildWorld()
     playerHp = hpText.get();
     playerActor->attachChild(std::move(hpText));
 
-    //Add enemies
-    addEnemies();
-    spawnEnemy();
-
-    //Spawn a couple of pickups
-    addPickups();
-    spawnPickup();
-    spawnPickup();
+    //Add enemies and pickups
+    initializeSpawnPoints();
+    //Spawn a couple of pickups and one enemy
+    spawn<Actor>(enemySpawnPoints, false);
+    spawn<Pickup>(pickupSpawnPoints, true);
+    spawn<Pickup>(pickupSpawnPoints, true);
 }
 
-//TODO: Make a template or a more generic way of spawning things so I don't have
-//to make functions to spawn enemies and functions to spawn pickups
-void World::addEnemies()
+//Adds all the initial spawn points for enemies and pickups in the world
+void World::initializeSpawnPoints()
 {
-    addEnemy(Actor::Type::Snatcher, 200.f, -200.f);
-    addEnemy(Actor::Type::Snatcher, -800.f, 540.f);
-    addEnemy(Actor::Type::Snatcher, 400.f, 350.f);
+    addSpawn(Actor::Type::Snatcher, 200.f, -200.f);
+    addSpawn(Actor::Type::Snatcher, -800.f, 540.f);
+    addSpawn(Actor::Type::Snatcher, 400.f, 350.f);
+    addSpawn(Pickup::Type::Healkit, 100, -400);
+    addSpawn(Pickup::Type::Healkit, -300, 100);
+    addSpawn(Pickup::Type::Healkit, 950, 850);
 }
 
-void World::addEnemy(Actor::Type t, float x, float y)
+//Adds an enemy spawn point at a certain position in the world
+void World::addSpawn(Actor::Type type, float x, float y)
 {
-    EnemySpawnPoint sp(t, spawnPosition.x + x, spawnPosition.y + y);
+    SpawnPoint<Actor::Type> sp(type, spawnPosition.x + x, spawnPosition.y + y);
     enemySpawnPoints.push_back(sp);
 }
 
-void World::spawnEnemy()
+//Adds a pickup spawn point at a certain position in the world
+void World::addSpawn(Pickup::Type type, float x, float y)
 {
-    if (!enemySpawnPoints.empty())
-    {
-        //Get a random enemy from the spawn list
-        auto size = enemySpawnPoints.size();
-        auto it = enemySpawnPoints.begin();
-        it += randomInt(size);
-        EnemySpawnPoint spawn = *it;
-
-        //Spawn the enemy
-        std::unique_ptr<Actor> enemy(new Actor(spawn.type, textures));
-        enemy->setPosition(spawn.x, spawn.y);
-        enemy->setSpeed(150.f);
-        graph.attachChild(std::move(enemy));
-    }
-}
-
-void World::addPickups()
-{
-    addPickup(Pickup::Type::Healkit, 100, -400);
-    addPickup(Pickup::Type::Healkit, -300, 100);
-    addPickup(Pickup::Type::Healkit, 950, 850);
-}
-
-void World::addPickup(Pickup::Type t, float x, float y)
-{
-    PickupSpawnPoint sp(t, spawnPosition.x + x, spawnPosition.y + y);
+    SpawnPoint<Pickup::Type> sp(type, spawnPosition.x + x, spawnPosition.y + y);
     pickupSpawnPoints.push_back(sp);
 }
 
-void World::spawnPickup()
-{
-    if (!pickupSpawnPoints.empty())
-    {
-        //Get a random pickup from the spawn list
-        auto size = pickupSpawnPoints.size();
-        auto it = pickupSpawnPoints.begin();
-        it += randomInt(size);
-        PickupSpawnPoint spawn = *it;
-
-        //Spawn the pickup
-        std::unique_ptr<Pickup> pickup(new Pickup(spawn.type, textures));
-        pickup->setPosition(spawn.x, spawn.y);
-        graph.attachChild(std::move(pickup));
-
-        //Remove pickup from the spawn list
-        pickupSpawnPoints.erase(it);
-    }
-}
-
-Actor* World::getPlayer()
-{
-    return playerActor;
-}
-
+//Updates the listener position to be at the player actor's position and cleans up sounds
 void World::updateSound()
 {
     soundPlayer.setListenerPosition(playerActor->getWorldPosition());
     soundPlayer.cleanUp();
 }
 
-
+//Checks for collisions in the world, and then for each pair of colliding objects it
+//produces the appropiate interaction
 void World::handleCollisions()
 {
     std::set<WorldNode::Pair> collisionPairs;
@@ -235,7 +195,7 @@ void World::handleCollisions()
             playerActor->damage(1); //FIXME: damage using enemy's attack
             auto& enemy = static_cast<Actor&>(*colliders.second);
             //Play monkey damage sound
-            playerActor->playSound(Sounds::Chimp, &commandQueue);
+            playerActor->playSound(Sounds::PlayerDamaged, &commandQueue);
             //TODO: instead of destroying the enemy, make player invulnerable for a while
             enemy.destroy();
         }
@@ -258,6 +218,8 @@ void World::handleCollisions()
             auto& pickup = static_cast<Pickup&>(*colliders.second);
             //Apply pickup to the player
             pickup.apply(player);
+            //Play powerup sound
+            playerActor->playSound(Sounds::Powerup, &commandQueue);
             //Destroy pickup
             pickup.destroy();
         }

@@ -49,7 +49,7 @@ public:
 
     /**
      * Sets the entity to be looking at a point in the world in the
-     * form of a vector, and calls Entity::flip() to flip the
+     * form of a vector, and calls @ref flip() to flip the
      * transform in case the orientation changed.
      *
      * @param point Point in space where the entity will be looking at,

@@ -2,6 +2,7 @@
 
 void CommandQueue::push(const Command& command)
 {
+    //Push the command into the queue
     commandQueue.push(command);
 }
 

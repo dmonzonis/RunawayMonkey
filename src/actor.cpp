@@ -70,6 +70,7 @@ void Actor::setShooting(bool flag)
 
 bool Actor::canShoot() const
 {
+    //Shooting is on cooldown if cooldown hasn't reached shootRate yet
     return cooldown >= shootRate;
 }
 
@@ -104,6 +105,7 @@ void Actor::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(sprite, states);
 }
 
+//Move actor using its velocity and update the shooting cooldown
 void Actor::updateCurrent(sf::Time dt)
 {
     move(velocity * dt.asSeconds());

@@ -33,6 +33,7 @@ void Game::run()
     }
 }
 
+//Processes events and real-time input
 void Game::processInput()
 {
     CommandQueue& commands = world.getCommandQueue();
@@ -40,7 +41,10 @@ void Game::processInput()
     sf::Event event;
     while (window.pollEvent(event))
     {
+        //Pass the event to player
         player.handleEvent(event, commands);
+
+        //Other actions for events not handled by the player
         if (event.type == sf::Event::Closed)
             window.close();
         else if (event.type == sf::Event::LostFocus)
@@ -49,24 +53,24 @@ void Game::processInput()
             paused = false;
     }
 
+    //Lets player handle real-time input
     player.handleRealTimeInput(commands);
 }
 
-/*
- * Update the game logic, using dt to make it FPS independent
- */
+//Update the game logic, using dt to make it FPS independent
 void Game::update(sf::Time dt)
 {
     world.update(dt);
 }
 
-/*
- * Draw everything to buffer and display it on the window
- */
+//Draw everything to buffer and display it on the window
 void Game::render()
 {
+    //First clear the window
     window.clear();
+    //Draw everything in the world to buffer
     world.draw();
+    //Display buffer
     window.display();
 }
 
@@ -75,6 +79,7 @@ int main()
     //Set random seed
     srand(time(NULL));
 
+    //Check for errors
     try
     {
         Game game;

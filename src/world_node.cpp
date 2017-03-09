@@ -131,12 +131,14 @@ void WorldNode::updateCurrent(sf::Time dt)
     //Do nothing by default
 }
 
+//Calls the update function on all its children
 void WorldNode::updateChildren(sf::Time dt)
 {
     for (const Ptr& child : children)
         child->update(dt);
 }
 
+//Draws the node and all its children
 void WorldNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     //Apply all the transforms of the current node
@@ -154,15 +156,14 @@ void WorldNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) c
     //Do nothing by default
 }
 
+//Calls the draw method on all its children
 void WorldNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for (const Ptr& child : children)
         child->draw(target, states);
 }
 
-/*
- * Draw the hitbox to the window, for debugging purposes
- */
+//Draw the hitbox to the window, for debugging purposes
 void WorldNode::drawHitbox(sf::RenderTarget& target, sf::RenderStates) const
 {
     sf::FloatRect rect = getHitbox();

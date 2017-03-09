@@ -38,7 +38,8 @@ namespace Sounds
 enum ID
 {
     PoopThrow,
-    Chimp,
+    PlayerDamaged,
+    Powerup,
 };
 }
 

@@ -67,7 +67,6 @@ public:
 
 private:
     SoundBufferHolder soundBuffers;
-
     //Use list since it is faster to remove elements that are in the middle
     std::list<sf::Sound> sounds;
 };

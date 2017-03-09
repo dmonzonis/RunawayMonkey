@@ -51,6 +51,8 @@ Category::Type Projectile::getCategory() const
     return Category::Projectile;
 }
 
+//Updates the time since it was created, and destroys the projectile if that
+//time exceeds the projectile's lifetime. If not, update its position.
 void Projectile::updateCurrent(sf::Time dt)
 {
     counter += dt;

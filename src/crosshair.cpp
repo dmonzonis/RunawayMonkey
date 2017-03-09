@@ -5,8 +5,7 @@ Crosshair::Crosshair(const TextureHolder& textures, sf::RenderWindow& w)
     : window(w)
 {
     sprite.setTexture(textures.get(Textures::Crosshair));
-    sf::FloatRect hitbox = sprite.getLocalBounds();
-    sprite.setOrigin(hitbox.width / 2.f, hitbox.height / 2.f);
+    centerOrigin(sprite);
 }
 
 void Crosshair::updateCurrent(sf::Time)

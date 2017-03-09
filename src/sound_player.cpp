@@ -8,7 +8,8 @@ SoundPlayer::SoundPlayer()
     , sounds()
 {
     soundBuffers.load(Sounds::PoopThrow, "resources/woosh.wav");
-    soundBuffers.load(Sounds::Chimp, "resources/chimp.wav");
+    soundBuffers.load(Sounds::PlayerDamaged, "resources/chimp_cry.wav");
+    soundBuffers.load(Sounds::Powerup, "resources/pulse.wav");
 }
 
 void SoundPlayer::play(Sounds::ID id)

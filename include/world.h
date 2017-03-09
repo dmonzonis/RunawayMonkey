@@ -18,6 +18,8 @@
 #include "crosshair.h"
 #include "command_queue.h"
 
+#include "utility.h"
+
 #include <SFML/Window.hpp>
 
 #include <vector>
@@ -110,40 +112,27 @@ private:
 
     void updateSound();
 
-    void addEnemies();
-    void addEnemy(Actor::Type, float, float);
-    void spawnEnemy();
+    void initializeSpawnPoints();
+    void addSpawn(Actor::Type, float, float);
+    void addSpawn(Pickup::Type, float, float);
 
-    void addPickups();
-    void addPickup(Pickup::Type, float, float);
-    void spawnPickup();
+    template <typename R, typename T>
+    void spawn(T spawnPoints, bool removeAfter);
 
     void handleCollisions();
 
 private:
-    struct EnemySpawnPoint
+    template <typename Type>
+    struct SpawnPoint
     {
-        EnemySpawnPoint(Actor::Type type, float x, float y)
+        SpawnPoint(Type type, float x, float y)
             : type(type)
             , x(x)
             , y(y)
         {
         }
 
-        Actor::Type type;
-        float x, y;
-    };
-
-    struct PickupSpawnPoint
-    {
-        PickupSpawnPoint(Pickup::Type type, float x, float y)
-            : type(type)
-            , x(x)
-            , y(y)
-        {
-        }
-
-        Pickup::Type type;
+        Type type;
         float x, y;
     };
 
@@ -159,11 +148,37 @@ private:
     Crosshair *crosshair;
     sf::Vector2f spawnPosition;
     CommandQueue commandQueue;
-    std::vector<EnemySpawnPoint> enemySpawnPoints;
-    std::vector<PickupSpawnPoint> pickupSpawnPoints;
+    std::vector<SpawnPoint<Actor::Type>> enemySpawnPoints;
+    std::vector<SpawnPoint<Pickup::Type>> pickupSpawnPoints;
     sf::Time counter, spawnTime;
     TextNode *playerHp; //TODO: remove when a GUI is implemented
 };
+
+//Selects a random enemy from the spawn list and spawns it, removing it from the list
+//if removeAfter is true
+//E is the entity to be spawned: Actor or Pickup
+template <typename E, typename T>
+void World::spawn(T spawnPoints, bool removeAfter)
+{
+    if (!spawnPoints.empty())
+    {
+        //Get a random enemy from the spawn list
+        auto size = spawnPoints.size();
+        auto it = spawnPoints.begin();
+        it += randomInt(size);
+        typename T::value_type spawn = *it;
+
+        //Spawn the enemy
+        std::unique_ptr<E> obj(new E(spawn.type, textures));
+        obj->setPosition(spawn.x, spawn.y);
+        graph.attachChild(std::move(obj));
+        if (removeAfter)
+        {
+            //Remove pickup from the spawn list
+            spawnPoints.erase(it);
+        }
+    }
+}
 
 /**
  * Returns true if the colliders each match one of the two categories, and false
