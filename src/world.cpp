@@ -18,6 +18,7 @@ World::World(sf::RenderWindow& w)
     , pickupSpawnPoints()
     , counter(sf::Time::Zero)
     , spawnTime(sf::seconds(1.0f))
+    , playerHp(nullptr)
 {
     //When world is created, load all the textures and build the world
     loadResources();

@@ -6,6 +6,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 namespace Textures
 {
@@ -32,10 +33,20 @@ enum ID
 };
 }
 
+namespace Sounds
+{
+enum ID
+{
+    PoopThrow,
+    Chimp,
+};
+}
+
 //Forward declare ResourceHolder and define types
 template <typename Resource, typename Identifier>
 class ResourceHolder;
 
 typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
 typedef ResourceHolder<sf::Font, Fonts::ID> FontHolder;
+typedef ResourceHolder<sf::SoundBuffer, Sounds::ID> SoundBufferHolder;
 

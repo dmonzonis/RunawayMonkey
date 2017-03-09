@@ -30,6 +30,8 @@ public:
     /**
      * @brief Load texture from a path and assign it to an identifier.
      *
+     * It uses SFML's loadFromFile function.
+     *
      * @param id Identifier to assign the resource to. The resource can
      * later be accessed using this identifier with Resource::get.
      * @param filename Path to the resource. It can be a relative or an
