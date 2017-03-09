@@ -18,7 +18,7 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
     assert(actorTexture < Textures::TextureCount);
     sprite.setTexture(textures.get(actorTexture));
     centerOrigin(sprite);
-    setSpeed(250.0);
+    setSpeed(150.0f);
 }
 
 Category::Type Actor::getCategory() const

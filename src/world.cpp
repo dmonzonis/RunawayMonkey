@@ -125,6 +125,7 @@ void World::buildWorld()
     std::unique_ptr<Actor> monkey(new Actor(Actor::Type::Monkey, textures));
     playerActor = monkey.get();
     playerActor->setPosition(spawnPosition);
+    playerActor->setSpeed(250.f);
     playerActor->setVelocity(0.f, 0.f);
     graph.attachChild(std::move(monkey));
 
