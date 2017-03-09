@@ -19,5 +19,6 @@ enum Type
     Pickup,
     Projectile,
     Text,
+    Sound,
 };
 }

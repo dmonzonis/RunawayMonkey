@@ -1,4 +1,5 @@
 #include "actor.h"
+#include "sound_node.h"
 #include "utility.h"
 
 #include <cassert>
@@ -48,7 +49,7 @@ void Actor::damage(int amount)
     }
     else if (health > maxHealth)
     {
-	health = maxHealth;
+        health = maxHealth;
     }
 }
 
@@ -72,7 +73,7 @@ bool Actor::canShoot() const
     return cooldown >= shootRate;
 }
 
-void Actor::shoot(Projectile::Type type, CommandQueue *commands)
+void Actor::shoot(Projectile::Type type, CommandQueue* commands)
 {
     if (canShoot())
     {
@@ -80,8 +81,22 @@ void Actor::shoot(Projectile::Type type, CommandQueue *commands)
         int iType = static_cast<int>(type);
         commands->push(Command(InstanceProjectile(getWorldPosition(), getLookingAt(),
                                iType, textures), Category::SceneRoot));;
+	playSound(Sounds::PoopThrow, commands);
         cooldown = sf::Time::Zero;
     }
+}
+
+void Actor::playSound(Sounds::ID id, CommandQueue* commands)
+{
+    sf::Vector2f worldPos = getWorldPosition();
+    Command command;
+    command.category = Category::Sound;
+    command.action = [id, worldPos] (WorldNode& node, sf::Time) 
+    {
+	SoundNode& soundNode = static_cast<SoundNode&>(node);
+	soundNode.playSound(id, worldPos);
+    };
+    commands->push(command);
 }
 
 void Actor::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

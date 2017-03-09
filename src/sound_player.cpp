@@ -7,6 +7,7 @@ SoundPlayer::SoundPlayer()
     : soundBuffers()
     , sounds()
 {
+    soundBuffers.load(Sounds::PoopThrow, "resources/woosh.wav");
     soundBuffers.load(Sounds::Chimp, "resources/chimp.wav");
 }
 

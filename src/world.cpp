@@ -8,6 +8,7 @@ World::World(sf::RenderWindow& w)
     , worldView(window.getDefaultView())
     , textures()
     , fonts()
+    , soundPlayer()
     , graph()
     , worldBounds(0.f, 0.f, 2000.f, 2000.f) //FIXME
     , playerActor(nullptr)
@@ -65,6 +66,9 @@ void World::update(sf::Time dt)
         counter = sf::Time::Zero;
     }
 
+    //Update the sound player
+    updateSound();
+
     //Update the entire graph
     graph.update(dt);
 }
@@ -117,6 +121,10 @@ void World::buildWorld()
     playerActor->setPosition(spawnPosition);
     playerActor->setVelocity(0.f, 0.f);
     graph.attachChild(std::move(monkey));
+
+    //Add the world's sound node
+    std::unique_ptr<SoundNode> soundNode(new SoundNode(soundPlayer));
+    graph.attachChild(std::move(soundNode));
 
     //TODO: remove the following when a GUI is implemented
     //Add text to show player hp
@@ -185,19 +193,19 @@ void World::spawnPickup()
 {
     if (!pickupSpawnPoints.empty())
     {
-	//Get a random pickup from the spawn list
+        //Get a random pickup from the spawn list
         auto size = pickupSpawnPoints.size();
         auto it = pickupSpawnPoints.begin();
         it += randomInt(size);
         PickupSpawnPoint spawn = *it;
 
-	//Spawn the pickup
-	std::unique_ptr<Pickup> pickup(new Pickup(spawn.type, textures));
-	pickup->setPosition(spawn.x, spawn.y);
-	graph.attachChild(std::move(pickup));
+        //Spawn the pickup
+        std::unique_ptr<Pickup> pickup(new Pickup(spawn.type, textures));
+        pickup->setPosition(spawn.x, spawn.y);
+        graph.attachChild(std::move(pickup));
 
-	//Remove pickup from the spawn list
-	pickupSpawnPoints.erase(it);
+        //Remove pickup from the spawn list
+        pickupSpawnPoints.erase(it);
     }
 }
 
@@ -205,6 +213,13 @@ Actor* World::getPlayer()
 {
     return playerActor;
 }
+
+void World::updateSound()
+{
+    soundPlayer.setListenerPosition(playerActor->getWorldPosition());
+    soundPlayer.cleanUp();
+}
+    
 
 void World::handleCollisions()
 {
@@ -219,11 +234,13 @@ void World::handleCollisions()
             //Damage player
             playerActor->damage(1); //FIXME: damage using enemy's attack
             auto& enemy = static_cast<Actor&>(*colliders.second);
-	    //TODO: instead of destroying the enemy, make player invulnerable for a while
+	    //Play monkey damage sound
+	    playerActor->playSound(Sounds::Chimp, &commandQueue);
+            //TODO: instead of destroying the enemy, make player invulnerable for a while
             enemy.destroy();
         }
 
-	//Projectile-Enemy interaction
+        //Projectile-Enemy interaction
         else if (categoryMatch(colliders, Category::Enemy, Category::Projectile))
         {
             //Damage enemy by the projectile's damage
@@ -234,16 +251,16 @@ void World::handleCollisions()
             projectile.destroy();
         }
 
-	//Player-Pickup interaction
-	if (categoryMatch(colliders, Category::Player, Category::Pickup))
-	{
-	    auto& player = static_cast<Actor&>(*colliders.first);
-	    auto& pickup = static_cast<Pickup&>(*colliders.second);
-	    //Apply pickup to the player
-	    pickup.apply(player);
-	    //Destroy pickup
-	    pickup.destroy();
-	}
+        //Player-Pickup interaction
+        if (categoryMatch(colliders, Category::Player, Category::Pickup))
+        {
+            auto& player = static_cast<Actor&>(*colliders.first);
+            auto& pickup = static_cast<Pickup&>(*colliders.second);
+            //Apply pickup to the player
+            pickup.apply(player);
+            //Destroy pickup
+            pickup.destroy();
+        }
     }
 }
 
