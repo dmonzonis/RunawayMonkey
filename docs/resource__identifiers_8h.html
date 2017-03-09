@@ -74,6 +74,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;SFML/Graphics.hpp&gt;</code><br />
+<code>#include &lt;SFML/Audio.hpp&gt;</code><br />
 </div>
 <p><a href="resource__identifiers_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -89,6 +90,8 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_fonts"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_fonts.html">Fonts</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespace_sounds"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_sounds.html">Sounds</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -96,6 +99,8 @@ Typedefs</h2></td></tr>
 <tr class="separator:a96220f9135333a0209f9367a28b7da13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2733d29d4a4d26a739742097fc51ede"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_resource_holder.html">ResourceHolder</a>&lt; sf::Font, <a class="el" href="namespace_fonts.html#a240717ec0dc75e98501af734a02c396d">Fonts::ID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="resource__identifiers_8h.html#ac2733d29d4a4d26a739742097fc51ede">FontHolder</a></td></tr>
 <tr class="separator:ac2733d29d4a4d26a739742097fc51ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13d6fb90935530f072751cff448de08"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_resource_holder.html">ResourceHolder</a>&lt; sf::SoundBuffer, <a class="el" href="namespace_sounds.html#ac842cc37ae9ba47bfb25f15e0bc2c515">Sounds::ID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="resource__identifiers_8h.html#ab13d6fb90935530f072751cff448de08">SoundBufferHolder</a></td></tr>
+<tr class="separator:ab13d6fb90935530f072751cff448de08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -115,6 +120,10 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a240717ec0dc75e98501af734a02c396d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_fonts.html#a240717ec0dc75e98501af734a02c396d">Fonts::ID</a> { <a class="el" href="namespace_fonts.html#a240717ec0dc75e98501af734a02c396dad9ad03d1df644681150d6f7ff53304d4">Fonts::Stats</a>
  }</td></tr>
 <tr class="separator:a240717ec0dc75e98501af734a02c396d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac842cc37ae9ba47bfb25f15e0bc2c515"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_sounds.html#ac842cc37ae9ba47bfb25f15e0bc2c515">Sounds::ID</a> { <a class="el" href="namespace_sounds.html#ac842cc37ae9ba47bfb25f15e0bc2c515a0b73f81091a016ec758243e218e4b0b3">Sounds::PoopThrow</a>, 
+<a class="el" href="namespace_sounds.html#ac842cc37ae9ba47bfb25f15e0bc2c515a2795834b908b1235d30bb4ffd17fd7ae">Sounds::Chimp</a>
+ }</td></tr>
+<tr class="separator:ac842cc37ae9ba47bfb25f15e0bc2c515"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Daniel Monzonís </dd></dl>
@@ -127,6 +136,20 @@ Enumerations</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="class_resource_holder.html">ResourceHolder</a>&lt;sf::Font, <a class="el" href="namespace_fonts.html#a240717ec0dc75e98501af734a02c396d">Fonts::ID</a>&gt; <a class="el" href="resource__identifiers_8h.html#ac2733d29d4a4d26a739742097fc51ede">FontHolder</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab13d6fb90935530f072751cff448de08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab13d6fb90935530f072751cff448de08">&#9670;&nbsp;</a></span>SoundBufferHolder</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="class_resource_holder.html">ResourceHolder</a>&lt;sf::SoundBuffer, <a class="el" href="namespace_sounds.html#ac842cc37ae9ba47bfb25f15e0bc2c515">Sounds::ID</a>&gt; <a class="el" href="resource__identifiers_8h.html#ab13d6fb90935530f072751cff448de08">SoundBufferHolder</a></td>
         </tr>
       </table>
 </div><div class="memdoc">

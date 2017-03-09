@@ -7,5 +7,6 @@ var searchData=
   ['adjustvectorlength',['adjustVectorLength',['../utility_8h.html#a336f01e52699b76bbd28700fc8acfd81',1,'adjustVectorLength(sf::Vector2f, float):&#160;utility.cpp'],['../utility_8cpp.html#a3daf5c7d555039a3e0f9a723daf4158e',1,'adjustVectorLength(sf::Vector2f vec, float length):&#160;utility.cpp']]],
   ['apply',['apply',['../class_pickup.html#a807bb1201c6ad77f7a1e5706f31b494c',1,'Pickup']]],
   ['assignkey',['assignKey',['../class_player.html#aca9ee72941e76ed9bf2badc7573eb702',1,'Player']]],
-  ['attachchild',['attachChild',['../class_world_node.html#a85c631602987076ba14d1739763eee0c',1,'WorldNode']]]
+  ['attachchild',['attachChild',['../class_world_node.html#a85c631602987076ba14d1739763eee0c',1,'WorldNode']]],
+  ['attenuation',['Attenuation',['../sound__player_8cpp.html#afc3119ecc0a4af336a189aff9daa4434',1,'sound_player.cpp']]]
 ];

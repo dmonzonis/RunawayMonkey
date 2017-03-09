@@ -117,6 +117,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a19287d8547d5ac5c5fd3494d52887cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a474fde421a2c827a5f4b48c9c91c4918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a474fde421a2c827a5f4b48c9c91c4918">shoot</a> (<a class="el" href="class_projectile.html#ae0d6ce4b663618b4105d2f3a483ff2eb">Projectile::Type</a> type, <a class="el" href="class_command_queue.html">CommandQueue</a> *commands)</td></tr>
 <tr class="separator:a474fde421a2c827a5f4b48c9c91c4918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c44e5f800dda5c55c55c1d407efa277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor.html#a9c44e5f800dda5c55c55c1d407efa277">playSound</a> (<a class="el" href="namespace_sounds.html#ac842cc37ae9ba47bfb25f15e0bc2c515">Sounds::ID</a> id, <a class="el" href="class_command_queue.html">CommandQueue</a> *commands)</td></tr>
+<tr class="separator:a9c44e5f800dda5c55c55c1d407efa277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_entity.html">Entity</a></td></tr>
 <tr class="memitem:ad577b2c5aeea6d34d6c4e3c28b3cfc47 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#ad577b2c5aeea6d34d6c4e3c28b3cfc47">getSpeed</a> () const</td></tr>
 <tr class="separator:ad577b2c5aeea6d34d6c4e3c28b3cfc47 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -354,6 +356,42 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a9c44e5f800dda5c55c55c1d407efa277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c44e5f800dda5c55c55c1d407efa277">&#9670;&nbsp;</a></span>playSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Actor::playSound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_sounds.html#ac842cc37ae9ba47bfb25f15e0bc2c515">Sounds::ID</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_command_queue.html">CommandQueue</a> *&#160;</td>
+          <td class="paramname"><em>commands</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a <a class="el" href="struct_command.html" title="Commands handle actions in an abstract way. ">Command</a> of category <a class="el" href="namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0aa59640870e56625e3da617818e074e6e">Category::Sound</a> (so that it is only executed by a <a class="el" href="class_sound_node.html" title="Node that can play sound effects using a SoundPlayer. ">SoundNode</a> object) with the action of playing the requested sound at the actor's current position in the world.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Sound to be played. </td></tr>
+    <tr><td class="paramname">commands</td><td>Pointer to the world's <a class="el" href="class_command_queue.html" title="Queue of Command objects with custom methods. ">CommandQueue</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6aeb8e1b9511bea8191b874ca37cf507"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6aeb8e1b9511bea8191b874ca37cf507">&#9670;&nbsp;</a></span>setHealth()</h2>
 
@@ -427,7 +465,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>Type of the projectile to be instantiated. </td></tr>
-    <tr><td class="paramname">commands</td><td>Reference to the world's <a class="el" href="class_command_queue.html" title="Queue of Command objects with custom methods. ">CommandQueue</a>. </td></tr>
+    <tr><td class="paramname">commands</td><td>Pointer to the world's <a class="el" href="class_command_queue.html" title="Queue of Command objects with custom methods. ">CommandQueue</a>. </td></tr>
   </table>
   </dd>
 </dl>
