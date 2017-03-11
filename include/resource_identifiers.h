@@ -21,6 +21,7 @@ enum ID
     Healkit,
     Crosshair,
     Grass,
+    TitleBackground,
     TextureCount,
 };
 }
@@ -29,7 +30,7 @@ namespace Fonts
 {
 enum ID
 {
-    Stats,
+    Main,
 };
 }
 
