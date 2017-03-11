@@ -68,7 +68,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class responsible of creating and updating the game loop.  
+<p>Class responsible of launching the application and updating the game loop.  
  <a href="class_game.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code></p>
@@ -89,8 +89,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1ab78f5ed0d5ea879157357cf2fb2afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class responsible of creating and updating the game loop. </p>
-<p><a class="el" href="class_game.html" title="Class responsible of creating and updating the game loop. ">Game</a> is the first class created when the game starts, and thus it's what initializes all other necessary classes like <a class="el" href="class_world.html" title="Class responsible of holding, updating and drawing all the gameplay elements. ">World</a> and <a class="el" href="class_player.html" title="Handles the input issued by the player. ">Player</a>. It also contains the main game loop that will be called after the game is created. </p>
+<div class="textblock"><p>Class responsible of launching the application and updating the game loop. </p>
+<p><a class="el" href="class_game.html" title="Class responsible of launching the application and updating the game loop. ">Game</a> is the first class created when the game starts, and thus it's what initializes all other necessary classes like the state manager. It also contains the main game loop that will be called after the game is created. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad59df6562a58a614fda24622d3715b65"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad59df6562a58a614fda24622d3715b65">&#9670;&nbsp;</a></span>Game()</h2>
@@ -106,7 +106,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Default constructor. It initializes the Render Window (including its size, title and type), the <a class="el" href="class_world.html" title="Class responsible of holding, updating and drawing all the gameplay elements. ">World</a>, and the <a class="el" href="class_player.html" title="Handles the input issued by the player. ">Player</a> controller. </p>
+<p>Default constructor. It initializes the Render Window (including its size, title and type), the state manager, and the context's resources. </p>
 
 </div>
 </div>
@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Runs the main game loop, which will update the world by calling <a class="el" href="class_world.html#ab461d3d5ad03c54dc8bec26b2f43d593" title="Updates the logic of the elements in play. ">World::update</a> unless the game enters a pause state and until the window isn't closed. </p>
+<p>Runs the main game loop, which will update the state manager unless the window is closed or the state manager runs out of states. </p>
 
 </div>
 </div>

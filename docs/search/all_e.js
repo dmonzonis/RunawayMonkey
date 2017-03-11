@@ -4,6 +4,7 @@ var searchData=
   ['runaway_20monkey',['Runaway Monkey',['../md__r_e_a_d_m_e.html',1,'']]],
   ['randomint',['randomInt',['../utility_8h.html#a2b5c63e659d4c60c2db5b576d3bc3bf1',1,'randomInt(int exclusiveMax):&#160;utility.cpp'],['../utility_8cpp.html#a2b5c63e659d4c60c2db5b576d3bc3bf1',1,'randomInt(int exclusiveMax):&#160;utility.cpp']]],
   ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['registerstate',['registerState',['../class_state_manager.html#af48c5451e66b46702183c2db20f00db7',1,'StateManager']]],
   ['resource_2eh',['resource.h',['../resource_8h.html',1,'']]],
   ['resource_5fidentifiers_2eh',['resource_identifiers.h',['../resource__identifiers_8h.html',1,'']]],
   ['resourceholder',['ResourceHolder',['../class_resource_holder.html',1,'']]],

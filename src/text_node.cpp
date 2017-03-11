@@ -5,7 +5,7 @@
 
 TextNode::TextNode(const FontHolder& fonts, const std::string& text)
 {
-    this->text.setFont(fonts.get(Fonts::Stats));
+    this->text.setFont(fonts.get(Fonts::Main));
     this->text.setCharacterSize(20);
     setText(text);
 }

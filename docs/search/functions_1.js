@@ -5,7 +5,9 @@ var searchData=
   ['checknodecollision',['checkNodeCollision',['../class_world_node.html#a50efea26b0edb2038ddc4e375d553c7e',1,'WorldNode']]],
   ['checkworldcollision',['checkWorldCollision',['../class_world_node.html#ac1ca5c09988ca082d5970777e0229fc6',1,'WorldNode']]],
   ['cleanup',['cleanUp',['../class_sound_player.html#ac6fd7b52be5c194935f7e4718cda7d05',1,'SoundPlayer::cleanUp()'],['../class_world_node.html#a01f79cc57ae9b58550c73bd63074ebe7',1,'WorldNode::cleanUp()']]],
+  ['clearstates',['clearStates',['../class_state.html#ae389207efac34a98a5f6ec7bbaec0eca',1,'State::clearStates()'],['../class_state_manager.html#a3b18f37d97a6d9428daa21318b7381b3',1,'StateManager::clearStates()']]],
   ['collision',['collision',['../world__node_8h.html#afa72741057cea2b795bf356ecfcbb775',1,'collision(WorldNode &amp;, WorldNode &amp;):&#160;world_node.cpp'],['../world__node_8cpp.html#a6b396e0c9164a78dc6d9b901a5d547c6',1,'collision(WorldNode &amp;a, WorldNode &amp;b):&#160;world_node.cpp']]],
   ['command',['Command',['../struct_command.html#a18df2d81039392daeb0b78c346a70537',1,'Command::Command()'],['../struct_command.html#a60d5f803271d61753b6eb948380dfbcf',1,'Command::Command(Action action, Category::Type type)']]],
+  ['context',['Context',['../struct_state_1_1_context.html#ac8380f7873b3248c7cf32c604bbdda26',1,'State::Context']]],
   ['crosshair',['Crosshair',['../class_crosshair.html#ae0ca47efd0e9d7e5cd1b1a5dbdf52d86',1,'Crosshair']]]
 ];
