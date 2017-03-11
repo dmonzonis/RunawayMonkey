@@ -5,6 +5,7 @@ GameState::GameState(StateManager& manager, Context context)
     , world(*context.window)
     , player(*context.player)
 {
+    player.setActor(world.getPlayer());
 }
 
 bool GameState::update(sf::Time dt)
@@ -27,6 +28,6 @@ bool GameState::handleEvent(const sf::Event& event)
     CommandQueue& commands = world.getCommandQueue();
     player.handleEvent(event, commands);
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-	pushState(States::Menu);
+        pushState(States::Menu);
     return true;
 }

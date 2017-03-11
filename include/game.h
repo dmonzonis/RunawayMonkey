@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "world.h"
+#include "resource.h"
+#include "resource_identifiers.h"
 #include "player.h"
+#include "state_manager.h"
 
 /**
  * @brief Class responsible of creating and updating the game loop.
@@ -36,10 +38,13 @@ private:
     void processInput();
     void update(sf::Time deltaTime);
     void render();
+    void registerStates();
 
 private:
     sf::RenderWindow window;
-    World world;
+    TextureHolder textures;
+    FontHolder fonts;
     Player player;
+    StateManager stateManager;
     bool paused;
 };

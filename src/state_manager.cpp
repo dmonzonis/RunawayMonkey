@@ -1,5 +1,13 @@
 #include "state_manager.h"
 
+StateManager::StateManager(State::Context context)
+    : stateStack()
+    , pendingChanges()
+    , context(context)
+    , stateFactory()
+{
+}
+
 void StateManager::update(sf::Time dt)
 {
     for (auto it = stateStack.rbegin(); it != stateStack.rend(); ++it)
@@ -42,6 +50,11 @@ void StateManager::popState()
 void StateManager::clearStates()
 {
     pendingChanges.push_back(Change(Clear));
+}
+
+bool StateManager::isEmpty() const
+{
+    return stateStack.empty() ? true : false;
 }
 
 //Finds a registered state and returns a smart pointer to the

@@ -76,3 +76,14 @@ bool MenuState::handleEvent(const sf::Event& event)
 
     return false;
 }
+
+void MenuState::updateOptionText()
+{
+    if (options.empty())
+        return;
+
+    for (auto text : options)
+        text.setFillColor(sf::Color::White);
+
+    options[optionIndex].setFillColor(sf::Color::Red);
+}

@@ -1,11 +1,14 @@
 #include "game.h"
 #include "state_identifiers.h"
+#include "title_state.h"
+#include "game_state.h"
+#include "menu_state.h"
 #include "utility.h"
 
 #include <iostream>
 
 Game::Game()
-    : window(sf::VideoMode(1000, 850), "Runaway Monkey",
+    : window(sf::VideoMode(1000, 800), "Runaway Monkey",
              sf::Style::Titlebar | sf::Style::Close)
     , textures()
     , fonts()
@@ -18,7 +21,8 @@ Game::Game()
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(false);
 
-    //TODO: Load titlescreen textures and fonts
+    textures.load(Textures::TitleBackground, "resources/titlebg.jpg");
+    fonts.load(Fonts::Main, "resources/Jellee-Roman.ttf");
 
     //Register all states and add the titlescreen to the stack
     registerStates();
@@ -34,9 +38,9 @@ void Game::run()
         sf::Time dt = clock.restart();
         processInput();
         update(dt);
-	//Check if there are no more states left
-	if (stateManager.isEmpty())
-	    window.close();
+        //Check if there are no more states left
+        if (stateManager.isEmpty())
+            window.close();
         render();
     }
 }
@@ -81,8 +85,8 @@ void Game::render()
 void Game::registerStates()
 {
     stateManager.registerState<TitleState>(States::Title);
-    stateManager.registerState<MenuState>(States::Menu);
     stateManager.registerState<GameState>(States::Game);
+    stateManager.registerState<MenuState>(States::Menu);
 }
 
 int main()

@@ -64,7 +64,7 @@ void Player::handleRealTimeInput(CommandQueue& commands)
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         //Shoot some poop!
-        playerActor->shoot(Projectile::Type::Poop, &commands);
+        playerActor->shoot(Projectile::Poop, &commands);
     }
 }
 
