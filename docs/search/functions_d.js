@@ -12,5 +12,7 @@ var searchData=
   ['shoot',['shoot',['../class_actor.html#a474fde421a2c827a5f4b48c9c91c4918',1,'Actor']]],
   ['soundnode',['SoundNode',['../class_sound_node.html#a374cff296ed78406c03103f843f544b3',1,'SoundNode']]],
   ['soundplayer',['SoundPlayer',['../class_sound_player.html#ac7107aecd54bdcfac29486487768ebc6',1,'SoundPlayer']]],
-  ['spritenode',['SpriteNode',['../class_sprite_node.html#ad72b769f4c57e5d77a8d6ba223f487b0',1,'SpriteNode::SpriteNode(const sf::Texture &amp;texture)'],['../class_sprite_node.html#ac12927969dcfd6f02da372e7e22c2af1',1,'SpriteNode::SpriteNode(const sf::Texture &amp;texture, const sf::IntRect &amp;textureRect)']]]
+  ['spritenode',['SpriteNode',['../class_sprite_node.html#ad72b769f4c57e5d77a8d6ba223f487b0',1,'SpriteNode::SpriteNode(const sf::Texture &amp;texture)'],['../class_sprite_node.html#ac12927969dcfd6f02da372e7e22c2af1',1,'SpriteNode::SpriteNode(const sf::Texture &amp;texture, const sf::IntRect &amp;textureRect)']]],
+  ['state',['State',['../class_state.html#a16c867ccb15a8bf54c923f9891f2f9b2',1,'State']]],
+  ['statemanager',['StateManager',['../class_state_manager.html#a4fbfb54fde50aefb32f8fd1cfe234c76',1,'StateManager']]]
 ];

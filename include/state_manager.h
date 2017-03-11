@@ -16,8 +16,8 @@
 /**
  * @brief Manages states from a stack.
  *
- * The manager manages active states in a stack, and has the power
- * to update and render its active states. The manager also handles
+ * The manager is a state machine that manages active states in a stack,
+ * and has the power to update and render its active states. The manager also handles
  * the events in the program, which will be redirected to its active
  * states.
  *
@@ -47,6 +47,8 @@ public:
     /**
      * Default constructor for the state manager. It requires an
      * initial context.
+     *
+     * @see State::Context
      */
     explicit StateManager(State::Context context);
 

@@ -10,7 +10,7 @@ enum ID
 {
     None,
     Game,
-    Menu,
+    Pause,
     Title,
 };
 }

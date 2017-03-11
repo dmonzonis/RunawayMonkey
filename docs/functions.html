@@ -71,6 +71,7 @@ $(function() {
 </li>
 <li>Action
 : <a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88">Player</a>
+, <a class="el" href="class_state_manager.html#a9f2dbb42af0109d58245e9d361df7a7b">StateManager</a>
 </li>
 <li>Actor()
 : <a class="el" href="class_actor.html#ab49ea71c3c0b92a206aab953f12489ea">Actor</a>
@@ -108,8 +109,18 @@ $(function() {
 : <a class="el" href="class_sound_player.html#ac6fd7b52be5c194935f7e4718cda7d05">SoundPlayer</a>
 , <a class="el" href="class_world_node.html#a01f79cc57ae9b58550c73bd63074ebe7">WorldNode</a>
 </li>
+<li>Clear
+: <a class="el" href="class_state_manager.html#a9f2dbb42af0109d58245e9d361df7a7ba320b0e4e2afdc3dfa1851280ad6ea0b3">StateManager</a>
+</li>
+<li>clearStates()
+: <a class="el" href="class_state.html#ae389207efac34a98a5f6ec7bbaec0eca">State</a>
+, <a class="el" href="class_state_manager.html#a3b18f37d97a6d9428daa21318b7381b3">StateManager</a>
+</li>
 <li>Command()
-: <a class="el" href="struct_command.html#a60d5f803271d61753b6eb948380dfbcf">Command</a>
+: <a class="el" href="struct_command.html#a18df2d81039392daeb0b78c346a70537">Command</a>
+</li>
+<li>Context()
+: <a class="el" href="struct_state_1_1_context.html#ac8380f7873b3248c7cf32c604bbdda26">State::Context</a>
 </li>
 <li>counter
 : <a class="el" href="class_projectile.html#a6402b7f6c07404bfa460513bb5314d06">Projectile</a>
@@ -144,7 +155,12 @@ $(function() {
 : <a class="el" href="struct_instance_projectile.html#aa560e403294265ef5995d4e1149e9105">InstanceProjectile</a>
 </li>
 <li>draw()
-: <a class="el" href="class_world.html#ab51a17ccbb108616daacd0c34973dc8d">World</a>
+: <a class="el" href="class_game_state.html#a3c511417d8934943ae65c04681f321a3">GameState</a>
+, <a class="el" href="class_pause_state.html#ac4c159c2f6d32eedd351f39e36c43f9d">PauseState</a>
+, <a class="el" href="class_state.html#ae261605bc40b7e3959ce5df5457e4942">State</a>
+, <a class="el" href="class_state_manager.html#a22666f2f72320ea3be46e9253b7530e2">StateManager</a>
+, <a class="el" href="class_title_state.html#ae12beafe5aad6929a56089942de1220e">TitleState</a>
+, <a class="el" href="class_world.html#ab51a17ccbb108616daacd0c34973dc8d">World</a>
 </li>
 </ul>
 
@@ -153,6 +169,9 @@ $(function() {
 <li>flip()
 : <a class="el" href="class_entity.html#a95dc2d252d951e1ecab1cf194645f8fc">Entity</a>
 </li>
+<li>fonts
+: <a class="el" href="struct_state_1_1_context.html#a8b4a94c250018312ccf2e58a33f0c77a">State::Context</a>
+</li>
 </ul>
 
 
@@ -160,8 +179,11 @@ $(function() {
 <li>Game()
 : <a class="el" href="class_game.html#ad59df6562a58a614fda24622d3715b65">Game</a>
 </li>
+<li>GameState()
+: <a class="el" href="class_game_state.html#a48f015c3e2d4e75007929ef4c53193c6">GameState</a>
+</li>
 <li>get()
-: <a class="el" href="class_resource_holder.html#a236988b27b59d66e39e38e556de2a064">ResourceHolder&lt; Resource, Identifier &gt;</a>
+: <a class="el" href="class_resource_holder.html#ac8bc2478fa24b9025701c17e2de223fd">ResourceHolder&lt; Resource, Identifier &gt;</a>
 </li>
 <li>getAssignedKey()
 : <a class="el" href="class_player.html#aad22b2f912af00a4296f98d96660f1cc">Player</a>
@@ -179,6 +201,9 @@ $(function() {
 </li>
 <li>getCommandQueue()
 : <a class="el" href="class_world.html#af224b413f30c86ec99d042d0f4df56ee">World</a>
+</li>
+<li>getContext()
+: <a class="el" href="class_state.html#a93a72915d1aad6d8f7eacc81094dc920">State</a>
 </li>
 <li>getDamage()
 : <a class="el" href="class_projectile.html#af5cd30772ad4cb3894629ca76c6b8f79">Projectile</a>
@@ -219,7 +244,12 @@ $(function() {
 
 <h3><a id="index_h"></a>- h -</h3><ul>
 <li>handleEvent()
-: <a class="el" href="class_player.html#ac84a4e0b787f92bf773ccd0d0483f5b1">Player</a>
+: <a class="el" href="class_game_state.html#a000dd3306b1cb9faab5a86774a22aa6d">GameState</a>
+, <a class="el" href="class_pause_state.html#a685dda66dca3e1c41f4cb02da93c5a8d">PauseState</a>
+, <a class="el" href="class_player.html#ac84a4e0b787f92bf773ccd0d0483f5b1">Player</a>
+, <a class="el" href="class_state.html#a19965f83460b248c42952aac8d001206">State</a>
+, <a class="el" href="class_state_manager.html#abe6bc824c376c7c5ec22b18b10b3ad92">StateManager</a>
+, <a class="el" href="class_title_state.html#a91c6ab4d741fe7445d88ed603001971a">TitleState</a>
 </li>
 <li>handleRealTimeInput()
 : <a class="el" href="class_player.html#a94f06756653adb33565a738bbbf608a3">Player</a>
@@ -236,6 +266,7 @@ $(function() {
 </li>
 <li>isEmpty()
 : <a class="el" href="class_command_queue.html#a3a6eb6a7c83d9b20ad7a6cac63795ec1">CommandQueue</a>
+, <a class="el" href="class_state_manager.html#ad66deb9a952a99c7c9943ebdbb7263d0">StateManager</a>
 </li>
 <li>isMarkedForRemoval()
 : <a class="el" href="class_world_node.html#aac889298c50cf6114ce0184735db4e21">WorldNode</a>
@@ -260,14 +291,11 @@ $(function() {
 
 
 <h3><a id="index_m"></a>- m -</h3><ul>
-<li>Menu
-: <a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a81397d139bd6249a3b33c790c9de1897">Player</a>
-</li>
 <li>Monkey
 : <a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9ccaf94675fb0a4335833f0ac51af24502b0">Actor</a>
 </li>
 <li>MoveActor()
-: <a class="el" href="struct_move_actor.html#a800680b4d9c54991b9ef8bae7f0f0530">MoveActor</a>
+: <a class="el" href="struct_move_actor.html#ae0179146a134a0a136496bd4e5d62516">MoveActor</a>
 </li>
 <li>MoveActorTowards()
 : <a class="el" href="struct_move_actor_towards.html#a7ab45cc177c83bb125ba3ec34e00e628">MoveActorTowards</a>
@@ -317,14 +345,20 @@ $(function() {
 <li>Pair
 : <a class="el" href="class_world_node.html#a2ef2fcd093c447fa502c7c233a3772e2">WorldNode</a>
 </li>
+<li>PauseState()
+: <a class="el" href="class_pause_state.html#a41fff0c5bfb8a32562b09f38e4eeb867">PauseState</a>
+</li>
 <li>Pickup()
 : <a class="el" href="class_pickup.html#ae8c1d17163c2c737c861db3850a2ad68">Pickup</a>
 </li>
 <li>play()
-: <a class="el" href="class_sound_player.html#a4041dd9557bd9246c63436d54b7c233e">SoundPlayer</a>
+: <a class="el" href="class_sound_player.html#a347f4d887633bb13c038a4dc786fbb6b">SoundPlayer</a>
 </li>
 <li>Player()
 : <a class="el" href="class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8">Player</a>
+</li>
+<li>player
+: <a class="el" href="struct_state_1_1_context.html#a1c98434687748acdebf78fd80a4767ad">State::Context</a>
 </li>
 <li>playSound()
 : <a class="el" href="class_actor.html#a9c44e5f800dda5c55c55c1d407efa277">Actor</a>
@@ -336,6 +370,13 @@ $(function() {
 <li>pop()
 : <a class="el" href="class_command_queue.html#ac2dde510222b8df393b55978f4594194">CommandQueue</a>
 </li>
+<li>Pop
+: <a class="el" href="class_state_manager.html#a9f2dbb42af0109d58245e9d361df7a7badef8b7b40299a4b2b8f4dc92bbb74360">StateManager</a>
+</li>
+<li>popState()
+: <a class="el" href="class_state.html#a950d1013bc3d0c4e0e4e8224d48927f5">State</a>
+, <a class="el" href="class_state_manager.html#a1c5f8c0609e74fb2346b6b7f5930bb38">StateManager</a>
+</li>
 <li>position
 : <a class="el" href="struct_move_actor_towards.html#ac3f0a00ace05aeadc304e9eb55bfb267">MoveActorTowards</a>
 </li>
@@ -343,15 +384,26 @@ $(function() {
 : <a class="el" href="class_projectile.html#a5c326e0ce08ed6f374023045197294e7">Projectile</a>
 </li>
 <li>Ptr
-: <a class="el" href="class_world_node.html#a9fc48d1df0038b1d3a20443ad611f475">WorldNode</a>
+: <a class="el" href="class_state.html#a71d9930be1a58be7f711e245b7965d48">State</a>
+, <a class="el" href="class_world_node.html#a9fc48d1df0038b1d3a20443ad611f475">WorldNode</a>
 </li>
 <li>push()
 : <a class="el" href="class_command_queue.html#ad444e0d7af45d9e09b834f0cec1e1f43">CommandQueue</a>
+</li>
+<li>Push
+: <a class="el" href="class_state_manager.html#a9f2dbb42af0109d58245e9d361df7a7bacef98bf437b7e21fc22593c7b5b6c507">StateManager</a>
+</li>
+<li>pushState()
+: <a class="el" href="class_state.html#a662ce6ab4e551df84a96ad4a2a406cd5">State</a>
+, <a class="el" href="class_state_manager.html#a06c9e3f9829b7534e1f9e3abe802dd72">StateManager</a>
 </li>
 </ul>
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
+<li>registerState()
+: <a class="el" href="class_state_manager.html#af48c5451e66b46702183c2db20f00db7">StateManager</a>
+</li>
 <li>run()
 : <a class="el" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa">Game</a>
 </li>
@@ -402,7 +454,13 @@ $(function() {
 : <a class="el" href="class_entity.html#a48ef4ab143b8d0211877c9f6be42e824">Entity</a>
 </li>
 <li>SpriteNode()
-: <a class="el" href="class_sprite_node.html#ad72b769f4c57e5d77a8d6ba223f487b0">SpriteNode</a>
+: <a class="el" href="class_sprite_node.html#ac12927969dcfd6f02da372e7e22c2af1">SpriteNode</a>
+</li>
+<li>State()
+: <a class="el" href="class_state.html#a16c867ccb15a8bf54c923f9891f2f9b2">State</a>
+</li>
+<li>StateManager()
+: <a class="el" href="class_state_manager.html#a4fbfb54fde50aefb32f8fd1cfe234c76">StateManager</a>
 </li>
 </ul>
 
@@ -413,6 +471,10 @@ $(function() {
 </li>
 <li>textures
 : <a class="el" href="struct_instance_projectile.html#a265b95d41e2c373d7de9276a1d1a4cc4">InstanceProjectile</a>
+, <a class="el" href="struct_state_1_1_context.html#a587123ee3b00e8c68c1d99ca6011a53d">State::Context</a>
+</li>
+<li>TitleState()
+: <a class="el" href="class_title_state.html#a477e5fd748f07ec23704534251649332">TitleState</a>
 </li>
 <li>Type
 : <a class="el" href="class_actor.html#a8f016a8e19c6fe5e7cceb7d5690cb9cc">Actor</a>
@@ -422,10 +484,12 @@ $(function() {
 </li>
 <li>Type
 : <a class="el" href="class_pickup.html#ad4681315b06f1fc58c8f2a17937dd88a">Pickup</a>
-, <a class="el" href="class_projectile.html#ae0d6ce4b663618b4105d2f3a483ff2eb">Projectile</a>
 </li>
 <li>type
 : <a class="el" href="class_projectile.html#aa2285badca48c31687e7fad9132d0c97">Projectile</a>
+</li>
+<li>Type
+: <a class="el" href="class_projectile.html#ae0d6ce4b663618b4105d2f3a483ff2eb">Projectile</a>
 </li>
 </ul>
 
@@ -433,11 +497,19 @@ $(function() {
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>update()
 : <a class="el" href="class_crosshair.html#a7a22bb1c1cb71548d9dee24015e0f767">Crosshair</a>
+, <a class="el" href="class_game_state.html#a4ac988f0da5c33b43ff356890fcf9c1c">GameState</a>
+, <a class="el" href="class_pause_state.html#a9d6e9c6d96e140487badbe1da2738fa3">PauseState</a>
+, <a class="el" href="class_state.html#acd5926bc7a373edff9e57f3ffe94ca13">State</a>
+, <a class="el" href="class_state_manager.html#a07b3a4d61e0f75fc6c8730f9f77449a4">StateManager</a>
+, <a class="el" href="class_title_state.html#aa282ac0c6e22267cb6a7054973d75fdf">TitleState</a>
 , <a class="el" href="class_world.html#ab461d3d5ad03c54dc8bec26b2f43d593">World</a>
 , <a class="el" href="class_world_node.html#a1b0c20fe4e5dde9ce1ada846e450aa2e">WorldNode</a>
 </li>
 <li>updateCurrent()
 : <a class="el" href="class_crosshair.html#ad4110c7c3ad49365122135b62cd812d8">Crosshair</a>
+</li>
+<li>updateOptionText()
+: <a class="el" href="class_pause_state.html#a028840038d08dd77494f695e025cf260">PauseState</a>
 </li>
 </ul>
 
@@ -451,6 +523,9 @@ $(function() {
 
 
 <h3><a id="index_w"></a>- w -</h3><ul>
+<li>window
+: <a class="el" href="struct_state_1_1_context.html#a30775e70e841c761a4e3cb7f0e195128">State::Context</a>
+</li>
 <li>World()
 : <a class="el" href="class_world.html#a64c31c6063dddddaa69ff078fcfaac3f">World</a>
 </li>

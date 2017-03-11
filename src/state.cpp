@@ -16,10 +16,6 @@ State::State(StateManager& manager, Context context)
 {
 }
 
-State::~State()
-{
-}
-
 void State::pushState(States::ID id)
 {
     manager->pushState(id);

@@ -2,7 +2,7 @@
 #include "state_identifiers.h"
 #include "title_state.h"
 #include "game_state.h"
-#include "menu_state.h"
+#include "pause_state.h"
 #include "utility.h"
 
 #include <iostream>
@@ -86,7 +86,7 @@ void Game::registerStates()
 {
     stateManager.registerState<TitleState>(States::Title);
     stateManager.registerState<GameState>(States::Game);
-    stateManager.registerState<MenuState>(States::Menu);
+    stateManager.registerState<PauseState>(States::Pause);
 }
 
 int main()

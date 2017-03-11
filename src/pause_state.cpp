@@ -1,9 +1,9 @@
-#include "menu_state.h"
+#include "pause_state.h"
 #include "resource.h"
 #include "resource_identifiers.h"
 #include "utility.h"
 
-MenuState::MenuState(StateManager& manager, Context context)
+PauseState::PauseState(StateManager& manager, Context context)
     : State(manager, context)
     , options()
     , optionIndex(0)
@@ -29,12 +29,12 @@ MenuState::MenuState(StateManager& manager, Context context)
     updateOptionText();
 }
 
-bool MenuState::update(sf::Time dt)
+bool PauseState::update(sf::Time dt)
 {
     return false;
 }
 
-void MenuState::draw()
+void PauseState::draw()
 {
     sf::RenderWindow& window = *getContext().window;
     window.setView(window.getDefaultView());
@@ -42,7 +42,7 @@ void MenuState::draw()
         window.draw(option);
 }
 
-bool MenuState::handleEvent(const sf::Event& event)
+bool PauseState::handleEvent(const sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed
             && event.key.code == sf::Keyboard::Return)
@@ -81,7 +81,7 @@ bool MenuState::handleEvent(const sf::Event& event)
     return false;
 }
 
-void MenuState::updateOptionText()
+void PauseState::updateOptionText()
 {
     if (options.empty())
         return;

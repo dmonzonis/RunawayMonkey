@@ -26,5 +26,12 @@ var searchData=
   ['sprite_5fnode_2ecpp',['sprite_node.cpp',['../sprite__node_8cpp.html',1,'']]],
   ['sprite_5fnode_2eh',['sprite_node.h',['../sprite__node_8h.html',1,'']]],
   ['spritenode',['SpriteNode',['../class_sprite_node.html',1,'SpriteNode'],['../class_sprite_node.html#ad72b769f4c57e5d77a8d6ba223f487b0',1,'SpriteNode::SpriteNode(const sf::Texture &amp;texture)'],['../class_sprite_node.html#ac12927969dcfd6f02da372e7e22c2af1',1,'SpriteNode::SpriteNode(const sf::Texture &amp;texture, const sf::IntRect &amp;textureRect)']]],
-  ['stats',['Stats',['../namespace_fonts.html#a240717ec0dc75e98501af734a02c396dad9ad03d1df644681150d6f7ff53304d4',1,'Fonts']]]
+  ['state',['State',['../class_state.html',1,'State'],['../class_state.html#a16c867ccb15a8bf54c923f9891f2f9b2',1,'State::State()']]],
+  ['state_2ecpp',['state.cpp',['../state_8cpp.html',1,'']]],
+  ['state_2eh',['state.h',['../state_8h.html',1,'']]],
+  ['state_5fidentifiers_2eh',['state_identifiers.h',['../state__identifiers_8h.html',1,'']]],
+  ['state_5fmanager_2ecpp',['state_manager.cpp',['../state__manager_8cpp.html',1,'']]],
+  ['state_5fmanager_2eh',['state_manager.h',['../state__manager_8h.html',1,'']]],
+  ['statemanager',['StateManager',['../class_state_manager.html',1,'StateManager'],['../class_state_manager.html#a4fbfb54fde50aefb32f8fd1cfe234c76',1,'StateManager::StateManager()']]],
+  ['states',['States',['../namespace_states.html',1,'']]]
 ];

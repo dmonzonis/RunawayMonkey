@@ -28,6 +28,6 @@ bool GameState::handleEvent(const sf::Event& event)
     CommandQueue& commands = world.getCommandQueue();
     player.handleEvent(event, commands);
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        pushState(States::Menu);
+        pushState(States::Pause);
     return true;
 }
