@@ -5,10 +5,16 @@
 #pragma once
 
 #include "state_identifiers.h"
+#include "resource_identifiers.h"
 
 #include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <memory>
+
+//Forward-declarations
+class StateManager;
+class Player;
 
 class State
 {
@@ -20,6 +26,15 @@ public:
      */
     struct Context
     {
+        Context(sf::RenderWindow& window,
+                TextureHolder& textures,
+                FontHolder& fonts,
+                Player& player);
+
+        sf::RenderWindow* window;
+        TextureHolder* textures;
+        FontHolder* fonts;
+        Player* player;
     };
 
 public:
@@ -30,9 +45,9 @@ public:
     virtual bool handleEvent(const sf::Event& event) = 0;
 
 protected:
-    void addState(States::ID id);
+    void pushState(States::ID id);
     void popState();
-    void clearState();
+    void clearStates();
     Context getContext() const;
 
 private:
