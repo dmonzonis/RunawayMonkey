@@ -30,9 +30,9 @@ void StateManager::handleEvent(const sf::Event& event)
     for (auto it = stateStack.rbegin(); it != stateStack.rend(); ++it)
     {
         //If the state returns false on handleEvent, it doesn't want to let lower
-        //stateStack get the input, so stop running the function
+        //stateStack get the input, so stop the loop
         if (!(*it)->handleEvent(event))
-            return;
+            break;
     }
     applyChanges();
 }

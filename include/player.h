@@ -36,7 +36,6 @@ public:
         MoveLeft,
         MoveDown,
         MoveRight,
-        Menu,
         Debug1,
         Debug2,
     };

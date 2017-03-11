@@ -20,7 +20,7 @@ MenuState::MenuState(StateManager& manager, Context context)
 
     sf::Text quitOption;
     quitOption.setFont(font);
-    quitOption.setString("Resume");
+    quitOption.setString("Quit");
     centerOrigin(quitOption);
     quitOption.setPosition(resumeOption.getPosition() +
                            sf::Vector2f(0.f, 30.f));
@@ -31,19 +31,21 @@ MenuState::MenuState(StateManager& manager, Context context)
 
 bool MenuState::update(sf::Time dt)
 {
-    return true;
+    return false;
 }
 
 void MenuState::draw()
 {
     sf::RenderWindow& window = *getContext().window;
+    window.setView(window.getDefaultView());
     for (auto option : options)
         window.draw(option);
 }
 
 bool MenuState::handleEvent(const sf::Event& event)
 {
-    if (event.key.code == sf::Keyboard::Return)
+    if (event.type == sf::Event::KeyPressed
+            && event.key.code == sf::Keyboard::Return)
     {
         if (optionIndex == Resume)
         {
@@ -55,7 +57,8 @@ bool MenuState::handleEvent(const sf::Event& event)
             pushState(States::Title);
         }
     }
-    else if (event.key.code == sf::Keyboard::Up)
+    else if (event.type == sf::Event::KeyPressed
+             && event.key.code == sf::Keyboard::Up)
     {
         if (optionIndex > 0)
             --optionIndex;
@@ -64,7 +67,8 @@ bool MenuState::handleEvent(const sf::Event& event)
 
         updateOptionText();
     }
-    else if (event.key.code == sf::Keyboard::Down)
+    else if (event.type == sf::Event::KeyPressed
+             && event.key.code == sf::Keyboard::Down)
     {
         if (optionIndex < options.size() - 1)
             ++optionIndex;
@@ -82,7 +86,7 @@ void MenuState::updateOptionText()
     if (options.empty())
         return;
 
-    for (auto text : options)
+    for (auto& text : options)
         text.setFillColor(sf::Color::White);
 
     options[optionIndex].setFillColor(sf::Color::Red);

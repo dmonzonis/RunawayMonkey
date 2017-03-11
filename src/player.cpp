@@ -14,7 +14,6 @@ Player::Player()
     keyBinding[sf::Keyboard::A] = MoveLeft;
     keyBinding[sf::Keyboard::S] = MoveDown;
     keyBinding[sf::Keyboard::D] = MoveRight;
-    keyBinding[sf::Keyboard::Escape] = Menu;
     //TODO: remove Debug keys for release
     keyBinding[sf::Keyboard::N] = Debug1;
     keyBinding[sf::Keyboard::M] = Debug2;
