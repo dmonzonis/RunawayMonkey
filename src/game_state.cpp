@@ -14,6 +14,11 @@ bool GameState::update(sf::Time dt)
     CommandQueue& commands = world.getCommandQueue();
     player.handleRealTimeInput(commands);
     world.update(dt);
+
+    //Check if the player died, if so push the game over state
+    if (player.getActor()->isMarkedForRemoval())
+        pushState(States::GameOver);
+
     return true;
 }
 

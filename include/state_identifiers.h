@@ -12,5 +12,6 @@ enum ID
     Game,
     Pause,
     Title,
+    GameOver,
 };
 }

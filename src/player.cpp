@@ -100,6 +100,11 @@ void Player::setActor(Actor *actor)
     playerActor = actor;
 }
 
+Actor* Player::getActor() const
+{
+    return playerActor;
+}
+
 bool Player::isRealTimeAction(Action action)
 {
     switch (action)
