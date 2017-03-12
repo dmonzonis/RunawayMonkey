@@ -14,6 +14,11 @@ bool GameState::update(sf::Time dt)
     CommandQueue& commands = world.getCommandQueue();
     player.handleRealTimeInput(commands);
     world.update(dt);
+    if(!player.isAlive())
+    {
+        clearStates();
+        pushState(States::Title);
+    }
     return true;
 }
 

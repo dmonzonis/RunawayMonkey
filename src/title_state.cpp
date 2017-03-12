@@ -30,6 +30,7 @@ bool TitleState::update(sf::Time dt)
 void TitleState::draw()
 {
     sf::RenderWindow& window = *getContext().window;
+    window.setView(window.getDefaultView());
     window.draw(backgroundSprite);
     if (showText)
         window.draw(text);

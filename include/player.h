@@ -112,6 +112,7 @@ public:
      * Player::handleRealTimeInput will use this pointer to execute them.
      */
     void setActor(Actor*);
+    bool isAlive();
 
 private:
     static bool isRealTimeAction(Action action);

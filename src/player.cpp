@@ -100,6 +100,13 @@ void Player::setActor(Actor *actor)
     playerActor = actor;
 }
 
+bool Player::isAlive()
+{
+    if(playerActor->getHealth() <= 0)
+        return false;
+    return true;
+}
+
 bool Player::isRealTimeAction(Action action)
 {
     switch (action)

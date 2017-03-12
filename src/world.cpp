@@ -42,10 +42,22 @@ void World::update(sf::Time dt)
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
 
-    //Move view with player (player is always in the center)
+    //Move view with player
     sf::Vector2f velocity = playerActor->getVelocity();
-    worldView.move(velocity.x * dt.asSeconds(),
-                   velocity.y * dt.asSeconds());
+    sf::Vector2f playerPosition = playerActor->getPosition();
+
+    sf::Vector2u screenCenter = window.getSize();
+    screenCenter.x /= 2;
+    screenCenter.y /= 2;
+
+    if(playerPosition.x > (worldBounds.left + screenCenter.x) &&
+       playerPosition.x < (worldBounds.width - screenCenter.x) )
+        worldView.move(velocity.x * dt.asSeconds(), 0);
+
+    if(playerPosition.y > (worldBounds.top + screenCenter.y) &&
+       playerPosition.y < (worldBounds.height - screenCenter.y))
+        worldView.move(0, velocity.y * dt.asSeconds());
+
 
     //Update enemy behaviour
     commandQueue.push(Command(MoveActorTowards(playerActor->getPosition()),

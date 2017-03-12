@@ -8,7 +8,7 @@
 #include <iostream>
 
 Game::Game()
-    : window(sf::VideoMode(1000, 800), "Runaway Monkey",
+    : window(sf::VideoMode(1000, 600), "Runaway Monkey",
              sf::Style::Titlebar | sf::Style::Close)
     , textures()
     , fonts()
