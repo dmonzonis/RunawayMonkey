@@ -70,7 +70,7 @@ public:
     void damage(int amount);
 
     /**
-     * Destroy actor. Calls Entity::destroy().
+     * Destroy actor. Calls WorldNode::destroy().
      */
     void die();
 

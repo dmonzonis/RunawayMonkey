@@ -114,6 +114,15 @@ public:
     void setActor(Actor*);
     bool isAlive();
 
+    /**
+     * Returns a pointer to the assigned player actor in the world.
+     * The method @ref setActor must have been called first, otherwise
+     * it will return @nullptr
+     *
+     * @return A pointer to the player's actor in the world.
+     */
+    Actor* getActor() const;
+
 private:
     static bool isRealTimeAction(Action action);
 
