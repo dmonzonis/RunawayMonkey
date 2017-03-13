@@ -35,9 +35,9 @@ void World::update(sf::Time dt)
     crosshair->update();
     playerActor->lookAt(crosshair->getPosition());
     //TODO: Remove the following when a GUI is implemented
-    //std::ostringstream hp;
-    //hp << "HP " << playerActor->getHealth() << "/" << 3; //3 is the max health
-    //playerHp->setText(hp.str());
+    std::ostringstream hp;
+    hp << "HP " << playerActor->getHealth() << "/" << 3; //3 is the max health
+    playerHp->setText(hp.str());
 
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
@@ -101,6 +101,7 @@ void World::loadResources()
     textures.load(Textures::Grass, "resources/grass_tile.png");
     textures.load(Textures::Snatcher, "resources/snatcher.png");
     textures.load(Textures::Healkit, "resources/healkit.png");
+    fonts.load(Fonts::Main, "resources/Jellee-Roman.ttf"); //FIXME: readding fonts already in context
 }
 
 //Appends all the needed stuff to the root node of the world (player actor, crosshair...)
@@ -133,12 +134,10 @@ void World::buildWorld()
 
     //TODO: remove the following when a GUI is implemented
     //Add text to show player hp
-    /*
     std::unique_ptr<TextNode> hpText(new TextNode(fonts, "HP"));
     hpText->setPosition(0.f, 30.0f);
     playerHp = hpText.get();
     playerActor->attachChild(std::move(hpText));
-    */
 
     //Add enemies and pickups
     initializeSpawnPoints();

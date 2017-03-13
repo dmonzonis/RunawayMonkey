@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Runaway Monkey
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.3</span>
    </div>
    <div id="projectbrief">Top-Down shooter coded with C++ using SFML.</div>
   </td>
@@ -110,6 +110,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a669280177aad424edd48906c86b61c06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a669280177aad424edd48906c86b61c06">setActor</a> (<a class="el" href="class_actor.html">Actor</a> *)</td></tr>
 <tr class="memdesc:a669280177aad424edd48906c86b61c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns a pointer to an existing actor as the player actor. Actions that directly use <a class="el" href="class_actor.html" title="An Entity that is &quot;alive&quot; and interact with the world. ">Actor</a> methods like <a class="el" href="class_actor.html#a474fde421a2c827a5f4b48c9c91c4918">Actor::shoot</a> in <a class="el" href="class_player.html#a94f06756653adb33565a738bbbf608a3" title="Handles real time input. ">Player::handleRealTimeInput</a> will use this pointer to execute them.  <a href="#a669280177aad424edd48906c86b61c06">More...</a><br /></td></tr>
 <tr class="separator:a669280177aad424edd48906c86b61c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc658dd5808ecad8ddad9a46b1173a88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_actor.html">Actor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#adc658dd5808ecad8ddad9a46b1173a88">getActor</a> () const</td></tr>
+<tr class="separator:adc658dd5808ecad8ddad9a46b1173a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles the input issued by the player. </p>
@@ -194,6 +196,25 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="adc658dd5808ecad8ddad9a46b1173a88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc658dd5808ecad8ddad9a46b1173a88">&#9670;&nbsp;</a></span>getActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_actor.html">Actor</a> * Player::getActor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a pointer to the assigned player actor in the world. The method <a class="el" href="class_player.html#a669280177aad424edd48906c86b61c06">setActor</a> must have been called first, otherwise it will return </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the player's actor in the world. </dd></dl>
 
 </div>
 </div>

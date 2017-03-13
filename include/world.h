@@ -140,6 +140,7 @@ private:
     sf::RenderWindow& window;
     sf::View worldView;
     TextureHolder textures;
+    FontHolder fonts;
     SoundPlayer soundPlayer;
     WorldNode graph;
     sf::FloatRect worldBounds;

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Runaway Monkey
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.3</span>
    </div>
    <div id="projectbrief">Top-Down shooter coded with C++ using SFML.</div>
   </td>
@@ -81,9 +81,10 @@ Inheritance diagram for State:</div>
  <div class="center">
   <img src="class_state.png" usemap="#State_map" alt=""/>
   <map id="State_map" name="State_map">
-<area href="class_game_state.html" title="State where the actual gameplay occurs. " alt="GameState" shape="rect" coords="0,56,75,80"/>
-<area href="class_pause_state.html" title="State that stops the game and lets the player continue or quit. " alt="PauseState" shape="rect" coords="85,56,160,80"/>
-<area href="class_title_state.html" title="State that appears when the game is launched. " alt="TitleState" shape="rect" coords="170,56,245,80"/>
+<area href="class_game_over_state.html" title="State that shows after the player dies in the game. " alt="GameOverState" shape="rect" coords="0,56,101,80"/>
+<area href="class_game_state.html" title="State where the actual gameplay occurs. " alt="GameState" shape="rect" coords="111,56,212,80"/>
+<area href="class_pause_state.html" title="State that stops the game and lets the player continue or quit. " alt="PauseState" shape="rect" coords="222,56,323,80"/>
+<area href="class_title_state.html" title="State that appears when the game is launched. " alt="TitleState" shape="rect" coords="333,56,434,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -242,7 +243,7 @@ MenuState </dd>
 </div><div class="memdoc">
 <p>Draw function with no default implementation. Each subclass of <a class="el" href="class_state.html" title="A state separates different parts of the game with independent functionality. ">State</a> will have its own implementation. </p>
 
-<p>Implemented in <a class="el" href="class_game_state.html#a3c511417d8934943ae65c04681f321a3">GameState</a>, <a class="el" href="class_pause_state.html#ac4c159c2f6d32eedd351f39e36c43f9d">PauseState</a>, and <a class="el" href="class_title_state.html#ae12beafe5aad6929a56089942de1220e">TitleState</a>.</p>
+<p>Implemented in <a class="el" href="class_game_state.html#a3c511417d8934943ae65c04681f321a3">GameState</a>, <a class="el" href="class_pause_state.html#ac4c159c2f6d32eedd351f39e36c43f9d">PauseState</a>, <a class="el" href="class_title_state.html#ae12beafe5aad6929a56089942de1220e">TitleState</a>, and <a class="el" href="class_game_over_state.html#a9decc1411647e390bfed0bdc009cd691">GameOverState</a>.</p>
 
 </div>
 </div>
@@ -296,7 +297,7 @@ MenuState </dd>
 </div><div class="memdoc">
 <p>Event handling function with no default implementation. Each subclass of <a class="el" href="class_state.html" title="A state separates different parts of the game with independent functionality. ">State</a> will have its own implementation. </p>
 
-<p>Implemented in <a class="el" href="class_game_state.html#a000dd3306b1cb9faab5a86774a22aa6d">GameState</a>, <a class="el" href="class_pause_state.html#a685dda66dca3e1c41f4cb02da93c5a8d">PauseState</a>, and <a class="el" href="class_title_state.html#a91c6ab4d741fe7445d88ed603001971a">TitleState</a>.</p>
+<p>Implemented in <a class="el" href="class_game_state.html#a000dd3306b1cb9faab5a86774a22aa6d">GameState</a>, <a class="el" href="class_pause_state.html#a685dda66dca3e1c41f4cb02da93c5a8d">PauseState</a>, <a class="el" href="class_title_state.html#a91c6ab4d741fe7445d88ed603001971a">TitleState</a>, and <a class="el" href="class_game_over_state.html#acf1dc2c7f58fe21b7cfababaf87ff20b">GameOverState</a>.</p>
 
 </div>
 </div>
@@ -376,7 +377,7 @@ MenuState </dd>
 </div><div class="memdoc">
 <p>Update function with no default implementation. Each subclass of <a class="el" href="class_state.html" title="A state separates different parts of the game with independent functionality. ">State</a> will have its own implementation. </p>
 
-<p>Implemented in <a class="el" href="class_game_state.html#a4ac988f0da5c33b43ff356890fcf9c1c">GameState</a>, <a class="el" href="class_pause_state.html#a9d6e9c6d96e140487badbe1da2738fa3">PauseState</a>, and <a class="el" href="class_title_state.html#aa282ac0c6e22267cb6a7054973d75fdf">TitleState</a>.</p>
+<p>Implemented in <a class="el" href="class_game_state.html#a4ac988f0da5c33b43ff356890fcf9c1c">GameState</a>, <a class="el" href="class_pause_state.html#a9d6e9c6d96e140487badbe1da2738fa3">PauseState</a>, <a class="el" href="class_title_state.html#aa282ac0c6e22267cb6a7054973d75fdf">TitleState</a>, and <a class="el" href="class_game_over_state.html#a8a2047b5c684965f33574b8aee7b7c8f">GameOverState</a>.</p>
 
 </div>
 </div>

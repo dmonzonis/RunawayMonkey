@@ -8,7 +8,7 @@
 
   The game is made with C++, using the SFML library. Any type that starts with the
   scope @c sf:: is defined in the SFML library, and for more information about them you
-  should refer to the <a href="http://www.sfml-dev.org/documentation">SFML documentation</a>.
+  should refer to the <a href="http://www.sfml-dev.org/documentation"><b>SFML documentation</b></a>.
 
   \section comp Installation
   The release version of the game will be distributed with a binary containing all dependencies.
