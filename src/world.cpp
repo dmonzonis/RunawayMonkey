@@ -42,10 +42,22 @@ void World::update(sf::Time dt)
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
 
-    //Move view with player (player is always in the center)
+    //Move view with player
     sf::Vector2f velocity = playerActor->getVelocity();
-    worldView.move(velocity.x * dt.asSeconds(),
-                   velocity.y * dt.asSeconds());
+    sf::Vector2f playerPosition = playerActor->getPosition();
+
+    sf::Vector2u screenCenter = window.getSize();
+    screenCenter.x /= 2;
+    screenCenter.y /= 2;
+
+    if(playerPosition.x > (worldBounds.left + screenCenter.x) &&
+       playerPosition.x < (worldBounds.width - screenCenter.x) )
+        worldView.move(velocity.x * dt.asSeconds(), 0);
+
+    if(playerPosition.y > (worldBounds.top + screenCenter.y) &&
+       playerPosition.y < (worldBounds.height - screenCenter.y))
+        worldView.move(0, velocity.y * dt.asSeconds());
+
 
     //Update enemy behaviour
     commandQueue.push(Command(MoveActorTowards(playerActor->getPosition()),
@@ -97,10 +109,13 @@ void World::loadResources()
     textures.load(Textures::None, "resources/no_texture.png");
     textures.load(Textures::Monkey, "resources/monkey.png");
     textures.load(Textures::Poop, "resources/poop.png");
+    textures.load(Textures::Banana, "resources/banana.png");
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
     textures.load(Textures::Snatcher, "resources/snatcher.png");
     textures.load(Textures::Healkit, "resources/healkit.png");
+    textures.load(Textures::BananaBox, "resources/bananaBox40.png");
+    textures.load(Textures::PoopBox, "resources/poopBox40.png");
 }
 
 //Appends all the needed stuff to the root node of the world (player actor, crosshair...)
@@ -157,6 +172,12 @@ void World::initializeSpawnPoints()
     addSpawn(Pickup::Type::Healkit, 100, -400);
     addSpawn(Pickup::Type::Healkit, -300, 100);
     addSpawn(Pickup::Type::Healkit, 950, 850);
+    addSpawn(Pickup::Type::bananaBox, 200, -500);
+    addSpawn(Pickup::Type::bananaBox, -400, 200);
+    addSpawn(Pickup::Type::bananaBox, 850, 650);
+    addSpawn(Pickup::Type::poopBox, 300, -700);
+    addSpawn(Pickup::Type::poopBox, -500, 300);
+    addSpawn(Pickup::Type::poopBox, 650, 650);
 }
 
 //Adds an enemy spawn point at a certain position in the world

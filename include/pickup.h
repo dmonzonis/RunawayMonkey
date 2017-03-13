@@ -23,6 +23,8 @@ public:
     enum Type
     {
         Healkit, ///< Heals the player by 1 health point.
+        bananaBox, ///< Change the shoot type for banana.
+        poopBox, ///< Change the shoot type for poop.
     };
 
 public:

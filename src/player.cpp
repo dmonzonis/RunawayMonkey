@@ -62,8 +62,7 @@ void Player::handleRealTimeInput(CommandQueue& commands)
     //Check if left mouse button is being pressed
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        //Shoot some poop!
-        playerActor->shoot(Projectile::Poop, &commands);
+        playerActor->shoot(playerActor->getShotType(), &commands);
     }
 }
 

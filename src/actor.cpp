@@ -12,6 +12,7 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
     , shooting(false)
     , shootRate(sf::seconds(0.25f))
     , cooldown(sf::seconds(0.f))
+    , toShoot(Projectile::Poop)
 {
     //Cast actor type to texture. For this to work they have to be ordered the same
     Textures::ID actorTexture = static_cast<Textures::ID>(actorType);
@@ -81,7 +82,7 @@ void Actor::shoot(Projectile::Type type, CommandQueue* commands)
         //Convert type to int because commands don't know about projectiles
         int iType = static_cast<int>(type);
         commands->push(Command(InstanceProjectile(getWorldPosition(), getLookingAt(),
-                               iType, textures), Category::SceneRoot));;
+                               iType, textures), Category::SceneRoot));
         playSound(Sounds::PoopThrow, commands);
         cooldown = sf::Time::Zero;
     }
@@ -98,6 +99,16 @@ void Actor::playSound(Sounds::ID id, CommandQueue* commands)
         soundNode.playSound(id, worldPos);
     };
     commands->push(command);
+}
+
+void Actor::setShotType(Projectile::Type type)
+{
+    toShoot = type;
+}
+
+Projectile::Type Actor::getShotType()
+{
+    return toShoot;
 }
 
 void Actor::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
