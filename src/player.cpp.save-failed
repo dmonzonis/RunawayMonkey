@@ -35,6 +35,8 @@ Player::Player()
     {
         std::cout << randomInt(100) << std::endl;
     };
+
+    currentObjectToShoot = Projectile::Banana;
 }
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
@@ -62,7 +64,7 @@ void Player::handleRealTimeInput(CommandQueue& commands)
     //Check if left mouse button is being pressed
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        playerActor->shoot(playerActor->getShotType(), &commands);
+        playerActor->shoot(Projectile::Poop, &commands);
     }
 }
 

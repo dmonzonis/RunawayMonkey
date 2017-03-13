@@ -104,6 +104,18 @@ public:
      */
     void playSound(Sounds::ID id, CommandQueue* commands);
 
+    /**
+     * @brief Change the shot type
+     * Change the shot type
+     */
+    void setShotType(Projectile::Type);
+
+    /**
+     * @brief Shot type
+     * Shot type
+     */
+    Projectile::Type getShotType();
+
 private:
     bool canShoot() const;
     virtual void drawCurrent(sf::RenderTarget&, sf::RenderStates states) const;
@@ -114,5 +126,6 @@ private:
     Type type;
     int health, maxHealth;
     bool shooting;
+    Projectile::Type toShoot;
     sf::Time shootRate, cooldown;
 };

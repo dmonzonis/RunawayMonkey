@@ -109,10 +109,13 @@ void World::loadResources()
     textures.load(Textures::None, "resources/no_texture.png");
     textures.load(Textures::Monkey, "resources/monkey.png");
     textures.load(Textures::Poop, "resources/poop.png");
+    textures.load(Textures::Banana, "resources/banana.png");
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
     textures.load(Textures::Snatcher, "resources/snatcher.png");
     textures.load(Textures::Healkit, "resources/healkit.png");
+    textures.load(Textures::BananaBox, "resources/bananaBox40.png");
+    textures.load(Textures::PoopBox, "resources/poopBox40.png");
 }
 
 //Appends all the needed stuff to the root node of the world (player actor, crosshair...)
@@ -169,6 +172,12 @@ void World::initializeSpawnPoints()
     addSpawn(Pickup::Type::Healkit, 100, -400);
     addSpawn(Pickup::Type::Healkit, -300, 100);
     addSpawn(Pickup::Type::Healkit, 950, 850);
+    addSpawn(Pickup::Type::bananaBox, 200, -500);
+    addSpawn(Pickup::Type::bananaBox, -400, 200);
+    addSpawn(Pickup::Type::bananaBox, 850, 650);
+    addSpawn(Pickup::Type::poopBox, 300, -700);
+    addSpawn(Pickup::Type::poopBox, -500, 300);
+    addSpawn(Pickup::Type::poopBox, 650, 650);
 }
 
 //Adds an enemy spawn point at a certain position in the world

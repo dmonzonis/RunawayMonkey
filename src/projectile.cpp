@@ -2,7 +2,7 @@
 #include "utility.h"
 
 const float poopSpeed = 500.0f,
-            bananaSpeed = 50.0f;
+            bananaSpeed = 300.0f;
 
 Projectile::Projectile(const TextureHolder& textures, Type type)
     : type(type)
@@ -10,18 +10,17 @@ Projectile::Projectile(const TextureHolder& textures, Type type)
     , counter(sf::Time::Zero)
     , lifetime(sf::seconds(3.0f))
 {
-    sprite.setTexture(textures.get(Textures::Poop));
+
 
     switch (type)
     {
-    case Poop:
-        setSpeed(poopSpeed);
-        break;
     case Banana:
         setSpeed(bananaSpeed);
+        sprite.setTexture(textures.get(Textures::Banana));
         break;
     default:
         setSpeed(poopSpeed);
+        sprite.setTexture(textures.get(Textures::Poop));
         break;
     }
 

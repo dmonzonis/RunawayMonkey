@@ -18,7 +18,10 @@ enum ID
     Snatcher,
     /* End actor textures */
     Poop,
+    Banana,
     Healkit,
+    BananaBox,
+    PoopBox,
     Crosshair,
     Grass,
     TitleBackground,

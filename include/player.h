@@ -112,7 +112,6 @@ public:
      * Player::handleRealTimeInput will use this pointer to execute them.
      */
     void setActor(Actor*);
-    bool isAlive();
 
     /**
      * Returns a pointer to the assigned player actor in the world.
