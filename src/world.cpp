@@ -1,7 +1,7 @@
 #include "world.h"
 #include "utility.h"
 
-#include <sstream>
+#include <string>
 
 World::World(sf::RenderWindow& w)
     : window(w)
@@ -18,7 +18,8 @@ World::World(sf::RenderWindow& w)
     , pickupSpawnPoints()
     , counter(sf::Time::Zero)
     , spawnTime(sf::seconds(1.0f))
-    , playerHp(nullptr)
+    , scoreCounter(nullptr)
+    , score(0)
 {
     //When world is created, load all the textures and build the world
     loadResources();
@@ -34,10 +35,6 @@ void World::update(sf::Time dt)
     playerActor->setVelocity(0.f, 0.f);
     crosshair->update();
     playerActor->lookAt(crosshair->getPosition());
-    //TODO: Remove the following when a GUI is implemented
-    std::ostringstream hp;
-    hp << "HP " << playerActor->getHealth() << "/" << 3; //3 is the max health
-    playerHp->setText(hp.str());
 
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
@@ -64,6 +61,9 @@ void World::update(sf::Time dt)
         spawn<Actor>(enemySpawnPoints, false);
         counter = sf::Time::Zero;
     }
+
+    //Update score counter
+    scoreCounter->setText("Score: " + std::to_string(score));
 
     //Update the sound player
     updateSound();
@@ -101,6 +101,7 @@ void World::loadResources()
     textures.load(Textures::Grass, "resources/grass_tile.png");
     textures.load(Textures::Snatcher, "resources/snatcher.png");
     textures.load(Textures::Healkit, "resources/healkit.png");
+    textures.load(Textures::Heart, "resources/heart.png");
     fonts.load(Fonts::Main, "resources/Jellee-Roman.ttf"); //FIXME: readding fonts already in context
 }
 
@@ -132,12 +133,28 @@ void World::buildWorld()
     std::unique_ptr<SoundNode> soundNode(new SoundNode(soundPlayer));
     graph.attachChild(std::move(soundNode));
 
-    //TODO: remove the following when a GUI is implemented
-    //Add text to show player hp
-    std::unique_ptr<TextNode> hpText(new TextNode(fonts, "HP"));
-    hpText->setPosition(0.f, 30.0f);
-    playerHp = hpText.get();
-    playerActor->attachChild(std::move(hpText));
+    /*
+    //Add hearts showing player HP
+    sf::Texture& heartTexture = textures.get(Textures::Heart);
+    std::unique_ptr<SpriteNode> hp1(new SpriteNode(heartTexture));
+    hp1->setPosition(-worldView.getSize().x / 2.f + 10.f,
+        -worldView.getSize().y / 2.f + 10.f);
+    std::unique_ptr<SpriteNode> hp2(new SpriteNode(heartTexture));
+    hp2->setPosition(hp1->getPosition().x + 30.f, hp1->getPosition().y);
+    std::unique_ptr<SpriteNode> hp3(new SpriteNode(heartTexture));
+    hp3->setPosition(hp2->getPosition().x + 30.f, hp2->getPosition().y);
+    playerActor->attachChild(std::move(hp1));
+    playerActor->attachChild(std::move(hp2));
+    playerActor->attachChild(std::move(hp3));
+    */
+
+    //Add score counter
+    std::unique_ptr<TextNode> scoreText(new TextNode(fonts, "Score: 0"));
+    scoreText->setPosition(-worldView.getSize().x / 2.f + 60.f,
+                           -worldView.getSize().y / 2.f + 20.f);
+    scoreCounter = scoreText.get();
+    playerActor->attachChild(std::move(scoreText));
+
 
     //Add enemies and pickups
     initializeSpawnPoints();
@@ -145,6 +162,13 @@ void World::buildWorld()
     spawn<Actor>(enemySpawnPoints, false);
     spawn<Pickup>(pickupSpawnPoints, true);
     spawn<Pickup>(pickupSpawnPoints, true);
+}
+
+//Updates the listener position to be at the player actor's position and cleans up sounds
+void World::updateSound()
+{
+    soundPlayer.setListenerPosition(playerActor->getWorldPosition());
+    soundPlayer.cleanUp();
 }
 
 //Adds all the initial spawn points for enemies and pickups in the world
@@ -170,13 +194,6 @@ void World::addSpawn(Pickup::Type type, float x, float y)
 {
     SpawnPoint<Pickup::Type> sp(type, spawnPosition.x + x, spawnPosition.y + y);
     pickupSpawnPoints.push_back(sp);
-}
-
-//Updates the listener position to be at the player actor's position and cleans up sounds
-void World::updateSound()
-{
-    soundPlayer.setListenerPosition(playerActor->getWorldPosition());
-    soundPlayer.cleanUp();
 }
 
 //Checks for collisions in the world, and then for each pair of colliding objects it
@@ -207,7 +224,7 @@ void World::handleCollisions()
             auto& enemy = static_cast<Actor&>(*colliders.first);
             auto& projectile = static_cast<Projectile&>(*colliders.second);
 
-            enemy.damage(projectile.getDamage());
+            score += enemy.damage(projectile.getDamage());
             projectile.destroy();
         }
 

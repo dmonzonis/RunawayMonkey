@@ -20,6 +20,7 @@ enum ID
     Poop,
     Healkit,
     Crosshair,
+    Heart,
     Grass,
     TitleBackground,
     TextureCount,

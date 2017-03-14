@@ -151,7 +151,8 @@ private:
     std::vector<SpawnPoint<Actor::Type>> enemySpawnPoints;
     std::vector<SpawnPoint<Pickup::Type>> pickupSpawnPoints;
     sf::Time counter, spawnTime;
-    TextNode *playerHp; //TODO: remove when a GUI is implemented
+    TextNode *scoreCounter;
+    int score;
 };
 
 //Selects a random enemy from the spawn list and spawns it, removing it from the list

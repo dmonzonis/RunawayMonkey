@@ -35,8 +35,8 @@ public:
 public:
     /**
      * @param type Define actor type from Actor::Type.
-     *
      * @param textures Reference to TextureHolder to grab textures from.
+     * @param score Amount of score points the actor awards when killed.
      */
     explicit Actor(Type type, const TextureHolder& textures);
 
@@ -64,10 +64,13 @@ public:
      * the @ref die() method is called. If the actor's health surpasses
      * the maximum health permitted after the damage, the actor's health
      * is set to the maximum health permitted.
+     * Then, returns the actor's score value if it died, or 0 otherwise.
      *
      * @param amount Damage to be dealt to the actor.
+     *
+     * @return The actor's score if it died by the damage, 0 otherwise.
      */
-    void damage(int amount);
+    int damage(int amount);
 
     /**
      * Destroy actor. Calls WorldNode::destroy().
@@ -115,4 +118,5 @@ private:
     int health, maxHealth;
     bool shooting;
     sf::Time shootRate, cooldown;
+    int score;
 };

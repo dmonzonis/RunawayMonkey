@@ -19,6 +19,17 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
     sprite.setTexture(textures.get(actorTexture));
     centerOrigin(sprite);
     setSpeed(150.0f);
+
+    //Set score to award when killed
+    switch (type)
+    {
+    case Snatcher:
+        score = 10;
+        break;
+    default:
+        score = 0;
+        break;
+    }
 }
 
 Category::Type Actor::getCategory() const
@@ -39,18 +50,20 @@ void Actor::setHealth(int health)
     this->health = health;
 }
 
-void Actor::damage(int amount)
+int Actor::damage(int amount)
 {
     health -= amount;
     if (health <= 0)
     {
         health = 0;
         die();
+        return score;
     }
     else if (health > maxHealth)
     {
         health = maxHealth;
     }
+    return 0;
 }
 
 void Actor::die()
