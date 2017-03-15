@@ -7,8 +7,6 @@
 Actor::Actor(Type actorType, const TextureHolder& textures)
     : textures(textures)
     , type(actorType)
-    , health(3)
-    , maxHealth(3)
     , shooting(false)
     , shootRate(sf::seconds(0.25f))
     , cooldown(sf::seconds(0.f))
@@ -18,16 +16,24 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
     assert(actorTexture < Textures::TextureCount);
     sprite.setTexture(textures.get(actorTexture));
     centerOrigin(sprite);
-    setSpeed(150.0f);
 
     //Set score to award when killed
     switch (type)
     {
     case Snatcher:
+        health = maxHealth = 3;
         score = 10;
+        setSpeed(150.f);
+        break;
+    case Dog:
+        health = maxHealth = 1;
+        score = 15;
+        setSpeed(400.f);
         break;
     default:
+	health = maxHealth = 3;
         score = 0;
+	setSpeed(150.f);
         break;
     }
 }

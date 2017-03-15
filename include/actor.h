@@ -30,6 +30,7 @@ public:
         None,
         Monkey,
         Snatcher,
+        Dog,
     };
 
 public:

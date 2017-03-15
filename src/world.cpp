@@ -100,6 +100,7 @@ void World::loadResources()
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
     textures.load(Textures::Snatcher, "resources/snatcher.png");
+    textures.load(Textures::Dog, "resources/rottweiler.png");
     textures.load(Textures::Healkit, "resources/healkit.png");
     textures.load(Textures::Heart, "resources/heart.png");
     fonts.load(Fonts::Main, "resources/Jellee-Roman.ttf"); //FIXME: readding fonts already in context
@@ -174,9 +175,15 @@ void World::updateSound()
 //Adds all the initial spawn points for enemies and pickups in the world
 void World::initializeSpawnPoints()
 {
+    //Enemies
     addSpawn(Actor::Type::Snatcher, 200.f, -200.f);
     addSpawn(Actor::Type::Snatcher, -800.f, 540.f);
     addSpawn(Actor::Type::Snatcher, 400.f, 350.f);
+
+    addSpawn(Actor::Type::Dog, 750.f, 1000.f);
+    addSpawn(Actor::Type::Dog, -400.f, -1000.f);
+
+    //Pickups
     addSpawn(Pickup::Type::Healkit, 100, -400);
     addSpawn(Pickup::Type::Healkit, -300, 100);
     addSpawn(Pickup::Type::Healkit, 950, 850);

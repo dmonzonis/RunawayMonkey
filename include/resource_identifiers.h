@@ -16,6 +16,7 @@ enum ID
     None,
     Monkey,
     Snatcher,
+    Dog,
     /* End actor textures */
     Poop,
     Healkit,
