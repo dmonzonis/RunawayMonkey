@@ -36,6 +36,10 @@ void World::update(sf::Time dt)
     crosshair->update();
     playerActor->lookAt(crosshair->getPosition());
 
+    //Update score counter (has to be done before any collision handling to avoid
+    //being destroyed)
+    scoreCounter->setText("Score: " + std::to_string(score));
+
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
 
@@ -61,9 +65,6 @@ void World::update(sf::Time dt)
         spawn<Actor>(enemySpawnPoints, false);
         counter = sf::Time::Zero;
     }
-
-    //Update score counter
-    scoreCounter->setText("Score: " + std::to_string(score));
 
     //Update the sound player
     updateSound();
