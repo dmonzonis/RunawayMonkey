@@ -36,9 +36,10 @@ void World::update(sf::Time dt)
     crosshair->update();
     playerActor->lookAt(crosshair->getPosition());
 
-    //Update score counter (has to be done before any collision handling to avoid
-    //being destroyed)
+    //Update HUD: score and player health
     scoreCounter->setText("Score: " + std::to_string(score));
+    commandQueue.push(Command(UpdatePlayerHealth(playerActor->getHealth(), textures),
+                              Category::Sprite));
 
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
@@ -104,6 +105,7 @@ void World::loadResources()
     textures.load(Textures::Dog, "resources/rottweiler.png");
     textures.load(Textures::Healkit, "resources/healkit.png");
     textures.load(Textures::Heart, "resources/heart.png");
+    textures.load(Textures::EmptyHeart, "resources/empty_heart.png");
     fonts.load(Fonts::Main, "resources/Jellee-Roman.ttf"); //FIXME: readding fonts already in context
 }
 
@@ -135,20 +137,21 @@ void World::buildWorld()
     std::unique_ptr<SoundNode> soundNode(new SoundNode(soundPlayer));
     graph.attachChild(std::move(soundNode));
 
-    /*
     //Add hearts showing player HP
     sf::Texture& heartTexture = textures.get(Textures::Heart);
     std::unique_ptr<SpriteNode> hp1(new SpriteNode(heartTexture));
-    hp1->setPosition(-worldView.getSize().x / 2.f + 10.f,
-        -worldView.getSize().y / 2.f + 10.f);
+    hp1->setPosition(worldView.getSize().x / 2.f - 50.f,
+                     -worldView.getSize().y / 2.f + 20.f);
+    hp1->setId(1);
     std::unique_ptr<SpriteNode> hp2(new SpriteNode(heartTexture));
-    hp2->setPosition(hp1->getPosition().x + 30.f, hp1->getPosition().y);
+    hp2->setPosition(hp1->getPosition().x - 40.f, hp1->getPosition().y);
+    hp2->setId(2);
     std::unique_ptr<SpriteNode> hp3(new SpriteNode(heartTexture));
-    hp3->setPosition(hp2->getPosition().x + 30.f, hp2->getPosition().y);
+    hp3->setPosition(hp2->getPosition().x - 40.f, hp2->getPosition().y);
+    hp3->setId(3);
     playerActor->attachChild(std::move(hp1));
     playerActor->attachChild(std::move(hp2));
     playerActor->attachChild(std::move(hp3));
-    */
 
     //Add score counter
     std::unique_ptr<TextNode> scoreText(new TextNode(fonts, "Score: 0"));

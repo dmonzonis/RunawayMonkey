@@ -44,13 +44,31 @@ public:
     SpriteNode(const sf::Texture& texture, const sf::IntRect& textureRect);
 
     /**
-     * @return Category::None
+     * @return Category::Sprite
      */
     virtual Category::Type getCategory() const;
+
+    /**
+     * Sets the node's identifier to a certain value to differentiate it from others.
+     */
+    void setId(int id);
+
+    /**
+     * Gets the node's identifier, which is 0 if it has not been previously set.
+     *
+     * @return The node's identifier.
+     */
+    int getId() const;
+
+    /**
+     * Sets the sprite's texture to the given texture reference.
+     */
+    void setTexture(const sf::Texture& texture);
 
 private:
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
     sf::Sprite sprite;
+    int id; //used to differentiate some special sprites from others
 };

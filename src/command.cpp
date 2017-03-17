@@ -1,6 +1,7 @@
 #include "command.h"
 #include "actor.h"
 #include "projectile.h"
+#include "sprite_node.h"
 #include "utility.h"
 
 Command::Command()
@@ -42,4 +43,32 @@ void InstanceProjectile::operator() (WorldNode& node, sf::Time) const
     proj->setDirection(direction);
     //Attach it to the node that executed the command
     node.attachChild(std::move(proj));
+}
+
+void UpdatePlayerHealth::operator() (WorldNode& node, sf::Time) const
+{
+    assert(health >= 0);
+    SpriteNode& spriteNode = static_cast<SpriteNode&>(node);
+    //Use filled or empty heart depending on the player's health
+    switch (spriteNode.getId())
+    {
+    case 1:
+        if (health >= 1)
+            spriteNode.setTexture(textures.get(Textures::Heart));
+        else
+            spriteNode.setTexture(textures.get(Textures::EmptyHeart));
+        break;
+    case 2:
+        if (health >= 2)
+            spriteNode.setTexture(textures.get(Textures::Heart));
+        else
+            spriteNode.setTexture(textures.get(Textures::EmptyHeart));
+        break;
+    case 3:
+        if (health == 3)
+            spriteNode.setTexture(textures.get(Textures::Heart));
+        else
+            spriteNode.setTexture(textures.get(Textures::EmptyHeart));
+        break;
+    }
 }

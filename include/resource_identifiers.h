@@ -22,6 +22,7 @@ enum ID
     Healkit,
     Crosshair,
     Heart,
+    EmptyHeart,
     Grass,
     TitleBackground,
     TextureCount,

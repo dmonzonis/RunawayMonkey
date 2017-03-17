@@ -20,5 +20,6 @@ enum Type
     Projectile,
     Text,
     Sound,
+    Sprite,
 };
 }

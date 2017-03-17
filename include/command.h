@@ -157,5 +157,39 @@ struct InstanceProjectile
     const sf::Vector2f origin;
     sf::Vector2f direction;
     int type;
-    const TextureHolder &textures;
+    const TextureHolder& textures;
+};
+
+/**
+ * @brief Functor to update the player's health in the HUD
+ *
+ * See @ref Functors for more information on what they are and
+ * how they are used.
+ *
+ * The function returned will update the sprite node if it has identifiers 1, 2 or 3
+ * (which are the hearts corresponding to the player's health), to a full heart or
+ * an empty heart depending on the player's health.
+ *
+ * @see Command
+ * @see SpriteNode
+ */
+struct UpdatePlayerHealth
+{
+    /**
+     * UpdatePlayerHealth constructor.
+     *
+     * @param health Current health of the player actor.
+     * @param textures Reference to the TextureHolder for the heart sprites to
+     * grab their new texture from.
+     *
+     * @see Actor
+     */
+    UpdatePlayerHealth(const int health, const TextureHolder& textures)
+        : health(health)
+        , textures(textures)
+    {
+    }
+    void operator() (WorldNode& node, sf::Time) const;
+    const int health;
+    const TextureHolder& textures;
 };

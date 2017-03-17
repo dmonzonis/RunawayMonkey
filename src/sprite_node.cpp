@@ -2,6 +2,7 @@
 
 SpriteNode::SpriteNode(const sf::Texture& texture)
     : sprite(texture)
+    , id(0)
 {
 }
 
@@ -17,5 +18,20 @@ void SpriteNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) 
 
 Category::Type SpriteNode::getCategory() const
 {
-    return Category::None;
+    return Category::Sprite;
+}
+
+void SpriteNode::setId(int id)
+{
+    this->id = id;
+}
+
+int SpriteNode::getId() const
+{
+    return id;
+}
+
+void SpriteNode::setTexture(const sf::Texture& texture)
+{
+    sprite.setTexture(texture);
 }

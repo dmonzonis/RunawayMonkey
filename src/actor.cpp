@@ -31,9 +31,9 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
         setSpeed(400.f);
         break;
     default:
-	health = maxHealth = 3;
+        health = maxHealth = 3;
         score = 0;
-	setSpeed(150.f);
+        setSpeed(150.f);
         break;
     }
 }
