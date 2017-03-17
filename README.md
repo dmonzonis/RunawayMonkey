@@ -4,7 +4,7 @@ Simple game made with C++11 using the SFML library. It's still a **WIP** so even
 
 Documentation
 --------------------
-See the project's documentation [here] (https://monzo94.github.io/RunawayMonkey/).
+See the project's documentation [here](https://monzo94.github.io/RunawayMonkey/).
 
 Installation
 --------------------
@@ -20,7 +20,7 @@ pacman -S sfml
 ```
 You can compile the game either using the provided Makefile, or by using CMake.
 
-###Make
+### Make
 At the project's root directory, simply run
 ```
 make
@@ -31,14 +31,14 @@ make clean && make
 ```
 This will remove all the previously compiled object files as well as the executable and rebuild them.
 
-###CMake
+### CMake
 At the project's root directory, run
 ```
 mkdir build && cd build && cmake ..
 ```
 You can then use your build system to build the game. In the case of make, simply run make.
 
-###Running the game
+### Running the game
 To run the game, while at the project's root directory, run
 ```
 bin/monkey.
