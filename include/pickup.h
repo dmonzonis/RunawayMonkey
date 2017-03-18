@@ -23,6 +23,7 @@ public:
     enum Type
     {
         Healkit, ///< Heals the player by 1 health point.
+        BananaPack, ///< Gives the player some bananas.
     };
 
 public:

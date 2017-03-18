@@ -2,26 +2,30 @@
 #include "utility.h"
 
 const float poopSpeed = 500.0f,
-            bananaSpeed = 50.0f;
+            bananaSpeed = 600.0f;
 
 Projectile::Projectile(const TextureHolder& textures, Type type)
     : type(type)
-    , damage(1)
     , counter(sf::Time::Zero)
-    , lifetime(sf::seconds(3.0f))
 {
-    sprite.setTexture(textures.get(Textures::Poop));
-
     switch (type)
     {
     case Poop:
+        sprite.setTexture(textures.get(Textures::Poop));
+        damage = 1;
         setSpeed(poopSpeed);
+        lifetime = sf::seconds(2.0f);
         break;
     case Banana:
+        sprite.setTexture(textures.get(Textures::Banana));
+        damage = 3;
         setSpeed(bananaSpeed);
+        lifetime = sf::seconds(0.5f);
         break;
     default:
+        damage = 0;
         setSpeed(poopSpeed);
+        lifetime = sf::seconds(3.0f);
         break;
     }
 
@@ -57,7 +61,13 @@ void Projectile::updateCurrent(sf::Time dt)
 {
     counter += dt;
     if (counter >= lifetime)
+    {
+        if (type == Banana)
+        {
+            //TODO: create explosion
+        }
         destroy();
+    }
     else
         move(velocity * dt.asSeconds());
 }

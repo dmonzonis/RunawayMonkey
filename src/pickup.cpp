@@ -8,6 +8,9 @@ Pickup::Pickup(Type type, const TextureHolder& textures)
     case Healkit:
         sprite.setTexture(textures.get(Textures::Healkit));
         break;
+    case BananaPack:
+        sprite.setTexture(textures.get(Textures::BananaPack));
+        break;
     default:
         sprite.setTexture(textures.get(Textures::None));
         break;
@@ -20,6 +23,9 @@ void Pickup::apply(Actor& player) const
     {
     case Healkit:
         player.damage(-1);
+        break;
+    case BananaPack:
+        player.giveAmmo(2);
         break;
     default:
         break;

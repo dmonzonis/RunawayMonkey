@@ -99,6 +99,8 @@ void World::loadResources()
     textures.load(Textures::None, "resources/no_texture.png");
     textures.load(Textures::Monkey, "resources/monkey.png");
     textures.load(Textures::Poop, "resources/poop.png");
+    textures.load(Textures::Banana, "resources/banana.png");
+    textures.load(Textures::BananaPack, "resources/banana_pack.png");
     textures.load(Textures::Crosshair, "resources/crosshair.png");
     textures.load(Textures::Grass, "resources/grass_tile.png");
     textures.load(Textures::Snatcher, "resources/snatcher.png");
@@ -180,17 +182,17 @@ void World::updateSound()
 void World::initializeSpawnPoints()
 {
     //Enemies
-    addSpawn(Actor::Type::Snatcher, 200.f, -200.f);
-    addSpawn(Actor::Type::Snatcher, -800.f, 540.f);
-    addSpawn(Actor::Type::Snatcher, 400.f, 350.f);
+    addSpawn(Actor::Snatcher, 200.f, -200.f);
+    addSpawn(Actor::Snatcher, -800.f, 540.f);
+    addSpawn(Actor::Snatcher, 400.f, 350.f);
 
-    addSpawn(Actor::Type::Dog, 750.f, 1000.f);
-    addSpawn(Actor::Type::Dog, -400.f, -1000.f);
+    addSpawn(Actor::Dog, 750.f, 1000.f);
+    addSpawn(Actor::Dog, -400.f, -1000.f);
 
     //Pickups
-    addSpawn(Pickup::Type::Healkit, 100, -400);
-    addSpawn(Pickup::Type::Healkit, -300, 100);
-    addSpawn(Pickup::Type::Healkit, 950, 850);
+    addSpawn(Pickup::Healkit, 100, -400);
+    addSpawn(Pickup::Healkit, -300, 100);
+    addSpawn(Pickup::BananaPack, 150, 150);
 }
 
 //Adds an enemy spawn point at a certain position in the world

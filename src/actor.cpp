@@ -10,6 +10,7 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
     , shooting(false)
     , shootRate(sf::seconds(0.25f))
     , cooldown(sf::seconds(0.f))
+    , ammo(0)
 {
     //Cast actor type to texture. For this to work they have to be ordered the same
     Textures::ID actorTexture = static_cast<Textures::ID>(actorType);
@@ -75,6 +76,17 @@ int Actor::damage(int amount)
 void Actor::die()
 {
     destroy();
+}
+
+void Actor::giveAmmo(int amount)
+{
+    assert(ammo + amount >= 0);
+    ammo += amount;
+}
+
+int Actor::getAmmo() const
+{
+    return ammo;
 }
 
 bool Actor::isShooting() const

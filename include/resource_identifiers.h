@@ -19,6 +19,8 @@ enum ID
     Dog,
     /* End actor textures */
     Poop,
+    Banana,
+    BananaPack,
     Healkit,
     Crosshair,
     Heart,

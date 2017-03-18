@@ -79,6 +79,19 @@ public:
     void die();
 
     /**
+     * Gives ammo to the actor equal to the amount.
+     *
+     * @param Amount of ammo to give to the actor. Use a negative value to
+     * take ammo from it.
+     */
+    void giveAmmo(int amount);
+
+    /**
+     * @return The amount of ammo the actor has.
+     */
+    int getAmmo() const;
+
+    /**
      * @return true if the actor is in a shooting state, false otherwise.
      */
     bool isShooting() const;
@@ -119,5 +132,5 @@ private:
     int health, maxHealth;
     bool shooting;
     sf::Time shootRate, cooldown;
-    int score;
+    int score, ammo;
 };

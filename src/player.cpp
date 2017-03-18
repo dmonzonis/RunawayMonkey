@@ -23,28 +23,19 @@ Player::Player()
     actionBinding[MoveLeft] = Command(MoveActor(-speed, 0.f), Category::Player);
     actionBinding[MoveDown] = Command(MoveActor(0.f, speed), Category::Player);
     actionBinding[MoveRight] = Command(MoveActor(speed, 0.f), Category::Player);
-    //XXX: DEBUG
-    actionBinding[Debug1].action =
-        [] (WorldNode& node, sf::Time)
-    {
-        std::cout << node.getPosition().x << ", "
-                  << node.getPosition().y << std::endl;
-    };
-    actionBinding[Debug2].action =
-        [] (WorldNode&, sf::Time)
-    {
-        std::cout << randomInt(100) << std::endl;
-    };
 }
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
-    //XXX: DEBUG PURPOSES, REMOVE FOR RELEASE
-    if (event.type == sf::Event::KeyPressed
-            && event.key.code == sf::Keyboard::P)
+    if (event.type == sf::Event::MouseButtonPressed
+            && event.mouseButton.button== sf::Mouse::Right)
     {
-        std::cout << playerActor->getPosition().x << ", "
-                  << playerActor->getPosition().y << std::endl;
+        //Shoot a banana!
+        if (playerActor->getAmmo() > 0)
+        {
+            playerActor->shoot(Projectile::Banana, &commands);
+            playerActor->giveAmmo(-1);
+        }
     }
 }
 
