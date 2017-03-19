@@ -6,7 +6,6 @@
 #include <iostream>
 
 Player::Player()
-    : speed(250.f)
 {
     //Initial hardcoded keybindings
     //TODO: Make Settings class to handle this
@@ -17,12 +16,6 @@ Player::Player()
     //TODO: remove Debug keys for release
     keyBinding[sf::Keyboard::N] = Debug1;
     keyBinding[sf::Keyboard::M] = Debug2;
-
-    //Action bindings
-    actionBinding[MoveUp] = Command(MoveActor(0.f, -speed), Category::Player);
-    actionBinding[MoveLeft] = Command(MoveActor(-speed, 0.f), Category::Player);
-    actionBinding[MoveDown] = Command(MoveActor(0.f, speed), Category::Player);
-    actionBinding[MoveRight] = Command(MoveActor(speed, 0.f), Category::Player);
 }
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
@@ -89,6 +82,11 @@ Category::Type Player::getCategory() const
 void Player::setActor(Actor *actor)
 {
     playerActor = actor;
+    float speed = playerActor->getSpeed();
+    actionBinding[MoveUp] = Command(MoveActor(0.f, -speed), Category::Player);
+    actionBinding[MoveLeft] = Command(MoveActor(-speed, 0.f), Category::Player);
+    actionBinding[MoveDown] = Command(MoveActor(0.f, speed), Category::Player);
+    actionBinding[MoveRight] = Command(MoveActor(speed, 0.f), Category::Player);
 }
 
 Actor* Player::getActor() const

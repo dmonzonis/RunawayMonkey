@@ -110,6 +110,7 @@ public:
      * @brief Assigns a pointer to an existing actor as the player actor.
      * Actions that directly use Actor methods like Actor::shoot in
      * Player::handleRealTimeInput will use this pointer to execute them.
+     * Movement keys are also bound to the movement of the actor.
      */
     void setActor(Actor*);
 
@@ -126,7 +127,6 @@ private:
     static bool isRealTimeAction(Action action);
 
 private:
-    float speed;
     std::map<sf::Keyboard::Key, Action> keyBinding;
     std::map<Action, Command> actionBinding;
     Actor *playerActor;
