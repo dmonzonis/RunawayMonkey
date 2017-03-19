@@ -38,6 +38,7 @@ void World::update(sf::Time dt)
 
     //Update HUD: score and player health
     scoreCounter->setText("Score: " + std::to_string(score));
+    ammoCounter->setText(std::to_string(playerActor->getAmmo()));
     commandQueue.push(Command(UpdatePlayerHealth(playerActor->getHealth(), textures),
                               Category::Sprite));
 
@@ -162,6 +163,16 @@ void World::buildWorld()
     scoreCounter = scoreText.get();
     playerActor->attachChild(std::move(scoreText));
 
+    //Add ammo counter
+    std::unique_ptr<TextNode> ammoText(new TextNode(fonts, "0"));
+    std::unique_ptr<SpriteNode> ammoSprite(new SpriteNode(textures.get(Textures::Banana)));
+    ammoText->setPosition(worldView.getSize().x / 2.f - 30.f,
+                          -worldView.getSize().y / 2.f + 75.f);
+    ammoSprite->setPosition(worldView.getSize().x / 2.f - 80.f,
+                            -worldView.getSize().y / 2.f + 60.f);
+    ammoCounter = ammoText.get();
+    playerActor->attachChild(std::move(ammoText));
+    playerActor->attachChild(std::move(ammoSprite));
 
     //Add enemies and pickups
     initializeSpawnPoints();

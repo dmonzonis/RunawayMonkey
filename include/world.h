@@ -151,7 +151,7 @@ private:
     std::vector<SpawnPoint<Actor::Type>> enemySpawnPoints;
     std::vector<SpawnPoint<Pickup::Type>> pickupSpawnPoints;
     sf::Time counter, spawnTime;
-    TextNode *scoreCounter;
+    TextNode *scoreCounter, *ammoCounter;
     int score;
 };
 
