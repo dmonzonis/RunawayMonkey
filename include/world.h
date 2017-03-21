@@ -121,6 +121,8 @@ private:
 
     void handleCollisions();
 
+    void confinePlayer(sf::Time dt);
+
 private:
     template <typename Type>
     struct SpawnPoint

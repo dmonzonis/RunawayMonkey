@@ -45,6 +45,9 @@ void World::update(sf::Time dt)
     while (!commandQueue.isEmpty())
         graph.onCommand(commandQueue.pop(), dt);
 
+    //Confine player in the world
+    confinePlayer(dt);
+
     //Move view with player (player is always in the center)
     sf::Vector2f velocity = playerActor->getVelocity();
     worldView.move(velocity.x * dt.asSeconds(),
@@ -178,8 +181,9 @@ void World::buildWorld()
     initializeSpawnPoints();
     //Spawn a couple of pickups and one enemy
     spawn<Actor>(enemySpawnPoints, false);
-    spawn<Pickup>(pickupSpawnPoints, true);
-    spawn<Pickup>(pickupSpawnPoints, true);
+    spawn<Pickup>(pickupSpawnPoints, false);
+    spawn<Pickup>(pickupSpawnPoints, false);
+    spawn<Pickup>(pickupSpawnPoints, false);
 }
 
 //Updates the listener position to be at the player actor's position and cleans up sounds
@@ -286,5 +290,25 @@ bool categoryMatch(WorldNode::Pair& colliders, Category::Type type1, Category::T
     else
     {
         return false;
+    }
+}
+
+//Make sure player is within the world bounds
+void World::confinePlayer(sf::Time dt)
+{
+    if (playerActor == nullptr)
+        return;
+    sf::Vector2f playerPosAfterUpdate = playerActor->getWorldPosition() + playerActor->getVelocity()*dt.asSeconds();
+    //Check horizontal
+    if (playerPosAfterUpdate.x < worldBounds.left ||
+            playerPosAfterUpdate.x > worldBounds.width)
+    {
+        playerActor->setVelocity(0.f, playerActor->getVelocity().y*dt.asSeconds());
+    }
+    //Check vertical
+    if (playerPosAfterUpdate.y < worldBounds.top ||
+            playerPosAfterUpdate.y > worldBounds.height)
+    {
+        playerActor->setVelocity(playerActor->getVelocity().x*dt.asSeconds(), 0.f);
     }
 }
