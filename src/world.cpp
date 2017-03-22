@@ -146,8 +146,8 @@ void World::buildWorld()
     //Add hearts showing player HP
     sf::Texture& heartTexture = textures.get(Textures::Heart);
     std::unique_ptr<SpriteNode> hp1(new SpriteNode(heartTexture));
-    hp1->setPosition(worldView.getSize().x / 2.f - 50.f,
-                     -worldView.getSize().y / 2.f + 20.f);
+    hp1->setPosition(worldView.getSize().x / 2.f - 30.f,
+                     -worldView.getSize().y / 2.f + 30.f);
     hp1->setId(1);
     std::unique_ptr<SpriteNode> hp2(new SpriteNode(heartTexture));
     hp2->setPosition(hp1->getPosition().x - 40.f, hp1->getPosition().y);
@@ -171,8 +171,8 @@ void World::buildWorld()
     std::unique_ptr<SpriteNode> ammoSprite(new SpriteNode(textures.get(Textures::Banana)));
     ammoText->setPosition(worldView.getSize().x / 2.f - 30.f,
                           -worldView.getSize().y / 2.f + 75.f);
-    ammoSprite->setPosition(worldView.getSize().x / 2.f - 80.f,
-                            -worldView.getSize().y / 2.f + 60.f);
+    ammoSprite->setPosition(worldView.getSize().x / 2.f - 75.f,
+                            -worldView.getSize().y / 2.f + 70.f);
     ammoCounter = ammoText.get();
     playerActor->attachChild(std::move(ammoText));
     playerActor->attachChild(std::move(ammoSprite));

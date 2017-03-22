@@ -1,9 +1,11 @@
 #include "sprite_node.h"
+#include "utility.h"
 
 SpriteNode::SpriteNode(const sf::Texture& texture)
     : sprite(texture)
     , id(0)
 {
+    centerOrigin(sprite);
 }
 
 SpriteNode::SpriteNode(const sf::Texture& texture, const sf::IntRect& textureRect)
