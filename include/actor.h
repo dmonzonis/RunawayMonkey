@@ -5,10 +5,10 @@
 
 #pragma once
 
+#include <memory>
+
 #include "command_queue.h"
 #include "projectile.h"
-
-#include <memory>
 
 /**
  * @brief An Entity that is "alive" and interact with the world.
@@ -17,32 +17,32 @@
  * health, and they get destroyed when their health reaches 0.
  * Actors have Category types depending on the internal Actor::Type, which
  * will determine which types of commands can be executed by them.
- * Some actors may also be able to shoot projectiles, so the class also has methods
- * for projectile shooting.
+ * Some actors may also be able to shoot projectiles, so the class also has
+ * methods for projectile shooting.
  *
- * @see Command Depending on its type, actors can execute commands targeted for them.
+ * @see Command Depending on its type, actors can execute commands targeted for
+ * them.
  */
-class Actor : public Entity
-{
-public:
-    enum Type
-    {
+class Actor : public Entity {
+ public:
+    enum Type {
         None,
         Monkey,
         Snatcher,
         Dog,
     };
 
-public:
+ public:
     /**
      * @param type Define actor type from Actor::Type.
      * @param textures Reference to TextureHolder to grab textures from.
      * @param score Amount of score points the actor awards when killed.
      */
-    explicit Actor(Type type, const TextureHolder& textures);
+    explicit Actor(Type type, const TextureHolder &textures);
 
     /**
-     * @return Category::Player if Actor::Type is monkey, Category::Enemy otherwise.
+     * @return Category::Player if Actor::Type is monkey, Category::Enemy
+     * otherwise.
      */
     virtual Category::Type getCategory() const;
 
@@ -103,13 +103,13 @@ public:
 
     /**
      * If the actor can, shoot a projectile.
-     * If the actor hasn't shot a projectile in at least a time equal to its shooting cooldown,
-     * shoot a projectile of a given type.
+     * If the actor hasn't shot a projectile in at least a time equal to its
+     * shooting cooldown, shoot a projectile of a given type.
      *
      * @param type Type of the projectile to be instantiated.
      * @param commands Pointer to the world's CommandQueue.
      */
-    void shoot(Projectile::Type type, CommandQueue* commands);
+    void shoot(Projectile::Type type, CommandQueue *commands);
 
     /**
      * Creates a Command of category Category::Sound (so that it is only
@@ -119,14 +119,14 @@ public:
      * @param id Sound to be played.
      * @param commands Pointer to the world's CommandQueue
      */
-    void playSound(Sounds::ID id, CommandQueue* commands);
+    void playSound(Sounds::ID id, CommandQueue *commands);
 
-private:
+ private:
     bool canShoot() const;
-    virtual void drawCurrent(sf::RenderTarget&, sf::RenderStates states) const;
+    virtual void drawCurrent(sf::RenderTarget &, sf::RenderStates states) const;
     virtual void updateCurrent(sf::Time);
 
-private:
+ private:
     const TextureHolder &textures;
     Type type;
     int health, maxHealth;

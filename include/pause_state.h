@@ -4,6 +4,8 @@
  */
 #pragma once
 
+#include <vector>
+
 #include "state.h"
 
 /**
@@ -17,19 +19,18 @@
  *
  * @see State
  */
-class PauseState : public State
-{
-public:
+class PauseState : public State {
+ public:
     /**
      * Default constructor of the pause state. It initializes the menu
      * options that will be presented to the player using the resources in
      * the context.
      */
-    PauseState(StateManager& manager, Context context);
+    PauseState(StateManager &manager, Context context);
 
     /**
      * Returns false, so states below this one won't update.
-     *
+     *a
      * @see StateManager::update
      */
     virtual bool update(sf::Time dt);
@@ -43,7 +44,7 @@ public:
      * Lets the player move around the options and choose one using
      * the keyboard arrows and return keys.
      */
-    virtual bool handleEvent(const sf::Event& event);
+    virtual bool handleEvent(const sf::Event &event);
 
     /**
      * Updates the options displayed so that the selected option has
@@ -51,14 +52,13 @@ public:
      */
     void updateOptionText();
 
-private:
-    enum Option
-    {
+ private:
+    enum Option {
         Resume,
         Quit,
     };
 
-private:
+ private:
     std::vector<sf::Text> options;
     std::size_t optionIndex;
 };

@@ -11,15 +11,14 @@
  *
  * @see State
  */
-class GameOverState : public State
-{
-public:
+class GameOverState : public State {
+ public:
     /**
      * Default constructor of the game over state. It initializes the
      * options that will be presented to the player using the resources in
      * the context.
      */
-    GameOverState(StateManager& manager, Context context);
+    GameOverState(StateManager &manager, Context context);
 
     /**
      * Returns true, so states below this one will still update.
@@ -37,7 +36,7 @@ public:
      * Lets the player move around the options and choose one using
      * the keyboard arrows and return keys.
      */
-    virtual bool handleEvent(const sf::Event& event);
+    virtual bool handleEvent(const sf::Event &event);
 
     /**
      * Updates the options displayed so that the selected option has
@@ -45,14 +44,13 @@ public:
      */
     void updateOptionText();
 
-private:
-    enum Option
-    {
+ private:
+    enum Option {
         Retry,
         Quit,
     };
 
-private:
+ private:
     std::vector<sf::Text> options;
     std::size_t optionIndex;
 };

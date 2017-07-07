@@ -5,13 +5,11 @@
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 
-namespace Textures
-{
-enum ID
-{
+namespace Textures {
+enum ID {
     /* Actor textures go in here in the same order as Actor category */
     None,
     Monkey,
@@ -31,29 +29,23 @@ enum ID
 };
 }
 
-namespace Fonts
-{
-enum ID
-{
+namespace Fonts {
+enum ID {
     Main,
 };
 }
 
-namespace Sounds
-{
-enum ID
-{
+namespace Sounds {
+enum ID {
     PoopThrow,
     PlayerDamaged,
     Powerup,
 };
 }
 
-//Forward declare ResourceHolder and define types
-template <typename Resource, typename Identifier>
-class ResourceHolder;
+// Forward declare ResourceHolder and define types
+template <typename Resource, typename Identifier> class ResourceHolder;
 
 typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
 typedef ResourceHolder<sf::Font, Fonts::ID> FontHolder;
 typedef ResourceHolder<sf::SoundBuffer, Sounds::ID> SoundBufferHolder;
-

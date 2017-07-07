@@ -4,29 +4,28 @@
  */
 #pragma once
 
+#include <cassert>
+#include <functional>
+#include <map>
+#include <vector>
+
 #include "state.h"
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-#include <vector>
-#include <map>
-#include <cassert>
-#include <functional>
-
 /**
  * @brief Manages states from a stack.
  *
  * The manager is a state machine that manages active states in a stack,
- * and has the power to update and render its active states. The manager also handles
- * the events in the program, which will be redirected to its active
+ * and has the power to update and render its active states. The manager also
+ * handles the events in the program, which will be redirected to its active
  * states.
  *
  * @see State
  */
-class StateManager : private sf::NonCopyable
-{
-public:
+class StateManager : private sf::NonCopyable {
+ public:
     /**
      * Actions that are not done immediately by the manager when
      * requested, but rather stored into a temporary pending changes
@@ -37,17 +36,16 @@ public:
      * @see popState
      * @see clearStates
      */
-    enum Action
-    {
+    enum Action {
         Push,
         Pop,
         Clear,
     };
 
-public:
+ public:
     /**
-     * Default constructor for the state manager. It requires an
-     * initial context.
+     * Default constructor for the state manager. It requires an initial
+     * context.
      *
      * @see State::Context
      */
@@ -59,8 +57,7 @@ public:
      * @param id Identifier of the state to be registered.
      * @tparam T Class for the state to be registered.
      */
-    template <typename T>
-    void registerState(States::ID id);
+    template <typename T> void registerState(States::ID id);
 
     /**
      * Recursively update active states in reverse order (like a stack). If
@@ -89,7 +86,7 @@ public:
      * @param event Event to handle. It will be passed to the currently
      * active states.
      */
-    void handleEvent(const sf::Event& event);
+    void handleEvent(const sf::Event &event);
 
     /**
      * Requests the manager to push a state into its stack.
@@ -115,35 +112,28 @@ public:
     void clearStates();
 
     /**
-     * @return true if the stack is empty (it has no states), false
-     * otherwise.
+     * @return true if the stack is empty (it has no states), false otherwise.
      */
     bool isEmpty() const;
 
-private:
+ private:
     State::Ptr createState(States::ID id);
     void applyChanges();
 
-private:
-    struct Change
-    {
+ private:
+    struct Change {
         explicit Change(Action action, States::ID id = States::None);
         Action action;
         States::ID id;
     };
 
-private:
+ private:
     std::vector<State::Ptr> stateStack;
     std::vector<Change> pendingChanges;
     State::Context context;
     std::map<States::ID, std::function<State::Ptr()>> stateFactory;
 };
 
-template <typename T>
-void StateManager::registerState(States::ID id)
-{
-    stateFactory[id] = [this] ()
-    {
-        return State::Ptr(new T(*this, context));
-    };
+template <typename T> void StateManager::registerState(States::ID id) {
+    stateFactory[id] = [this]() { return State::Ptr(new T(*this, context)); };
 }

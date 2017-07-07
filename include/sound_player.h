@@ -4,13 +4,13 @@
  */
 #pragma once
 
+#include <list>
+
 #include "resource.h"
 #include "resource_identifiers.h"
 
-#include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
-
-#include <list>
+#include <SFML/System.hpp>
 
 /**
  * @brief Stores sounds and handles its reproduction and destruction.
@@ -21,18 +21,18 @@
  * finishes playing it destroys it. It also has methods for managing the
  * sf::Listener position and playing sounds at specific locations.
  */
-class SoundPlayer : private sf::NonCopyable
-{
-public:
+class SoundPlayer : private sf::NonCopyable {
+ public:
     /**
-     * Default constructor. Loads all the sound buffers from the resources folder
-     * (which have .wav format) to the object's memory, mapping them to their
-     * corresponding IDs from Sounds::ID.
+     * Default constructor. Loads all the sound buffers from the resources
+     * folder (which have .wav format) to the object's memory, mapping them to
+     * their corresponding IDs from Sounds::ID.
      */
     SoundPlayer();
 
     /**
-     * Plays the requested sound at the sf::Listener's location on the game plane.
+     * Plays the requested sound at the sf::Listener's location on the game
+     * plane.
      *
      * @param id ID from Sounds::ID of the sound to be played.
      */
@@ -65,8 +65,8 @@ public:
      */
     void setListenerPosition(sf::Vector2f position);
 
-private:
+ private:
     SoundBufferHolder soundBuffers;
-    //Use list since it is faster to remove elements that are in the middle
+    // Use list since it is faster to remove elements that are in the middle
     std::list<sf::Sound> sounds;
 };

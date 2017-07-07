@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-
-#include <random>
+#include <cassert>
 #include <cmath>
 #include <ctime>
-#include <cassert>
+#include <random>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 const double PI = 3.14159265358979;
 
@@ -23,7 +23,7 @@ const double PI = 3.14159265358979;
  * @param sprite Reference to the sprite that is to be centered. When the
  * function finishes, its origin will have changed to be at the center.
  */
-void centerOrigin(sf::Sprite&);
+void centerOrigin(sf::Sprite &);
 
 /**
  * Sets the origin of the text object to its center. The origin is the reference
@@ -32,7 +32,7 @@ void centerOrigin(sf::Sprite&);
  * @param sprite Reference to the text that is to be centered. When the
  * function finishes, its origin will have changed to be at the center.
  */
-void centerOrigin(sf::Text&);
+void centerOrigin(sf::Text &);
 
 /**
  * Changes the angle units from radians to degrees.
@@ -57,9 +57,9 @@ float toRadian(float deg);
  * passed in the argument (excluded). The random seed should be initialized
  * when the program starts, at Game::run().
  *
- * @param exclusiveMax Maximum integer to produce the random number from. The random
- * integer will be in the interval [0, exclusiveMax), so exclusiveMax should be greater
- * than zero.
+ * @param exclusiveMax Maximum integer to produce the random number from. The
+ * random integer will be in the interval [0, exclusiveMax), so exclusiveMax
+ * should be greater than zero.
  *
  * @return A random integer in the interval [0, exclusiveMax).
  */
@@ -70,28 +70,32 @@ int randomInt(int exclusiveMax);
  *
  * @param vec 2-dimensional vector to compute the norm from.
  *
- * @return A float approximation of the euclidean norm of the input vector, that is,
+ * @return A float approximation of the euclidean norm of the input vector, that
+ * is,
  * it's "length" in the euclidean metric space.
  */
 float norm(sf::Vector2f);
 
 /**
- * Returns a unit vector with the same direction of the input vector as an r-value.
+ * Returns a unit vector with the same direction of the input vector as an
+ * r-value.
  *
  * @param vec Vector to compute the unit vector from.
  *
- * @return A unit vector (that is, a vector with norm equal to 1) with the same direction
- * as the input vector. In other words, a normalized version of the input vector.
+ * @return A unit vector (that is, a vector with norm equal to 1) with the same
+ * direction as the input vector. In other words, a normalized version of the
+ * input vector.
  */
 sf::Vector2f unitVector(sf::Vector2f);
 
 /**
- * Returns a vector with the same direction as the input vector with the specified length.
+ * Returns a vector with the same direction as the input vector with the
+ * specified length.
  *
  * @param vec Input vector to get the direction from.
  * @param length Length the result vector should have.
  *
- * @return Vector with the same direction as the input vector, but its length will be
- * equal to the length passed as argument.
+ * @return Vector with the same direction as the input vector, but its length
+ * will be equal to the length passed as argument.
  */
 sf::Vector2f adjustVectorLength(sf::Vector2f, float);

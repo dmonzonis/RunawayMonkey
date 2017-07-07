@@ -5,14 +5,14 @@
 
 #pragma once
 
+#include <map>
+
+#include "actor.h"
 #include "category.h"
 #include "command.h"
 #include "command_queue.h"
-#include "actor.h"
 
 #include <SFML/Window.hpp>
-
-#include <map>
 
 /**
  * @brief Handles the input issued by the player.
@@ -26,11 +26,9 @@
  *
  * @see Command
  */
-class Player
-{
-public:
-    enum Action
-    {
+class Player {
+ public:
+    enum Action {
         NoAction,
         MoveUp,
         MoveLeft,
@@ -40,7 +38,7 @@ public:
         Debug2,
     };
 
-public:
+ public:
     /**
      * Default constructor. It will initialize the speed at which the
      * player actor can move, and the default key and action bindings.
@@ -59,7 +57,7 @@ public:
      *
      * @see MoveActor
      */
-    void handleEvent(const sf::Event& event, CommandQueue& commands);
+    void handleEvent(const sf::Event &event, CommandQueue &commands);
 
     /**
      * @brief Handles real time input.
@@ -78,7 +76,7 @@ public:
      *
      * @see Actor::shoot
      */
-    void handleRealTimeInput(CommandQueue& commands);
+    void handleRealTimeInput(CommandQueue &commands);
 
     /**
      * @brief Maps a keyboard key to an action.
@@ -112,7 +110,7 @@ public:
      * Player::handleRealTimeInput will use this pointer to execute them.
      * Movement keys are also bound to the movement of the actor.
      */
-    void setActor(Actor*);
+    void setActor(Actor *);
 
     /**
      * Returns a pointer to the assigned player actor in the world.
@@ -121,12 +119,12 @@ public:
      *
      * @return A pointer to the player's actor in the world.
      */
-    Actor* getActor() const;
+    Actor *getActor() const;
 
-private:
+ private:
     static bool isRealTimeAction(Action action);
 
-private:
+ private:
     std::map<sf::Keyboard::Key, Action> keyBinding;
     std::map<Action, Command> actionBinding;
     Actor *playerActor;

@@ -5,9 +5,9 @@
 
 #pragma once
 
+#include "player.h"
 #include "resource.h"
 #include "resource_identifiers.h"
-#include "player.h"
 #include "state_manager.h"
 
 /**
@@ -19,9 +19,8 @@
  * contains the main game loop that will be called after the game is
  * created.
  */
-class Game : private sf::NonCopyable
-{
-public:
+class Game : private sf::NonCopyable {
+ public:
     /**
      * Default constructor. It initializes the Render Window (including its
      * size, title and type), the state manager, and the context's resources.
@@ -34,13 +33,13 @@ public:
      */
     void run();
 
-private:
+ private:
     void processInput();
     void update(sf::Time dt);
     void render();
     void registerStates();
 
-private:
+ private:
     sf::RenderWindow window;
     TextureHolder textures;
     FontHolder fonts;

@@ -15,14 +15,13 @@
  * Crosshair objects are always positioned where the mouse is pointing to in
  * the render window, and have category Category::Crosshair.
  */
-class Crosshair : public Entity
-{
-public:
+class Crosshair : public Entity {
+ public:
     /**
      * @param textures Reference to TextureHolder to grab textures from.
      * @param w Reference to the RenderWindow to get the mouse position from.
      */
-    Crosshair(const TextureHolder&, sf::RenderWindow&);
+    Crosshair(const TextureHolder &, sf::RenderWindow &);
 
     /**
      * Does nothing, since crosshair objects are updated manually
@@ -41,9 +40,10 @@ public:
      */
     virtual Category::Type getCategory() const;
 
-private:
-    virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+ private:
+    virtual void drawCurrent(sf::RenderTarget &target,
+                             sf::RenderStates states) const;
 
-private:
+ private:
     sf::RenderWindow &window;
 };

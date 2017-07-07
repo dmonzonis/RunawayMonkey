@@ -4,10 +4,8 @@
  */
 #pragma once
 
-namespace States
-{
-enum ID
-{
+namespace States {
+enum ID {
     None,
     Game,
     Pause,

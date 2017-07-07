@@ -15,14 +15,13 @@
  *
  * @see State
  */
-class TitleState : public State
-{
-public:
+class TitleState : public State {
+ public:
     /**
      * Default constructor for the title state. It grabs the necessary textures
      * and fonts from the context, which are loaded when the game starts.
      */
-    TitleState(StateManager& manager, Context context);
+    TitleState(StateManager &manager, Context context);
 
     /**
      * Makes the title screen text blink every 0.5 seconds.
@@ -39,9 +38,9 @@ public:
     /**
      * If the player presses a key, launches the game.
      */
-    virtual bool handleEvent(const sf::Event& event);
+    virtual bool handleEvent(const sf::Event &event);
 
-private:
+ private:
     sf::Sprite backgroundSprite;
     sf::Text text;
     bool showText;

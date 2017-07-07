@@ -1,26 +1,22 @@
 #include "actor.h"
-#include "sound_node.h"
-#include "utility.h"
 
 #include <cassert>
 
-Actor::Actor(Type actorType, const TextureHolder& textures)
-    : textures(textures)
-    , type(actorType)
-    , shooting(false)
-    , shootRate(sf::seconds(0.25f))
-    , cooldown(sf::seconds(0.f))
-    , ammo(0)
-{
-    //Cast actor type to texture. For this to work they have to be ordered the same
+#include "sound_node.h"
+#include "utility.h"
+
+Actor::Actor(Type actorType, const TextureHolder &textures)
+    : textures(textures), type(actorType), shooting(false),
+      shootRate(sf::seconds(0.25f)), cooldown(sf::seconds(0.f)), ammo(0) {
+    // Cast actor type to texture. For this to work they have to be ordered the
+    // same
     Textures::ID actorTexture = static_cast<Textures::ID>(actorType);
     assert(actorTexture < Textures::TextureCount);
     sprite.setTexture(textures.get(actorTexture));
     centerOrigin(sprite);
 
-    //Set score to award when killed
-    switch (type)
-    {
+    // Set score to award when killed
+    switch (type) {
     case Snatcher:
         health = maxHealth = 3;
         score = 10;
@@ -39,106 +35,79 @@ Actor::Actor(Type actorType, const TextureHolder& textures)
     }
 }
 
-Category::Type Actor::getCategory() const
-{
+Category::Type Actor::getCategory() const {
     if (type == Type::Monkey)
         return Category::Player;
     else
         return Category::Enemy;
 }
 
-int Actor::getHealth() const
-{
-    return health;
-}
+int Actor::getHealth() const { return health; }
 
-void Actor::setHealth(int health)
-{
-    this->health = health;
-}
+void Actor::setHealth(int health) { this->health = health; }
 
-int Actor::damage(int amount)
-{
+int Actor::damage(int amount) {
     health -= amount;
-    if (health <= 0)
-    {
+    if (health <= 0) {
         health = 0;
         die();
         return score;
-    }
-    else if (health > maxHealth)
-    {
+    } else if (health > maxHealth) {
         health = maxHealth;
     }
     return 0;
 }
 
-void Actor::die()
-{
-    destroy();
-}
+void Actor::die() { destroy(); }
 
-void Actor::giveAmmo(int amount)
-{
+void Actor::giveAmmo(int amount) {
     assert(ammo + amount >= 0);
     ammo += amount;
 }
 
-int Actor::getAmmo() const
-{
-    return ammo;
-}
+int Actor::getAmmo() const { return ammo; }
 
-bool Actor::isShooting() const
-{
-    return shooting;
-}
+bool Actor::isShooting() const { return shooting; }
 
-void Actor::setShooting(bool flag)
-{
-    shooting = flag;
-}
+void Actor::setShooting(bool flag) { shooting = flag; }
 
-bool Actor::canShoot() const
-{
-    //Shooting is on cooldown if cooldown hasn't reached shootRate yet
+bool Actor::canShoot() const {
+    // Shooting is on cooldown if cooldown hasn't reached shootRate yet
     return cooldown >= shootRate;
 }
 
-void Actor::shoot(Projectile::Type type, CommandQueue* commands)
-{
-    if (canShoot())
-    {
-        //Convert type to int because commands don't know about projectiles
+void Actor::shoot(Projectile::Type type, CommandQueue *commands) {
+    if (canShoot()) {
+        // Convert type to int because commands don't know about projectiles
         int iType = static_cast<int>(type);
-        commands->push(Command(InstanceProjectile(getWorldPosition(), getLookingAt(),
-                               iType, textures), Category::SceneRoot));;
+        commands->push(
+            Command(InstanceProjectile(getWorldPosition(), getLookingAt(),
+                                       iType, textures),
+                    Category::SceneRoot));
+        ;
         playSound(Sounds::PoopThrow, commands);
         cooldown = sf::Time::Zero;
     }
 }
 
-void Actor::playSound(Sounds::ID id, CommandQueue* commands)
-{
+void Actor::playSound(Sounds::ID id, CommandQueue *commands) {
     sf::Vector2f worldPos = getWorldPosition();
     Command command;
     command.category = Category::Sound;
-    command.action = [id, worldPos] (WorldNode& node, sf::Time)
-    {
-        SoundNode& soundNode = static_cast<SoundNode&>(node);
+    command.action = [id, worldPos](WorldNode &node, sf::Time) {
+        SoundNode &soundNode = static_cast<SoundNode &>(node);
         soundNode.playSound(id, worldPos);
     };
     commands->push(command);
 }
 
-void Actor::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
-{
+void Actor::drawCurrent(sf::RenderTarget &target,
+                        sf::RenderStates states) const {
     target.draw(sprite, states);
 }
 
-//Move actor using its velocity and update the shooting cooldown
-void Actor::updateCurrent(sf::Time dt)
-{
+// Move actor using its velocity and update the shooting cooldown
+void Actor::updateCurrent(sf::Time dt) {
     move(velocity * dt.asSeconds());
     if (cooldown < shootRate)
         cooldown += dt;

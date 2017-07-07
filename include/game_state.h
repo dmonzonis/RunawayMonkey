@@ -5,9 +5,9 @@
 
 #pragma once
 
+#include "player.h"
 #include "state.h"
 #include "world.h"
-#include "player.h"
 
 /**
  * @brief State where the actual gameplay occurs.
@@ -19,9 +19,8 @@
  * @see State
  * @see World
  */
-class GameState : public State
-{
-public:
+class GameState : public State {
+ public:
     /**
      * Default constructor of the game state. Will initialize the
      * State and initializes the player controller's reference to
@@ -30,7 +29,7 @@ public:
      * @see State::State
      * @see Player::setActor
      */
-    GameState(StateManager& manager, Context context);
+    GameState(StateManager &manager, Context context);
 
     /**
      * Handles player input by calling Player::handleRealTimeInput and
@@ -53,9 +52,9 @@ public:
      * it acts accordingly, for example, pushing a menu state when the player
      * presses Escape.
      */
-    virtual bool handleEvent(const sf::Event& event);
+    virtual bool handleEvent(const sf::Event &event);
 
-private:
+ private:
     World world;
-    Player& player;
+    Player &player;
 };

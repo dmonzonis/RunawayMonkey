@@ -16,9 +16,8 @@
  * move around at some given speed. They also have a hitbox
  * representing its bounding rectangle.
  */
-class Entity : public WorldNode
-{
-public:
+class Entity : public WorldNode {
+ public:
     /**
      * @return The speed at which the entity can move in the
      * world.
@@ -64,7 +63,8 @@ public:
     sf::Vector2f getLookingAt();
 
     /**
-     * Flips the entity's transform horizontally if its orientation has changed, that is,
+     * Flips the entity's transform horizontally if its orientation has changed,
+     * that is,
      * if it's looking at something that's behind it.
      */
     void flip();
@@ -75,23 +75,19 @@ public:
      */
     virtual sf::FloatRect getHitbox() const;
 
-private:
-    enum Orientation
-    {
-        Left,
-        Right
-    };
+ private:
+    enum Orientation { Left, Right };
 
-private:
+ private:
     virtual void updateCurrent(sf::Time dt);
 
-private:
+ private:
     TextureHolder texture;
     sf::Vector2f lookDirection;
     Orientation orientation = Orientation::Right;
     float speed;
 
-protected:
+ protected:
     sf::Sprite sprite;
     sf::Vector2f velocity = sf::Vector2f(0.f, 0.f);
 };

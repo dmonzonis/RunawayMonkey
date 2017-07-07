@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "command.h"
-
-#include <queue>
 #include <cassert>
+#include <queue>
+
+#include "command.h"
 
 /**
  * @brief Queue of Command objects with custom methods.
@@ -17,15 +17,14 @@
  * to push a command in and get a command out of the queue, using
  * the FIFO method.
  */
-class CommandQueue
-{
-public:
+class CommandQueue {
+ public:
     /**
      * Push command at the end of the queue.
      *
      * @param command Reference to the command to be inserted into the queue.
      */
-    void push(const Command& command);
+    void push(const Command &command);
 
     /**
      * Get the command at the beginning of the queue and remove it from
@@ -43,6 +42,6 @@ public:
      */
     bool isEmpty() const;
 
-private:
+ private:
     std::queue<Command> commandQueue;
 };

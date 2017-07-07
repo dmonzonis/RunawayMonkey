@@ -12,21 +12,19 @@
  * @brief Node that can play sound effects using a SoundPlayer.
  *
  * A sound node holds a reference to a SoundPlayer object, and can play sounds
- * at any position in the world (using its parent node as coordinate origin, like
- * all nodes) by using its @ref playSound method.
+ * at any position in the world (using its parent node as coordinate origin,
+ * like all nodes) by using its @ref playSound method.
  *
  * @see SoundPlayer
  */
-class SoundNode : public WorldNode
-{
-public:
+class SoundNode : public WorldNode {
+ public:
     /**
-     * Default constructor. Takes a reference to the
-     * SoundPlayer to use.
+     * Default constructor. Takes a reference to the SoundPlayer to use.
      *
      * @see SoundPlayer
      */
-    explicit SoundNode(SoundPlayer& player);
+    explicit SoundNode(SoundPlayer &player);
 
     /**
      * @brief Plays the requested sound at the given position.
@@ -44,6 +42,6 @@ public:
      */
     virtual Category::Type getCategory() const;
 
-private:
-    SoundPlayer& player;
+ private:
+    SoundPlayer &player;
 };

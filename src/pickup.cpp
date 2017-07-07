@@ -1,10 +1,7 @@
 #include "pickup.h"
 
-Pickup::Pickup(Type type, const TextureHolder& textures)
-    : type(type)
-{
-    switch (type)
-    {
+Pickup::Pickup(Type type, const TextureHolder &textures) : type(type) {
+    switch (type) {
     case Healkit:
         sprite.setTexture(textures.get(Textures::Healkit));
         break;
@@ -17,10 +14,8 @@ Pickup::Pickup(Type type, const TextureHolder& textures)
     }
 }
 
-void Pickup::apply(Actor& player) const
-{
-    switch (type)
-    {
+void Pickup::apply(Actor &player) const {
+    switch (type) {
     case Healkit:
         player.damage(-1);
         break;
@@ -32,12 +27,9 @@ void Pickup::apply(Actor& player) const
     }
 }
 
-Category::Type Pickup::getCategory() const
-{
-    return Category::Pickup;
-}
+Category::Type Pickup::getCategory() const { return Category::Pickup; }
 
-void Pickup::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
-{
+void Pickup::drawCurrent(sf::RenderTarget &target,
+                         sf::RenderStates states) const {
     target.draw(sprite, states);
 }
